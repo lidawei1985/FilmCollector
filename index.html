@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>FilmCollector 公共片库 · 静态订阅</title>
+<style>
+ body{font-family:system-ui,'Microsoft YaHei',sans-serif;max-width:760px;margin:40px auto;padding:0 18px;color:#1b2735;line-height:1.7}
+ h1{font-size:24px} code{background:#eef2f7;padding:2px 6px;border-radius:5px;word-break:break-all}
+ .card{border:1px solid #d8e0ea;border-radius:12px;padding:16px 18px;margin:14px 0;background:#fafcff}
+ .ok{color:#1a9d5a} b{color:#0a6cff}
+</style>
+</head>
+<body>
+<h1>🎬 FilmCollector 公共片库</h1>
+<p class="ok">✅ 这是一套<strong>纯静态</strong>的 TVBox 订阅源，已内置 <b>10</b> 部公共领域 / CC 影片（真实可播直链）。</p>
+<div class="card"><h3>🖼 海报已随包发布（不再依赖第三方图源）</h3><p>本次共发布 <b>6</b> 张本地海报图到本仓库 <code>https://lidawei1985.github.io/FilmCollector/images/</code>，电视/手机端加载海报时直接读本仓库地址，不受第三方图床 / CDN / 防盗链失效影响。另有 4 张海报仍为第三方远程链接（尚未入库本地图库），可在采集工具的「本地素材图库」中处理后重新发布。</p></div>
+<div class="card">
+  <h3>① 订阅地址（粘贴进 TVBox 的「订阅」框）</h3>
+  <p><code>https://lidawei1985.github.io/FilmCollector/subscribe.json</code></p>
+</div>
+<div class="card">
+  <h3>② 也可直接写进第三方 JSON 配置的 sites[].api</h3>
+  <p>支持爬虫的软件用：<br><code>https://lidawei1985.github.io/FilmCollector/api.js</code>（type=2，支持搜索/分页）</p>
+  <p>只认 JSON 接口的软件用：<br><code>https://lidawei1985.github.io/FilmCollector/data.json</code>（type=3，标准 provide/vod）</p>
+</div>
+<div class="card">
+  <h3>③ 部署方式</h3>
+  <p>把本目录全部文件上传到 GitHub Pages / Codeberg Pages / Gitee Pages 等任意静态托管即可。
+  详见同目录 <code>DEPLOY.md</code>。</p>
+</div>
+<p class="hint" style="color:#7a8aa0;font-size:13px">片源来自 Internet Archive 等公共领域 / CC 授权内容，仅供个人学习欣赏。请遵守所在地区法律法规与版权要求。</p>
+</body>
+</html>
