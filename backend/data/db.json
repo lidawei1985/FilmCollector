@@ -1,31 +1,8 @@
 {
   "items": [
     {
-      "title": "Big Buck Bunny",
-      "aliases": "",
-      "year": "",
-      "region": "",
-      "type": "电影",
-      "director": "",
-      "actors": "",
-      "description": "Big Buck Bunny is a comedy about a well-tempered rabbit Big Buck, who finds his day spoiled by the rude actions of the forest bullies, three rodents. In the...",
-      "duration": "",
-      "rating": "",
-      "subtitle": "",
-      "poster": "",
-      "cover": "",
-      "episodes": [],
-      "source_url": "https://archive.org/details/BigBuckBunny_124",
-      "status": "dead",
-      "validated": true,
-      "genres": [],
-      "id": "5feee853-34a4-4e49-86a6-bd5016a2e397",
-      "created_at": "2026-08-11 09:19:58",
-      "updated_at": "2026-08-11 10:14:12"
-    },
-    {
       "title": "Elephants Dream",
-      "aliases": "",
+      "aliases": [],
       "year": "",
       "region": "",
       "type": "连续剧",
@@ -35,31 +12,33 @@
       "duration": "",
       "rating": "",
       "subtitle": "",
-      "poster": "images/poster_ed_1024_000030.jpg",
-      "cover": "",
+      "poster": "images/poster_ElephantsDream.jpg",
+      "cover": "images/cover_ElephantsDream.jpg",
       "episodes": [
         {
-          "name": "播放",
+          "line": "默认线路",
           "url": "https://archive.org/download/ElephantsDream/ed_1024.mp4",
-          "line": "默认线路"
+          "name": "第1集"
         },
         {
-          "name": "播放",
+          "line": "默认线路",
           "url": "https://archive.org/download/ElephantsDream/ed_hd.mp4",
-          "line": "默认线路"
+          "name": "第2集"
         }
       ],
+      "source_id": "ElephantsDream",
       "source_url": "https://archive.org/details/ElephantsDream",
+      "license": "Public Domain / CC",
       "status": "ok",
       "validated": true,
       "genres": [],
       "id": "c0b03f29-01bb-4446-ad50-0d240f0f4a67",
-      "created_at": "2026-08-11 09:20:05",
-      "updated_at": "2026-08-11 10:14:16"
+      "created_at": "2026-08-13 04:02:34",
+      "updated_at": "2026-08-13 04:02:34"
     },
     {
       "title": "Wings",
-      "aliases": "",
+      "aliases": [],
       "year": "",
       "region": "",
       "type": "电影",
@@ -69,26 +48,28 @@
       "duration": "",
       "rating": "",
       "subtitle": "",
-      "poster": "images/poster_Wings_1927__000117.jpg",
-      "cover": "",
+      "poster": "images/poster_wings-1927_202404.jpg",
+      "cover": "images/cover_wings-1927_202404.jpg",
       "episodes": [
         {
-          "name": "线路片段1",
+          "line": "默认线路",
           "url": "https://archive.org/download/wings-1927_202404/Wings%281927%29.mp4",
-          "line": "默认线路"
+          "name": "第1集"
         }
       ],
+      "source_id": "wings-1927_202404",
       "source_url": "https://archive.org/details/wings-1927_202404",
+      "license": "Public Domain / CC",
       "status": "ok",
       "validated": true,
       "genres": [],
       "id": "c8d872ed-00fe-462d-b9c2-e8b64968cf1b",
-      "created_at": "2026-08-11 09:21:07",
-      "updated_at": "2026-08-11 10:14:18"
+      "created_at": "2026-08-13 04:02:34",
+      "updated_at": "2026-08-13 04:02:34"
     },
     {
       "title": "Winners of the West 1940 colorized cliffhanger serial (Dick Foran)",
-      "aliases": "",
+      "aliases": [],
       "year": "",
       "region": "",
       "type": "连续剧",
@@ -98,104 +79,83 @@
       "duration": "",
       "rating": "",
       "subtitle": "",
-      "poster": "images/poster_01_Redskins_Ride_Again_000116.jpg",
-      "cover": "",
+      "poster": "images/poster_winners-of-the-west-1940.jpg",
+      "cover": "images/cover_winners-of-the-west-1940.jpg",
       "episodes": [
         {
-          "name": "线路片段1",
+          "line": "默认线路",
           "url": "https://archive.org/download/winners-of-the-west-1940/01%20Redskins%20Ride%20Again.mp4",
-          "line": "默认线路"
+          "name": "第1集"
         },
         {
-          "name": "线路片段2",
+          "line": "默认线路",
           "url": "https://archive.org/download/winners-of-the-west-1940/02%20The%20Wreck%20at%20Red%20River%20Gorge.mp4",
-          "line": "默认线路"
+          "name": "第2集"
         },
         {
-          "name": "线路片段3",
+          "line": "默认线路",
           "url": "https://archive.org/download/winners-of-the-west-1940/03%20The%20Bridge%20of%20Disaster.mp4",
-          "line": "默认线路"
+          "name": "第3集"
         },
         {
-          "name": "线路片段4",
+          "line": "默认线路",
           "url": "https://archive.org/download/winners-of-the-west-1940/04%20Trapped%20by%20Redskins.mp4",
-          "line": "默认线路"
+          "name": "第4集"
         },
         {
-          "name": "线路片段5",
+          "line": "默认线路",
           "url": "https://archive.org/download/winners-of-the-west-1940/05%20Death%20Strikes%20the%20Trail.mp4",
-          "line": "默认线路"
+          "name": "第5集"
         },
         {
-          "name": "线路片段6",
+          "line": "默认线路",
           "url": "https://archive.org/download/winners-of-the-west-1940/06%20A%20Leap%20for%20Life.mp4",
-          "line": "默认线路"
+          "name": "第6集"
         },
         {
-          "name": "线路片段7",
+          "line": "默认线路",
           "url": "https://archive.org/download/winners-of-the-west-1940/07%20Thundering%20Terror.mp4",
-          "line": "默认线路"
+          "name": "第7集"
         },
         {
-          "name": "线路片段8",
+          "line": "默认线路",
           "url": "https://archive.org/download/winners-of-the-west-1940/08%20The%20Flaming%20Arsenal.mp4",
-          "line": "默认线路"
+          "name": "第8集"
         },
         {
-          "name": "线路片段9",
+          "line": "默认线路",
           "url": "https://archive.org/download/winners-of-the-west-1940/09%20Sacrificed%20by%20Savages.mp4",
-          "line": "默认线路"
+          "name": "第9集"
         },
         {
-          "name": "线路片段10",
+          "line": "默认线路",
           "url": "https://archive.org/download/winners-of-the-west-1940/10%20Under%20Crashing%20Timbers.mp4",
-          "line": "默认线路"
+          "name": "第10集"
         },
         {
-          "name": "线路片段11",
+          "line": "默认线路",
           "url": "https://archive.org/download/winners-of-the-west-1940/11%20Bullets%20in%20the%20Dark.mp4",
-          "line": "默认线路"
+          "name": "第11集"
         },
         {
-          "name": "线路片段12",
+          "line": "默认线路",
           "url": "https://archive.org/download/winners-of-the-west-1940/12%20The%20Battle%20of%20Blackhawk.mp4",
-          "line": "默认线路"
+          "name": "第12集"
         }
       ],
+      "source_id": "winners-of-the-west-1940",
       "source_url": "https://archive.org/details/winners-of-the-west-1940",
+      "license": "Public Domain / CC",
       "status": "ok",
       "validated": true,
       "genres": [],
       "id": "c365ad4e-7f58-41a7-9c2a-9003e3a4779a",
-      "created_at": "2026-08-11 09:21:07",
-      "updated_at": "2026-08-11 10:14:41"
-    },
-    {
-      "title": "Wise Girls (1929)",
-      "aliases": "",
-      "year": "",
-      "region": "",
-      "type": "电影",
-      "director": "",
-      "actors": "",
-      "description": "I've been researching newly public domain films from 1929 and earlier, so I'm uploading the best possible copies that I can find.This comedy follows a plumber...",
-      "duration": "",
-      "rating": "",
-      "subtitle": "",
-      "poster": "images/poster_wise-girls_1929_000114.jpg",
-      "cover": "",
-      "episodes": [],
-      "source_url": "https://archive.org/details/wise-girls_1929_202506",
-      "status": "dead",
-      "validated": true,
-      "genres": [],
-      "id": "6e1c79c2-a177-40c4-a663-1f247e93f794",
-      "created_at": "2026-08-11 09:21:07",
-      "updated_at": "2026-08-11 10:14:53"
+      "created_at": "2026-08-13 04:02:34",
+      "updated_at": "2026-08-13 04:02:34"
     },
     {
       "title": "Wilful Willie (1942)",
-      "aliases": "",
+      "aliases": [],
       "year": "",
       "region": "",
       "type": "电影",
@@ -205,26 +165,28 @@
       "duration": "",
       "rating": "",
       "subtitle": "",
-      "poster": "images/poster_Wilful_Willie__1942__000058.jpg",
-      "cover": "",
+      "poster": "images/poster_wilful-willie-1942.jpg",
+      "cover": "images/cover_wilful-willie-1942.jpg",
       "episodes": [
         {
-          "name": "线路片段1",
+          "line": "默认线路",
           "url": "https://archive.org/download/wilful-willie-1942/Wilful%20Willie%20%281942%29.mp4",
-          "line": "默认线路"
+          "name": "第1集"
         }
       ],
+      "source_id": "wilful-willie-1942",
       "source_url": "https://archive.org/details/wilful-willie-1942",
+      "license": "Public Domain / CC",
       "status": "ok",
       "validated": true,
       "genres": [],
       "id": "5f352e0b-1f5c-4725-aa80-3ef1e269ad30",
-      "created_at": "2026-08-11 09:21:07",
-      "updated_at": "2026-08-11 10:15:03"
+      "created_at": "2026-08-13 04:02:34",
+      "updated_at": "2026-08-13 04:02:34"
     },
     {
       "title": "Windjammer",
-      "aliases": "",
+      "aliases": [],
       "year": "",
       "region": "",
       "type": "电影",
@@ -234,26 +196,28 @@
       "duration": "",
       "rating": "",
       "subtitle": "",
-      "poster": "images/poster_windjammer_000060.jpg",
-      "cover": "",
+      "poster": "images/poster_windjammer.jpg",
+      "cover": "images/cover_windjammer.jpg",
       "episodes": [
         {
-          "name": "播放",
+          "line": "默认线路",
           "url": "https://archive.org/download/windjammer/windjammer.mp4",
-          "line": "默认线路"
+          "name": "第1集"
         }
       ],
+      "source_id": "windjammer",
       "source_url": "https://archive.org/details/windjammer",
+      "license": "Public Domain / CC",
       "status": "ok",
       "validated": true,
       "genres": [],
       "id": "c2d6fb12-24d8-4d7d-aa67-daf1a8794d01",
-      "created_at": "2026-08-11 09:21:07",
-      "updated_at": "2026-08-11 10:15:05"
+      "created_at": "2026-08-13 04:02:34",
+      "updated_at": "2026-08-13 04:02:34"
     },
     {
       "title": "Who Killed Buddy Blue? - Kimber Sissons, Anthony Addabbo",
-      "aliases": "",
+      "aliases": [],
       "year": "",
       "region": "",
       "type": "电影",
@@ -263,610 +227,1370 @@
       "duration": "",
       "rating": "",
       "subtitle": "",
-      "poster": "images/poster_Who_Killed_Buddy_Blue_-_1995_000058.jpg",
-      "cover": "",
+      "poster": "images/poster_who-killed-buddy-blue-1995.jpg",
+      "cover": "images/cover_who-killed-buddy-blue-1995.jpg",
       "episodes": [
         {
-          "name": "播放",
+          "line": "默认线路",
           "url": "https://archive.org/download/who-killed-buddy-blue-1995/Who%20Killed%20Buddy%20Blue%20-%201995.ia.mp4",
-          "line": "默认线路"
+          "name": "第1集"
         }
       ],
+      "source_id": "who-killed-buddy-blue-1995",
       "source_url": "https://archive.org/details/who-killed-buddy-blue-1995",
+      "license": "Public Domain / CC",
       "status": "ok",
       "validated": true,
       "genres": [],
       "id": "3cf80691-5ced-479f-8903-3313b9eb55a9",
-      "created_at": "2026-08-11 09:21:07",
-      "updated_at": "2026-08-11 10:15:07"
-    },
-    {
-      "title": "電影線上看、推薦人氣電影 - 影劇館⁺ | HamiVideo",
-      "aliases": "",
-      "year": "",
-      "region": "",
-      "type": "电影",
-      "director": "",
-      "actors": "",
-      "description": "獨家搶先看裴晟祐×鄭家藍×李絮×趙漢哲×尹敬浩《終極搜查》、成龍×張子楓×梁家輝《捕風追影》！現象級動漫《劇場版「鬼滅之刃」無限城篇 第一章 猗窩座再襲》、趙麗穎×蘭西雅×啜妮×王菊×程瀟《向陽‧花》！ 即將上架古天樂×林峯×宣萱×郭羨妮×滕麗名《尋秦記》、張孝全×林依晨×金士傑×馬志翔×丁寧×陳季霞×蔡亘晏《深度安靜》、全智賢×具教煥×池昌旭×申鉉彬×金信祿《屍速禁區》、黃子華×鄭秀文《夜王》！不論您是動作片、喜劇片、恐怖片還是浪漫愛情片的愛好者，Hami Video讓您輕鬆找到喜愛想看的內容，立即一同線上探索。",
-      "duration": "",
-      "rating": "",
-      "subtitle": "",
-      "poster": "images/poster_getHamiVideoImg.jpg",
-      "cover": "",
-      "episodes": [],
-      "source_url": "https://hamivideo.hinet.net/%E5%BD%B1%E5%8A%87%E9%A4%A8%E2%81%BA/%E9%9B%BB%E5%BD%B1/%E6%8E%A8%E8%96%A6.do",
-      "status": "dead",
-      "validated": true,
-      "genres": [
-        "爱情",
-        "恐怖"
-      ],
-      "id": "002c1180-4a49-4cdf-8b60-6c21f60748ec",
-      "created_at": "2026-08-11 10:09:40",
-      "updated_at": "2026-08-11 10:15:07"
-    },
-    {
-      "title": "觀看 電影 | HBO Max",
-      "aliases": "",
-      "year": "",
-      "region": "",
-      "type": "电影",
-      "director": "",
-      "actors": "",
-      "description": "觀看 電影 盡在 HBO Max. 暢享好萊塢最熱門大片，涵蓋動作、冒險、喜劇、劇情等各類影片，每週末均有新片上線。",
-      "duration": "",
-      "rating": "",
-      "subtitle": "",
-      "poster": "images/poster_Splash_20Screen_20HD_20720x480.jpg",
-      "cover": "",
-      "episodes": [],
-      "source_url": "https://www.hbomax.com/tw/zh/movies",
-      "status": "dead",
-      "validated": true,
-      "genres": [],
-      "id": "065617de-7d99-4e24-b432-1cd25d8a8a1c",
-      "created_at": "2026-08-11 10:14:02",
-      "updated_at": "2026-08-11 10:15:07"
-    },
-    {
-      "title": "觀看 電影 | HBO Max",
-      "aliases": "",
-      "year": "",
-      "region": "",
-      "type": "电影",
-      "director": "",
-      "actors": "",
-      "description": "觀看 電影 盡在 HBO Max. 暢享好萊塢最熱門大片，涵蓋動作、冒險、喜劇、劇情等各類影片，每週末均有新片上線。",
-      "duration": "",
-      "rating": "",
-      "subtitle": "",
-      "poster": "images/poster_Splash_20Screen_20HD_20720x480.jpg",
-      "cover": "",
-      "episodes": [],
-      "source_url": "https://www.hbomax.com/tw/zh/movies",
-      "status": "dead",
-      "validated": true,
-      "genres": [],
-      "id": "1d165b20-845a-4a67-82b6-cfc8da7b973e",
-      "created_at": "2026-08-11 10:27:20",
-      "updated_at": "2026-08-11 10:27:20"
-    },
-    {
-      "title": "觀看 電影 | HBO Max",
-      "aliases": "",
-      "year": "",
-      "region": "",
-      "type": "电影",
-      "director": "",
-      "actors": "",
-      "description": "觀看 電影 盡在 HBO Max. 暢享好萊塢最熱門大片，涵蓋動作、冒險、喜劇、劇情等各類影片，每週末均有新片上線。",
-      "duration": "",
-      "rating": "",
-      "subtitle": "",
-      "poster": "images/poster_Splash_20Screen_20HD_20720x480.jpg",
-      "cover": "",
-      "episodes": [],
-      "source_url": "https://www.hbomax.com/tw/zh/movies",
-      "status": "dead",
-      "validated": true,
-      "genres": [],
-      "id": "c04a44c5-e189-4074-90a2-1c74a2015a48",
-      "created_at": "2026-08-11 10:31:48",
-      "updated_at": "2026-08-11 10:31:48"
-    },
-    {
-      "title": "觀看 電影 | HBO Max",
-      "aliases": "",
-      "year": "",
-      "region": "",
-      "type": "电影",
-      "director": "",
-      "actors": "",
-      "description": "觀看 電影 盡在 HBO Max. 暢享好萊塢最熱門大片，涵蓋動作、冒險、喜劇、劇情等各類影片，每週末均有新片上線。",
-      "duration": "",
-      "rating": "",
-      "subtitle": "",
-      "poster": "images/poster_Splash_20Screen_20HD_20720x480.jpg",
-      "cover": "",
-      "episodes": [],
-      "source_url": "https://www.hbomax.com/tw/zh/movies",
-      "status": "dead",
-      "validated": true,
-      "genres": [],
-      "id": "2350e861-5a19-4c3a-928f-13b889cf006b",
-      "created_at": "2026-08-11 10:37:26",
-      "updated_at": "2026-08-11 10:37:26"
-    },
-    {
-      "title": "觀看 電影 | HBO Max",
-      "aliases": "",
-      "year": "",
-      "region": "",
-      "type": "电影",
-      "director": "",
-      "actors": "",
-      "description": "觀看 電影 盡在 HBO Max. 暢享好萊塢最熱門大片，涵蓋動作、冒險、喜劇、劇情等各類影片，每週末均有新片上線。",
-      "duration": "",
-      "rating": "",
-      "subtitle": "",
-      "poster": "images/poster_Splash_20Screen_20HD_20720x480.jpg",
-      "cover": "",
-      "episodes": [],
-      "source_url": "https://www.hbomax.com/tw/zh/movies",
-      "status": "dead",
-      "validated": true,
-      "genres": [],
-      "id": "9bb3f0c3-b27c-4ecc-9204-1037f346ac5a",
-      "created_at": "2026-08-11 12:50:13",
-      "updated_at": "2026-08-11 12:50:13"
+      "created_at": "2026-08-13 04:02:34",
+      "updated_at": "2026-08-13 04:02:34"
     },
     {
       "title": "Papa Tiene Novia (1941) : Free Download, Borrow, and Streaming : Internet Archive",
-      "aliases": "",
+      "aliases": [],
       "year": "",
       "region": "",
-      "type": "",
+      "type": "电影",
       "director": "",
       "actors": "",
       "description": "Papá tiene novia es una película argentina del género de comedia filmada en blanco y negro dirigida por Carlos Schlieper sobre su propio guion...",
       "duration": "",
       "rating": "",
       "subtitle": "",
-      "poster": "https://archive.org/download/papa-tiene-novia-1941/papa-tiene-novia-1941.thumbs/Papa tiene novia (1941)_000060.jpg",
-      "cover": "",
+      "poster": "images/poster_papa-tiene-novia-1941.jpg",
+      "cover": "images/cover_papa-tiene-novia-1941.jpg",
       "episodes": [
         {
-          "name": "线路片段1",
+          "line": "默认线路",
           "url": "https://archive.org/download/papa-tiene-novia-1941/Papa%20tiene%20novia%20%281941%29.mp4",
-          "line": "默认线路"
+          "name": "第1集"
         }
       ],
-      "source_url": "https://archive.org/details/papa-tiene-novia-1941",
       "source_id": "papa-tiene-novia-1941",
+      "source_url": "https://archive.org/details/papa-tiene-novia-1941",
       "license": "Public Domain / CC",
       "status": "ok",
+      "validated": true,
+      "genres": [],
       "id": "e1fd2450-31fc-479d-b483-1fa89e889dac",
-      "created_at": "2026-08-11 14:07:28",
-      "updated_at": "2026-08-11 14:07:28"
+      "created_at": "2026-08-13 04:02:34",
+      "updated_at": "2026-08-13 04:02:34"
     },
     {
       "title": "Argentinisima (duo) : Free Download, Borrow, and Streaming : Internet Archive",
-      "aliases": "",
+      "aliases": [],
       "year": "",
       "region": "",
-      "type": "",
+      "type": "电影",
       "director": "",
       "actors": "",
       "description": "Películas",
       "duration": "",
       "rating": "",
       "subtitle": "",
-      "poster": "https://archive.org/download/argentinisima-duo/argentinisima-duo.thumbs/Argentinisima (1972)_000060.jpg",
-      "cover": "",
+      "poster": "images/poster_argentinisima-duo.jpg",
+      "cover": "images/cover_argentinisima-duo.jpg",
       "episodes": [
         {
-          "name": "线路片段1",
+          "line": "默认线路",
           "url": "https://archive.org/download/argentinisima-duo/Argentinisima%20%281972%29.mp4",
-          "line": "默认线路"
+          "name": "第1集"
         },
         {
-          "name": "线路片段2",
+          "line": "默认线路",
           "url": "https://archive.org/download/argentinisima-duo/Argentinisima%20II%20%281973%29.mp4",
-          "line": "默认线路"
+          "name": "第2集"
         }
       ],
-      "source_url": "https://archive.org/details/argentinisima-duo",
       "source_id": "argentinisima-duo",
+      "source_url": "https://archive.org/details/argentinisima-duo",
       "license": "Public Domain / CC",
       "status": "ok",
+      "validated": true,
+      "genres": [],
       "id": "672a1c53-21aa-40e6-9b9b-91ae87252cf3",
-      "created_at": "2026-08-11 14:07:29",
-      "updated_at": "2026-08-11 14:07:29"
+      "created_at": "2026-08-13 04:02:34",
+      "updated_at": "2026-08-13 04:02:34"
     },
     {
       "title": "He Nacido En La Rivera (1972) : Free Download, Borrow, and Streaming : Internet Archive",
-      "aliases": "",
+      "aliases": [],
       "year": "",
       "region": "",
-      "type": "",
+      "type": "电影",
       "director": "",
       "actors": "",
       "description": "Película",
       "duration": "",
       "rating": "",
       "subtitle": "",
-      "poster": "https://archive.org/download/he-nacido-en-la-rivera-1972/he-nacido-en-la-rivera-1972.thumbs/He nacido en la rivera (1972)_000060.jpg",
-      "cover": "",
+      "poster": "images/poster_he-nacido-en-la-rivera-1972.jpg",
+      "cover": "images/cover_he-nacido-en-la-rivera-1972.jpg",
       "episodes": [
         {
-          "name": "线路片段1",
+          "line": "默认线路",
           "url": "https://archive.org/download/he-nacido-en-la-rivera-1972/He%20nacido%20en%20la%20rivera%20%281972%29.mp4",
-          "line": "默认线路"
+          "name": "第1集"
         }
       ],
-      "source_url": "https://archive.org/details/he-nacido-en-la-rivera-1972",
       "source_id": "he-nacido-en-la-rivera-1972",
+      "source_url": "https://archive.org/details/he-nacido-en-la-rivera-1972",
       "license": "Public Domain / CC",
       "status": "ok",
+      "validated": true,
+      "genres": [],
       "id": "60ba8a95-0f70-47e4-a1b5-ff8e616a530f",
-      "created_at": "2026-08-11 14:07:30",
-      "updated_at": "2026-08-11 14:07:30"
+      "created_at": "2026-08-13 04:02:34",
+      "updated_at": "2026-08-13 04:02:34"
     },
     {
       "title": "Don Quijote Del Altillo (1936)",
-      "aliases": "",
+      "aliases": [],
       "year": "",
       "region": "",
-      "type": "",
+      "type": "电影",
       "director": "",
       "actors": "",
       "description": "Don Quijote del altillo es una película argentina en blanco y negro dirigida por Manuel Romero sobre su propio guion que se estrenó el 3 de junio de...",
       "duration": "",
       "rating": "",
       "subtitle": "",
-      "poster": "https://archive.org/download/don-quijote-del-altillo-1936/don-quijote-del-altillo-1936.thumbs/Don Quijote del altillo (1936)_000060.jpg",
+      "poster": "images/poster_don-quijote-del-altillo-1936.jpg",
+      "cover": "images/cover_don-quijote-del-altillo-1936.jpg",
+      "episodes": [
+        {
+          "line": "默认线路",
+          "url": "https://archive.org/download/don-quijote-del-altillo-1936/Don%20Quijote%20del%20altillo%20%281936%29.mp4",
+          "name": "第1集"
+        }
+      ],
+      "source_id": "don-quijote-del-altillo-1936",
+      "source_url": "https://archive.org/details/don-quijote-del-altillo-1936",
+      "license": "Public Domain / CC",
+      "status": "ok",
+      "validated": true,
+      "genres": [],
+      "id": "d03e6420-b4c2-4f2c-8e4c-cfac093bde57",
+      "created_at": "2026-08-13 04:02:34",
+      "updated_at": "2026-08-13 04:02:34"
+    },
+    {
+      "title": "Hombre De La Esquina Rosada (1962)",
+      "aliases": [],
+      "year": "",
+      "region": "",
+      "type": "电影",
+      "director": "",
+      "actors": "",
+      "description": "Película",
+      "duration": "",
+      "rating": "",
+      "subtitle": "",
+      "poster": "images/poster_hombre-de-la-esquina-rosada-1962.jpg",
+      "cover": "images/cover_hombre-de-la-esquina-rosada-1962.jpg",
+      "episodes": [
+        {
+          "line": "默认线路",
+          "url": "https://archive.org/download/hombre-de-la-esquina-rosada-1962/Hombre%20de%20la%20esquina%20rosada%20%281962%29.mp4",
+          "name": "第1集"
+        }
+      ],
+      "source_id": "hombre-de-la-esquina-rosada-1962",
+      "source_url": "https://archive.org/details/hombre-de-la-esquina-rosada-1962",
+      "license": "Public Domain / CC",
+      "status": "ok",
+      "validated": true,
+      "genres": [],
+      "id": "4434ab28-9285-4d79-825b-9f9b05fba150",
+      "created_at": "2026-08-13 04:02:34",
+      "updated_at": "2026-08-13 04:02:34"
+    },
+    {
+      "title": "La Maffia (1972)",
+      "aliases": [],
+      "year": "",
+      "region": "",
+      "type": "电影",
+      "director": "",
+      "actors": "",
+      "description": "Película",
+      "duration": "",
+      "rating": "",
+      "subtitle": "",
+      "poster": "images/poster_la-maffia-1972_202608.jpg",
+      "cover": "images/cover_la-maffia-1972_202608.jpg",
+      "episodes": [
+        {
+          "line": "默认线路",
+          "url": "https://archive.org/download/la-maffia-1972_202608/La%20maffia%20%281972%29.mp4",
+          "name": "第1集"
+        }
+      ],
+      "source_id": "la-maffia-1972_202608",
+      "source_url": "https://archive.org/details/la-maffia-1972_202608",
+      "license": "Public Domain / CC",
+      "status": "ok",
+      "validated": true,
+      "genres": [],
+      "id": "7fcbd56f-0a40-468e-8ba6-1e7ee4eeca99",
+      "created_at": "2026-08-13 04:02:34",
+      "updated_at": "2026-08-13 04:02:34"
+    },
+    {
+      "title": "Guemes, La Tierra En Armas (1971)",
+      "aliases": [],
+      "year": "",
+      "region": "",
+      "type": "电影",
+      "director": "",
+      "actors": "",
+      "description": "Película",
+      "duration": "",
+      "rating": "",
+      "subtitle": "",
+      "poster": "images/poster_guemes-la-tierra-en-armas-1971.jpg",
+      "cover": "images/cover_guemes-la-tierra-en-armas-1971.jpg",
+      "episodes": [
+        {
+          "line": "默认线路",
+          "url": "https://archive.org/download/guemes-la-tierra-en-armas-1971/Guemes%2C%20la%20tierra%20en%20armas%20%281971%29.mp4",
+          "name": "第1集"
+        }
+      ],
+      "source_id": "guemes-la-tierra-en-armas-1971",
+      "source_url": "https://archive.org/details/guemes-la-tierra-en-armas-1971",
+      "license": "Public Domain / CC",
+      "status": "ok",
+      "validated": true,
+      "genres": [],
+      "id": "556b1c24-e977-4a50-b252-eb1feac474d8",
+      "created_at": "2026-08-13 04:02:34",
+      "updated_at": "2026-08-13 04:02:34"
+    },
+    {
+      "title": "Hay Que Romper La Rutina (1974)",
+      "aliases": [],
+      "year": "",
+      "region": "",
+      "type": "电影",
+      "director": "",
+      "actors": "",
+      "description": "Película",
+      "duration": "",
+      "rating": "",
+      "subtitle": "",
+      "poster": "images/poster_hay-que-romper-la-rutina-1974.jpg",
+      "cover": "images/cover_hay-que-romper-la-rutina-1974.jpg",
+      "episodes": [
+        {
+          "line": "默认线路",
+          "url": "https://archive.org/download/hay-que-romper-la-rutina-1974/Hay%20que%20romper%20la%20rutina%20%281974%29.mp4",
+          "name": "第1集"
+        }
+      ],
+      "source_id": "hay-que-romper-la-rutina-1974",
+      "source_url": "https://archive.org/details/hay-que-romper-la-rutina-1974",
+      "license": "Public Domain / CC",
+      "status": "ok",
+      "validated": true,
+      "genres": [],
+      "id": "4df18bba-08d1-467a-80d4-9fb60469211f",
+      "created_at": "2026-08-13 04:02:34",
+      "updated_at": "2026-08-13 04:02:34"
+    },
+    {
+      "title": "Home Movie: 012058",
+      "aliases": [],
+      "year": "",
+      "region": "",
+      "type": "电影",
+      "director": "",
+      "actors": "",
+      "description": "Brought to New York by a special event, a Black family from Detroit takes in the Guggenheim and Central Park and the look and feel of the architecture and...",
+      "duration": "",
+      "rating": "",
+      "subtitle": "",
+      "poster": "images/poster_204403_Home_Movie_012058.jpg",
+      "cover": "images/cover_204403_Home_Movie_012058.jpg",
+      "episodes": [
+        {
+          "line": "默认线路",
+          "url": "https://archive.org/download/204403_Home_Movie_012058/204403_Home_Movie_012058_master.intros.mp4",
+          "name": "第1集"
+        }
+      ],
+      "source_id": "204403_Home_Movie_012058",
+      "source_url": "https://archive.org/details/204403_Home_Movie_012058",
+      "license": "Public Domain / CC",
+      "status": "ok",
+      "validated": true,
+      "genres": [],
+      "id": "92199519-3a7c-478e-a8be-afc25eafcb09",
+      "created_at": "2026-08-13 04:02:34",
+      "updated_at": "2026-08-13 04:02:34"
+    },
+    {
+      "title": "[Frank Putnam Flint Memorial Fountain Interviews]",
+      "aliases": [],
+      "year": "",
+      "region": "",
+      "type": "电影",
+      "director": "",
+      "actors": "",
+      "description": "Content advisory: Racist remarks. Across several sequences, a television news journalist interviews passersby for their views about whether the Frank Putnam...",
+      "duration": "",
+      "rating": "",
+      "subtitle": "",
+      "poster": "images/poster_206134_Frank_Putnam_Flint_Memorial_Interviews.jpg",
       "cover": "",
       "episodes": [
         {
-          "name": "线路片段1",
-          "url": "https://archive.org/download/don-quijote-del-altillo-1936/Don%20Quijote%20del%20altillo%20%281936%29.mp4",
-          "line": "默认线路"
+          "line": "默认线路",
+          "url": "https://archive.org/download/206134_Frank_Putnam_Flint_Memorial_Interviews/206134_Frank_Putnam_Flint_Memorial_Interviews_master.intros.mp4",
+          "name": "第1集"
         }
       ],
-      "source_url": "https://archive.org/details/don-quijote-del-altillo-1936",
-      "source_id": "don-quijote-del-altillo-1936",
+      "source_id": "206134_Frank_Putnam_Flint_Memorial_Interviews",
+      "source_url": "https://archive.org/details/206134_Frank_Putnam_Flint_Memorial_Interviews",
       "license": "Public Domain / CC",
       "status": "ok",
-      "id": "d03e6420-b4c2-4f2c-8e4c-cfac093bde57",
-      "created_at": "2026-08-11 14:11:47",
-      "updated_at": "2026-08-11 14:11:47"
+      "validated": true,
+      "genres": [],
+      "id": "9aab26ad-af4b-4d8b-836c-fa51e1ae5a63",
+      "created_at": "2026-08-13 04:02:34",
+      "updated_at": "2026-08-13 04:02:34"
+    },
+    {
+      "title": "Home Movie: 099848",
+      "aliases": [],
+      "year": "",
+      "region": "",
+      "type": "电影",
+      "director": "",
+      "actors": "",
+      "description": "In the late 1930s, women with cars and cameras took off to explore the Mojave desert's landscape and native plant communities, following sections of Route 66...",
+      "duration": "",
+      "rating": "",
+      "subtitle": "",
+      "poster": "images/poster_206125_Home_Movie_099848.jpg",
+      "cover": "images/cover_206125_Home_Movie_099848.jpg",
+      "episodes": [
+        {
+          "line": "默认线路",
+          "url": "https://archive.org/download/206125_Home_Movie_099848/206125_Home_Movie_099848_master.intros.mp4",
+          "name": "第1集"
+        }
+      ],
+      "source_id": "206125_Home_Movie_099848",
+      "source_url": "https://archive.org/details/206125_Home_Movie_099848",
+      "license": "Public Domain / CC",
+      "status": "ok",
+      "validated": true,
+      "genres": [],
+      "id": "aa19a10e-1ff7-4cc8-a632-24c2a577bcb0",
+      "created_at": "2026-08-13 04:02:34",
+      "updated_at": "2026-08-13 04:02:34"
+    },
+    {
+      "title": "Home Movie: Phal Collection: 011821 : Phal Family",
+      "aliases": [],
+      "year": "",
+      "region": "",
+      "type": "电影",
+      "director": "",
+      "actors": "",
+      "description": "Content warnings: The file appended _001 contains images of the aftermath of a violent vehicle collision and possibly injured persons. The file appended _002...",
+      "duration": "",
+      "rating": "",
+      "subtitle": "",
+      "poster": "images/poster_205917_Phal_Collection_011821.jpg",
+      "cover": "images/cover_205917_Phal_Collection_011821.jpg",
+      "episodes": [
+        {
+          "line": "默认线路",
+          "url": "https://archive.org/download/205917_Phal_Collection_011821/205917_Phal_Collection_011821_001_master.intros.mp4",
+          "name": "第1集"
+        },
+        {
+          "line": "默认线路",
+          "url": "https://archive.org/download/205917_Phal_Collection_011821/205917_Phal_Collection_011821_002_master.intros.mp4",
+          "name": "第2集"
+        }
+      ],
+      "source_id": "205917_Phal_Collection_011821",
+      "source_url": "https://archive.org/details/205917_Phal_Collection_011821",
+      "license": "Public Domain / CC",
+      "status": "ok",
+      "validated": true,
+      "genres": [],
+      "id": "7c7bbc5f-1ce7-45ca-a5d1-7d3a98bdc56a",
+      "created_at": "2026-08-13 04:02:34",
+      "updated_at": "2026-08-13 04:02:34"
+    },
+    {
+      "title": "Home Movie: Patrick Marks Collection: 096351",
+      "aliases": [],
+      "year": "",
+      "region": "",
+      "type": "电影",
+      "director": "",
+      "actors": "",
+      "description": "In the most unique scene in this reel, a northern California family gathers for the processing of Abalone at a coastal cabin, with an elder in a wetsuit...",
+      "duration": "",
+      "rating": "",
+      "subtitle": "",
+      "poster": "images/poster_205898_Marks_Collection_096351.jpg",
+      "cover": "images/cover_205898_Marks_Collection_096351.jpg",
+      "episodes": [
+        {
+          "line": "默认线路",
+          "url": "https://archive.org/download/205898_Marks_Collection_096351/205898_Marks_Collection_096351_master.intros.mp4",
+          "name": "第1集"
+        }
+      ],
+      "source_id": "205898_Marks_Collection_096351",
+      "source_url": "https://archive.org/details/205898_Marks_Collection_096351",
+      "license": "Public Domain / CC",
+      "status": "ok",
+      "validated": true,
+      "genres": [],
+      "id": "c68e322c-7062-40df-9f43-d24282005d8f",
+      "created_at": "2026-08-13 04:02:34",
+      "updated_at": "2026-08-13 04:02:34"
+    },
+    {
+      "title": "Home Movie: Patrick Marks Collection: 096352",
+      "aliases": [],
+      "year": "",
+      "region": "",
+      "type": "电影",
+      "director": "",
+      "actors": "",
+      "description": "Historical ecology of salmon stocks in the Sacramento River ecosystem are documented in this reel that also takes in the lost 19th century town of Whiskeytown,...",
+      "duration": "",
+      "rating": "",
+      "subtitle": "",
+      "poster": "images/poster_205894_Marks_Collection_096352.jpg",
+      "cover": "images/cover_205894_Marks_Collection_096352.jpg",
+      "episodes": [
+        {
+          "line": "默认线路",
+          "url": "https://archive.org/download/205894_Marks_Collection_096352/205894_Marks_Collection_096352_master.intros.mp4",
+          "name": "第1集"
+        }
+      ],
+      "source_id": "205894_Marks_Collection_096352",
+      "source_url": "https://archive.org/details/205894_Marks_Collection_096352",
+      "license": "Public Domain / CC",
+      "status": "ok",
+      "validated": true,
+      "genres": [],
+      "id": "cfb1774a-147d-4230-ab84-adb0c7be9297",
+      "created_at": "2026-08-13 04:02:34",
+      "updated_at": "2026-08-13 04:02:34"
+    },
+    {
+      "title": "Home Movie: Rick Laubscher Collection: 010417 : Laubscher Family",
+      "aliases": [],
+      "year": "",
+      "region": "",
+      "type": "电影",
+      "director": "",
+      "actors": "",
+      "description": "Content advisory: Animal cruelty in the form of bullfights. The people, architecture, landscape and markets of Mexico in the 1930s are at the heart of this...",
+      "duration": "",
+      "rating": "",
+      "subtitle": "",
+      "poster": "images/poster_205766_Laubscher_Collection_010417.jpg",
+      "cover": "images/cover_205766_Laubscher_Collection_010417.jpg",
+      "episodes": [
+        {
+          "line": "默认线路",
+          "url": "https://archive.org/download/205766_Laubscher_Collection_010417/205766_Laubscher_Collection_010417_master.intros.mp4",
+          "name": "第1集"
+        }
+      ],
+      "source_id": "205766_Laubscher_Collection_010417",
+      "source_url": "https://archive.org/details/205766_Laubscher_Collection_010417",
+      "license": "Public Domain / CC",
+      "status": "ok",
+      "validated": true,
+      "genres": [],
+      "id": "a4bd1229-0261-4534-a051-93fa3b02e4c1",
+      "created_at": "2026-08-13 04:02:34",
+      "updated_at": "2026-08-13 04:02:34"
+    },
+    {
+      "title": "Cal State Colleges: San Francisco State College : Jawal",
+      "aliases": [],
+      "year": "",
+      "region": "",
+      "type": "电影",
+      "director": "",
+      "actors": "",
+      "description": "Documents scenes within the Third World Liberation Front strikes of 1968 at San Francisco State College (now San Francisco State University). Includes...",
+      "duration": "",
+      "rating": "",
+      "subtitle": "",
+      "poster": "images/poster_205697_Cal_State_Colleges.jpg",
+      "cover": "images/cover_205697_Cal_State_Colleges.jpg",
+      "episodes": [
+        {
+          "line": "默认线路",
+          "url": "https://archive.org/download/205697_Cal_State_Colleges/205697_Cal_State_Colleges_master.intros.mp4",
+          "name": "第1集"
+        }
+      ],
+      "source_id": "205697_Cal_State_Colleges",
+      "source_url": "https://archive.org/details/205697_Cal_State_Colleges",
+      "license": "Public Domain / CC",
+      "status": "ok",
+      "validated": true,
+      "genres": [],
+      "id": "2cf30f12-d60b-422f-aac4-17810ecd6c8a",
+      "created_at": "2026-08-13 04:02:34",
+      "updated_at": "2026-08-13 04:02:34"
+    },
+    {
+      "title": "Rain and our backyard : Matthew Paul Argall",
+      "aliases": [],
+      "year": "",
+      "region": "",
+      "type": "电影",
+      "director": "",
+      "actors": "",
+      "description": "A short video depicting rain in my backyard in Mount Dandenong, Victoria, Australia.",
+      "duration": "",
+      "rating": "",
+      "subtitle": "",
+      "poster": "images/poster_rain-and-our-backyard.jpg",
+      "cover": "images/cover_rain-and-our-backyard.jpg",
+      "episodes": [
+        {
+          "line": "默认线路",
+          "url": "https://archive.org/download/rain-and-our-backyard/Rain%20and%20our%20backyard.mp4",
+          "name": "第1集"
+        }
+      ],
+      "source_id": "rain-and-our-backyard",
+      "source_url": "https://archive.org/details/rain-and-our-backyard",
+      "license": "Public Domain / CC",
+      "status": "ok",
+      "validated": true,
+      "genres": [],
+      "id": "cc189caf-0e2f-4bd6-a461-272928338923",
+      "created_at": "2026-08-13 04:02:34",
+      "updated_at": "2026-08-13 04:02:34"
+    },
+    {
+      "title": "VideoTraxx: Film & Video Library Volume 3: Disc # 24 Planes, Trains and Autos : Digital Juice",
+      "aliases": [],
+      "year": "",
+      "region": "",
+      "type": "电影",
+      "director": "",
+      "actors": "",
+      "description": "here is footage clips of Planes, Trains and Autos114 Royalty Free NTSC Stock footage clips",
+      "duration": "",
+      "rating": "",
+      "subtitle": "",
+      "poster": "",
+      "cover": "",
+      "episodes": [
+        {
+          "line": "默认线路",
+          "url": "https://archive.org/download/video-traxx-volume-3-24-planes-trains-autos/08334_VideoTraxx.mp4",
+          "name": "第1集"
+        },
+        {
+          "line": "默认线路",
+          "url": "https://archive.org/download/video-traxx-volume-3-24-planes-trains-autos/08335_VideoTraxx.mp4",
+          "name": "第2集"
+        },
+        {
+          "line": "默认线路",
+          "url": "https://archive.org/download/video-traxx-volume-3-24-planes-trains-autos/08336_VideoTraxx.mp4",
+          "name": "第3集"
+        },
+        {
+          "line": "默认线路",
+          "url": "https://archive.org/download/video-traxx-volume-3-24-planes-trains-autos/08337_VideoTraxx.mp4",
+          "name": "第4集"
+        },
+        {
+          "line": "默认线路",
+          "url": "https://archive.org/download/video-traxx-volume-3-24-planes-trains-autos/08338_VideoTraxx.mp4",
+          "name": "第5集"
+        },
+        {
+          "line": "默认线路",
+          "url": "https://archive.org/download/video-traxx-volume-3-24-planes-trains-autos/08339_VideoTraxx.mp4",
+          "name": "第6集"
+        },
+        {
+          "line": "默认线路",
+          "url": "https://archive.org/download/video-traxx-volume-3-24-planes-trains-autos/08340_VideoTraxx.mp4",
+          "name": "第7集"
+        },
+        {
+          "line": "默认线路",
+          "url": "https://archive.org/download/video-traxx-volume-3-24-planes-trains-autos/08341_VideoTraxx.mp4",
+          "name": "第8集"
+        },
+        {
+          "line": "默认线路",
+          "url": "https://archive.org/download/video-traxx-volume-3-24-planes-trains-autos/08342_VideoTraxx.mp4",
+          "name": "第9集"
+        },
+        {
+          "line": "默认线路",
+          "url": "https://archive.org/download/video-traxx-volume-3-24-planes-trains-autos/08343_VideoTraxx.mp4",
+          "name": "第10集"
+        },
+        {
+          "line": "默认线路",
+          "url": "https://archive.org/download/video-traxx-volume-3-24-planes-trains-autos/08344_VideoTraxx.mp4",
+          "name": "第11集"
+        },
+        {
+          "line": "默认线路",
+          "url": "https://archive.org/download/video-traxx-volume-3-24-planes-trains-autos/08345_VideoTraxx.mp4",
+          "name": "第12集"
+        },
+        {
+          "line": "默认线路",
+          "url": "https://archive.org/download/video-traxx-volume-3-24-planes-trains-autos/08346_VideoTraxx.mp4",
+          "name": "第13集"
+        },
+        {
+          "line": "默认线路",
+          "url": "https://archive.org/download/video-traxx-volume-3-24-planes-trains-autos/08347_VideoTraxx.mp4",
+          "name": "第14集"
+        },
+        {
+          "line": "默认线路",
+          "url": "https://archive.org/download/video-traxx-volume-3-24-planes-trains-autos/08348_VideoTraxx.mp4",
+          "name": "第15集"
+        },
+        {
+          "line": "默认线路",
+          "url": "https://archive.org/download/video-traxx-volume-3-24-planes-trains-autos/08349_VideoTraxx.mp4",
+          "name": "第16集"
+        },
+        {
+          "line": "默认线路",
+          "url": "https://archive.org/download/video-traxx-volume-3-24-planes-trains-autos/08350_VideoTraxx.mp4",
+          "name": "第17集"
+        },
+        {
+          "line": "默认线路",
+          "url": "https://archive.org/download/video-traxx-volume-3-24-planes-trains-autos/08351_VideoTraxx.mp4",
+          "name": "第18集"
+        },
+        {
+          "line": "默认线路",
+          "url": "https://archive.org/download/video-traxx-volume-3-24-planes-trains-autos/08352_VideoTraxx.mp4",
+          "name": "第19集"
+        },
+        {
+          "line": "默认线路",
+          "url": "https://archive.org/download/video-traxx-volume-3-24-planes-trains-autos/08353_VideoTraxx.mp4",
+          "name": "第20集"
+        },
+        {
+          "line": "默认线路",
+          "url": "https://archive.org/download/video-traxx-volume-3-24-planes-trains-autos/08354_VideoTraxx.mp4",
+          "name": "第21集"
+        },
+        {
+          "line": "默认线路",
+          "url": "https://archive.org/download/video-traxx-volume-3-24-planes-trains-autos/08355_VideoTraxx.mp4",
+          "name": "第22集"
+        },
+        {
+          "line": "默认线路",
+          "url": "https://archive.org/download/video-traxx-volume-3-24-planes-trains-autos/08356_VideoTraxx.mp4",
+          "name": "第23集"
+        },
+        {
+          "line": "默认线路",
+          "url": "https://archive.org/download/video-traxx-volume-3-24-planes-trains-autos/08357_VideoTraxx.mp4",
+          "name": "第24集"
+        },
+        {
+          "line": "默认线路",
+          "url": "https://archive.org/download/video-traxx-volume-3-24-planes-trains-autos/08358_VideoTraxx.mp4",
+          "name": "第25集"
+        },
+        {
+          "line": "默认线路",
+          "url": "https://archive.org/download/video-traxx-volume-3-24-planes-trains-autos/08359_VideoTraxx.mp4",
+          "name": "第26集"
+        },
+        {
+          "line": "默认线路",
+          "url": "https://archive.org/download/video-traxx-volume-3-24-planes-trains-autos/08360_VideoTraxx.mp4",
+          "name": "第27集"
+        },
+        {
+          "line": "默认线路",
+          "url": "https://archive.org/download/video-traxx-volume-3-24-planes-trains-autos/08361_VideoTraxx.mp4",
+          "name": "第28集"
+        },
+        {
+          "line": "默认线路",
+          "url": "https://archive.org/download/video-traxx-volume-3-24-planes-trains-autos/08362_VideoTraxx.mp4",
+          "name": "第29集"
+        },
+        {
+          "line": "默认线路",
+          "url": "https://archive.org/download/video-traxx-volume-3-24-planes-trains-autos/08363_VideoTraxx.mp4",
+          "name": "第30集"
+        },
+        {
+          "line": "默认线路",
+          "url": "https://archive.org/download/video-traxx-volume-3-24-planes-trains-autos/08364_VideoTraxx.mp4",
+          "name": "第31集"
+        },
+        {
+          "line": "默认线路",
+          "url": "https://archive.org/download/video-traxx-volume-3-24-planes-trains-autos/08365_VideoTraxx.mp4",
+          "name": "第32集"
+        },
+        {
+          "line": "默认线路",
+          "url": "https://archive.org/download/video-traxx-volume-3-24-planes-trains-autos/08366_VideoTraxx.mp4",
+          "name": "第33集"
+        },
+        {
+          "line": "默认线路",
+          "url": "https://archive.org/download/video-traxx-volume-3-24-planes-trains-autos/08367_VideoTraxx.mp4",
+          "name": "第34集"
+        },
+        {
+          "line": "默认线路",
+          "url": "https://archive.org/download/video-traxx-volume-3-24-planes-trains-autos/08368_VideoTraxx.mp4",
+          "name": "第35集"
+        },
+        {
+          "line": "默认线路",
+          "url": "https://archive.org/download/video-traxx-volume-3-24-planes-trains-autos/08369_VideoTraxx.mp4",
+          "name": "第36集"
+        },
+        {
+          "line": "默认线路",
+          "url": "https://archive.org/download/video-traxx-volume-3-24-planes-trains-autos/08370_VideoTraxx.mp4",
+          "name": "第37集"
+        },
+        {
+          "line": "默认线路",
+          "url": "https://archive.org/download/video-traxx-volume-3-24-planes-trains-autos/08371_VideoTraxx.mp4",
+          "name": "第38集"
+        },
+        {
+          "line": "默认线路",
+          "url": "https://archive.org/download/video-traxx-volume-3-24-planes-trains-autos/08372_VideoTraxx.mp4",
+          "name": "第39集"
+        },
+        {
+          "line": "默认线路",
+          "url": "https://archive.org/download/video-traxx-volume-3-24-planes-trains-autos/08373_VideoTraxx.mp4",
+          "name": "第40集"
+        },
+        {
+          "line": "默认线路",
+          "url": "https://archive.org/download/video-traxx-volume-3-24-planes-trains-autos/08374_VideoTraxx.mp4",
+          "name": "第41集"
+        },
+        {
+          "line": "默认线路",
+          "url": "https://archive.org/download/video-traxx-volume-3-24-planes-trains-autos/08375_VideoTraxx.mp4",
+          "name": "第42集"
+        },
+        {
+          "line": "默认线路",
+          "url": "https://archive.org/download/video-traxx-volume-3-24-planes-trains-autos/08376_VideoTraxx.mp4",
+          "name": "第43集"
+        },
+        {
+          "line": "默认线路",
+          "url": "https://archive.org/download/video-traxx-volume-3-24-planes-trains-autos/08377_VideoTraxx.mp4",
+          "name": "第44集"
+        },
+        {
+          "line": "默认线路",
+          "url": "https://archive.org/download/video-traxx-volume-3-24-planes-trains-autos/08378_VideoTraxx.mp4",
+          "name": "第45集"
+        },
+        {
+          "line": "默认线路",
+          "url": "https://archive.org/download/video-traxx-volume-3-24-planes-trains-autos/08379_VideoTraxx.mp4",
+          "name": "第46集"
+        },
+        {
+          "line": "默认线路",
+          "url": "https://archive.org/download/video-traxx-volume-3-24-planes-trains-autos/08380_VideoTraxx.mp4",
+          "name": "第47集"
+        },
+        {
+          "line": "默认线路",
+          "url": "https://archive.org/download/video-traxx-volume-3-24-planes-trains-autos/08381_VideoTraxx.mp4",
+          "name": "第48集"
+        },
+        {
+          "line": "默认线路",
+          "url": "https://archive.org/download/video-traxx-volume-3-24-planes-trains-autos/08382_VideoTraxx.mp4",
+          "name": "第49集"
+        },
+        {
+          "line": "默认线路",
+          "url": "https://archive.org/download/video-traxx-volume-3-24-planes-trains-autos/08383_VideoTraxx.mp4",
+          "name": "第50集"
+        },
+        {
+          "line": "默认线路",
+          "url": "https://archive.org/download/video-traxx-volume-3-24-planes-trains-autos/08384_VideoTraxx.mp4",
+          "name": "第51集"
+        },
+        {
+          "line": "默认线路",
+          "url": "https://archive.org/download/video-traxx-volume-3-24-planes-trains-autos/08385_VideoTraxx.mp4",
+          "name": "第52集"
+        },
+        {
+          "line": "默认线路",
+          "url": "https://archive.org/download/video-traxx-volume-3-24-planes-trains-autos/08386_VideoTraxx.mp4",
+          "name": "第53集"
+        },
+        {
+          "line": "默认线路",
+          "url": "https://archive.org/download/video-traxx-volume-3-24-planes-trains-autos/08387_VideoTraxx.mp4",
+          "name": "第54集"
+        },
+        {
+          "line": "默认线路",
+          "url": "https://archive.org/download/video-traxx-volume-3-24-planes-trains-autos/08388_VideoTraxx.mp4",
+          "name": "第55集"
+        },
+        {
+          "line": "默认线路",
+          "url": "https://archive.org/download/video-traxx-volume-3-24-planes-trains-autos/08389_VideoTraxx.mp4",
+          "name": "第56集"
+        },
+        {
+          "line": "默认线路",
+          "url": "https://archive.org/download/video-traxx-volume-3-24-planes-trains-autos/08390_VideoTraxx.mp4",
+          "name": "第57集"
+        },
+        {
+          "line": "默认线路",
+          "url": "https://archive.org/download/video-traxx-volume-3-24-planes-trains-autos/08391_VideoTraxx.mp4",
+          "name": "第58集"
+        },
+        {
+          "line": "默认线路",
+          "url": "https://archive.org/download/video-traxx-volume-3-24-planes-trains-autos/08392_VideoTraxx.mp4",
+          "name": "第59集"
+        },
+        {
+          "line": "默认线路",
+          "url": "https://archive.org/download/video-traxx-volume-3-24-planes-trains-autos/08393_VideoTraxx.mp4",
+          "name": "第60集"
+        },
+        {
+          "line": "默认线路",
+          "url": "https://archive.org/download/video-traxx-volume-3-24-planes-trains-autos/08394_VideoTraxx.mp4",
+          "name": "第61集"
+        },
+        {
+          "line": "默认线路",
+          "url": "https://archive.org/download/video-traxx-volume-3-24-planes-trains-autos/08395_VideoTraxx.mp4",
+          "name": "第62集"
+        },
+        {
+          "line": "默认线路",
+          "url": "https://archive.org/download/video-traxx-volume-3-24-planes-trains-autos/08396_VideoTraxx.mp4",
+          "name": "第63集"
+        },
+        {
+          "line": "默认线路",
+          "url": "https://archive.org/download/video-traxx-volume-3-24-planes-trains-autos/08397_VideoTraxx.mp4",
+          "name": "第64集"
+        },
+        {
+          "line": "默认线路",
+          "url": "https://archive.org/download/video-traxx-volume-3-24-planes-trains-autos/08398_VideoTraxx.mp4",
+          "name": "第65集"
+        },
+        {
+          "line": "默认线路",
+          "url": "https://archive.org/download/video-traxx-volume-3-24-planes-trains-autos/08399_VideoTraxx.mp4",
+          "name": "第66集"
+        },
+        {
+          "line": "默认线路",
+          "url": "https://archive.org/download/video-traxx-volume-3-24-planes-trains-autos/08400_VideoTraxx.mp4",
+          "name": "第67集"
+        },
+        {
+          "line": "默认线路",
+          "url": "https://archive.org/download/video-traxx-volume-3-24-planes-trains-autos/08401_VideoTraxx.mp4",
+          "name": "第68集"
+        },
+        {
+          "line": "默认线路",
+          "url": "https://archive.org/download/video-traxx-volume-3-24-planes-trains-autos/08402_VideoTraxx.mp4",
+          "name": "第69集"
+        },
+        {
+          "line": "默认线路",
+          "url": "https://archive.org/download/video-traxx-volume-3-24-planes-trains-autos/08403_VideoTraxx.mp4",
+          "name": "第70集"
+        },
+        {
+          "line": "默认线路",
+          "url": "https://archive.org/download/video-traxx-volume-3-24-planes-trains-autos/08404_VideoTraxx.mp4",
+          "name": "第71集"
+        },
+        {
+          "line": "默认线路",
+          "url": "https://archive.org/download/video-traxx-volume-3-24-planes-trains-autos/08405_VideoTraxx.mp4",
+          "name": "第72集"
+        },
+        {
+          "line": "默认线路",
+          "url": "https://archive.org/download/video-traxx-volume-3-24-planes-trains-autos/08406_VideoTraxx.mp4",
+          "name": "第73集"
+        },
+        {
+          "line": "默认线路",
+          "url": "https://archive.org/download/video-traxx-volume-3-24-planes-trains-autos/08407_VideoTraxx.mp4",
+          "name": "第74集"
+        },
+        {
+          "line": "默认线路",
+          "url": "https://archive.org/download/video-traxx-volume-3-24-planes-trains-autos/08408_VideoTraxx.mp4",
+          "name": "第75集"
+        },
+        {
+          "line": "默认线路",
+          "url": "https://archive.org/download/video-traxx-volume-3-24-planes-trains-autos/08409_VideoTraxx.mp4",
+          "name": "第76集"
+        },
+        {
+          "line": "默认线路",
+          "url": "https://archive.org/download/video-traxx-volume-3-24-planes-trains-autos/08410_VideoTraxx.mp4",
+          "name": "第77集"
+        },
+        {
+          "line": "默认线路",
+          "url": "https://archive.org/download/video-traxx-volume-3-24-planes-trains-autos/08411_VideoTraxx.mp4",
+          "name": "第78集"
+        },
+        {
+          "line": "默认线路",
+          "url": "https://archive.org/download/video-traxx-volume-3-24-planes-trains-autos/08412_VideoTraxx.mp4",
+          "name": "第79集"
+        },
+        {
+          "line": "默认线路",
+          "url": "https://archive.org/download/video-traxx-volume-3-24-planes-trains-autos/08413_VideoTraxx.mp4",
+          "name": "第80集"
+        },
+        {
+          "line": "默认线路",
+          "url": "https://archive.org/download/video-traxx-volume-3-24-planes-trains-autos/08414_VideoTraxx.mp4",
+          "name": "第81集"
+        },
+        {
+          "line": "默认线路",
+          "url": "https://archive.org/download/video-traxx-volume-3-24-planes-trains-autos/08415_VideoTraxx.mp4",
+          "name": "第82集"
+        },
+        {
+          "line": "默认线路",
+          "url": "https://archive.org/download/video-traxx-volume-3-24-planes-trains-autos/08416_VideoTraxx.mp4",
+          "name": "第83集"
+        },
+        {
+          "line": "默认线路",
+          "url": "https://archive.org/download/video-traxx-volume-3-24-planes-trains-autos/08417_VideoTraxx.mp4",
+          "name": "第84集"
+        },
+        {
+          "line": "默认线路",
+          "url": "https://archive.org/download/video-traxx-volume-3-24-planes-trains-autos/08418_VideoTraxx.mp4",
+          "name": "第85集"
+        },
+        {
+          "line": "默认线路",
+          "url": "https://archive.org/download/video-traxx-volume-3-24-planes-trains-autos/08419_VideoTraxx.mp4",
+          "name": "第86集"
+        },
+        {
+          "line": "默认线路",
+          "url": "https://archive.org/download/video-traxx-volume-3-24-planes-trains-autos/08420_VideoTraxx.mp4",
+          "name": "第87集"
+        },
+        {
+          "line": "默认线路",
+          "url": "https://archive.org/download/video-traxx-volume-3-24-planes-trains-autos/08421_VideoTraxx.mp4",
+          "name": "第88集"
+        },
+        {
+          "line": "默认线路",
+          "url": "https://archive.org/download/video-traxx-volume-3-24-planes-trains-autos/08422_VideoTraxx.mp4",
+          "name": "第89集"
+        },
+        {
+          "line": "默认线路",
+          "url": "https://archive.org/download/video-traxx-volume-3-24-planes-trains-autos/08423_VideoTraxx.mp4",
+          "name": "第90集"
+        },
+        {
+          "line": "默认线路",
+          "url": "https://archive.org/download/video-traxx-volume-3-24-planes-trains-autos/08424_VideoTraxx.mp4",
+          "name": "第91集"
+        },
+        {
+          "line": "默认线路",
+          "url": "https://archive.org/download/video-traxx-volume-3-24-planes-trains-autos/08425_VideoTraxx.mp4",
+          "name": "第92集"
+        },
+        {
+          "line": "默认线路",
+          "url": "https://archive.org/download/video-traxx-volume-3-24-planes-trains-autos/08426_VideoTraxx.mp4",
+          "name": "第93集"
+        },
+        {
+          "line": "默认线路",
+          "url": "https://archive.org/download/video-traxx-volume-3-24-planes-trains-autos/08427_VideoTraxx.mp4",
+          "name": "第94集"
+        },
+        {
+          "line": "默认线路",
+          "url": "https://archive.org/download/video-traxx-volume-3-24-planes-trains-autos/08428_VideoTraxx.mp4",
+          "name": "第95集"
+        },
+        {
+          "line": "默认线路",
+          "url": "https://archive.org/download/video-traxx-volume-3-24-planes-trains-autos/08429_VideoTraxx.mp4",
+          "name": "第96集"
+        },
+        {
+          "line": "默认线路",
+          "url": "https://archive.org/download/video-traxx-volume-3-24-planes-trains-autos/08430_VideoTraxx.mp4",
+          "name": "第97集"
+        },
+        {
+          "line": "默认线路",
+          "url": "https://archive.org/download/video-traxx-volume-3-24-planes-trains-autos/08431_VideoTraxx.mp4",
+          "name": "第98集"
+        },
+        {
+          "line": "默认线路",
+          "url": "https://archive.org/download/video-traxx-volume-3-24-planes-trains-autos/08432_VideoTraxx.mp4",
+          "name": "第99集"
+        },
+        {
+          "line": "默认线路",
+          "url": "https://archive.org/download/video-traxx-volume-3-24-planes-trains-autos/08433_VideoTraxx.mp4",
+          "name": "第100集"
+        },
+        {
+          "line": "默认线路",
+          "url": "https://archive.org/download/video-traxx-volume-3-24-planes-trains-autos/08434_VideoTraxx.mp4",
+          "name": "第101集"
+        },
+        {
+          "line": "默认线路",
+          "url": "https://archive.org/download/video-traxx-volume-3-24-planes-trains-autos/08435_VideoTraxx.mp4",
+          "name": "第102集"
+        },
+        {
+          "line": "默认线路",
+          "url": "https://archive.org/download/video-traxx-volume-3-24-planes-trains-autos/08436_VideoTraxx.mp4",
+          "name": "第103集"
+        },
+        {
+          "line": "默认线路",
+          "url": "https://archive.org/download/video-traxx-volume-3-24-planes-trains-autos/08437_VideoTraxx.mp4",
+          "name": "第104集"
+        },
+        {
+          "line": "默认线路",
+          "url": "https://archive.org/download/video-traxx-volume-3-24-planes-trains-autos/08438_VideoTraxx.mp4",
+          "name": "第105集"
+        },
+        {
+          "line": "默认线路",
+          "url": "https://archive.org/download/video-traxx-volume-3-24-planes-trains-autos/08439_VideoTraxx.mp4",
+          "name": "第106集"
+        },
+        {
+          "line": "默认线路",
+          "url": "https://archive.org/download/video-traxx-volume-3-24-planes-trains-autos/08440_VideoTraxx.mp4",
+          "name": "第107集"
+        },
+        {
+          "line": "默认线路",
+          "url": "https://archive.org/download/video-traxx-volume-3-24-planes-trains-autos/08441_VideoTraxx.mp4",
+          "name": "第108集"
+        },
+        {
+          "line": "默认线路",
+          "url": "https://archive.org/download/video-traxx-volume-3-24-planes-trains-autos/08442_VideoTraxx.mp4",
+          "name": "第109集"
+        },
+        {
+          "line": "默认线路",
+          "url": "https://archive.org/download/video-traxx-volume-3-24-planes-trains-autos/08443_VideoTraxx.mp4",
+          "name": "第110集"
+        },
+        {
+          "line": "默认线路",
+          "url": "https://archive.org/download/video-traxx-volume-3-24-planes-trains-autos/08444_VideoTraxx.mp4",
+          "name": "第111集"
+        },
+        {
+          "line": "默认线路",
+          "url": "https://archive.org/download/video-traxx-volume-3-24-planes-trains-autos/08445_VideoTraxx.mp4",
+          "name": "第112集"
+        },
+        {
+          "line": "默认线路",
+          "url": "https://archive.org/download/video-traxx-volume-3-24-planes-trains-autos/08446_VideoTraxx.mp4",
+          "name": "第113集"
+        },
+        {
+          "line": "默认线路",
+          "url": "https://archive.org/download/video-traxx-volume-3-24-planes-trains-autos/08447_VideoTraxx.mp4",
+          "name": "第114集"
+        }
+      ],
+      "source_id": "video-traxx-volume-3-24-planes-trains-autos",
+      "source_url": "https://archive.org/details/video-traxx-volume-3-24-planes-trains-autos",
+      "license": "Public Domain / CC",
+      "status": "ok",
+      "validated": true,
+      "genres": [],
+      "id": "4367e641-bdb6-4107-a610-451428ae6441",
+      "created_at": "2026-08-13 04:02:34",
+      "updated_at": "2026-08-13 04:02:34"
+    },
+    {
+      "title": "British Columbia North Shore Daydream : Dennis P. Dineen",
+      "aliases": [],
+      "year": "",
+      "region": "",
+      "type": "电影",
+      "director": "",
+      "actors": "",
+      "description": "It's a busy little stretch of pavement along the old north shore.",
+      "duration": "",
+      "rating": "",
+      "subtitle": "",
+      "poster": "images/poster_trans-canada-westbound-part-201-bc-north-shore-daydream-inst.jpg",
+      "cover": "images/cover_trans-canada-westbound-part-201-bc-north-shore-daydream-inst.jpg",
+      "episodes": [
+        {
+          "line": "默认线路",
+          "url": "https://archive.org/download/trans-canada-westbound-part-201-bc-north-shore-daydream-inst/Trans%20Canada%20Westbound%20Part%20201%20BC%20North%20Shore%20Daydream%20Inst.mp4",
+          "name": "第1集"
+        }
+      ],
+      "source_id": "trans-canada-westbound-part-201-bc-north-shore-daydream-inst",
+      "source_url": "https://archive.org/details/trans-canada-westbound-part-201-bc-north-shore-daydream-inst",
+      "license": "Public Domain / CC",
+      "status": "ok",
+      "validated": true,
+      "genres": [],
+      "id": "f94da8c3-50cf-4a0a-a498-1b9cf30b44b6",
+      "created_at": "2026-08-13 04:02:34",
+      "updated_at": "2026-08-13 04:02:34"
+    },
+    {
+      "title": "Saskatchewan Serendipity : Dennis P. Dineen",
+      "aliases": [],
+      "year": "",
+      "region": "",
+      "type": "电影",
+      "director": "",
+      "actors": "",
+      "description": "Canadiana fun ... A stroke of good fortune to behold the morning sun as Swift Current faded in the rear view mirror ...",
+      "duration": "",
+      "rating": "",
+      "subtitle": "",
+      "poster": "images/poster_trans-canada-westbound-part-150-saskatchewan-serendipity-inst.jpg",
+      "cover": "images/cover_trans-canada-westbound-part-150-saskatchewan-serendipity-inst.jpg",
+      "episodes": [
+        {
+          "line": "默认线路",
+          "url": "https://archive.org/download/trans-canada-westbound-part-150-saskatchewan-serendipity-inst/Trans%20Canada%20Westbound%20Part%20150%20Saskatchewan%20Serendipity%20Inst.mp4",
+          "name": "第1集"
+        }
+      ],
+      "source_id": "trans-canada-westbound-part-150-saskatchewan-serendipity-inst",
+      "source_url": "https://archive.org/details/trans-canada-westbound-part-150-saskatchewan-serendipity-inst",
+      "license": "Public Domain / CC",
+      "status": "ok",
+      "validated": true,
+      "genres": [],
+      "id": "6134b1a0-4f78-4795-b77b-9d94a3d32bfb",
+      "created_at": "2026-08-13 04:02:34",
+      "updated_at": "2026-08-13 04:02:34"
+    },
+    {
+      "title": "Saskatchewan Sequence : Dennis P. Dineen",
+      "aliases": [],
+      "year": "",
+      "region": "",
+      "type": "电影",
+      "director": "",
+      "actors": "",
+      "description": "Cruise control into Swift Current, Living Sky casino, then a nice peaceful walk around the cemetery under the smiling prairie sun.",
+      "duration": "",
+      "rating": "",
+      "subtitle": "",
+      "poster": "images/poster_trans-canada-westbound-part-149-saskatchewan-sequence-inst.jpg",
+      "cover": "images/cover_trans-canada-westbound-part-149-saskatchewan-sequence-inst.jpg",
+      "episodes": [
+        {
+          "line": "默认线路",
+          "url": "https://archive.org/download/trans-canada-westbound-part-149-saskatchewan-sequence-inst/Trans%20Canada%20Westbound%20Part%20149%20Saskatchewan%20Sequence%20Inst.mp4",
+          "name": "第1集"
+        }
+      ],
+      "source_id": "trans-canada-westbound-part-149-saskatchewan-sequence-inst",
+      "source_url": "https://archive.org/details/trans-canada-westbound-part-149-saskatchewan-sequence-inst",
+      "license": "Public Domain / CC",
+      "status": "ok",
+      "validated": true,
+      "genres": [],
+      "id": "82d83f5f-5677-461b-a368-0570cbbed501",
+      "created_at": "2026-08-13 04:02:34",
+      "updated_at": "2026-08-13 04:02:34"
+    },
+    {
+      "title": "Saskatchewan Sentiment : Dennis P. Dineen",
+      "aliases": [],
+      "year": "",
+      "region": "",
+      "type": "电影",
+      "director": "",
+      "actors": "",
+      "description": "Closing in on Swift Current from the east. Anticipation of a peaceful walk through the cemetery.",
+      "duration": "",
+      "rating": "",
+      "subtitle": "",
+      "poster": "images/poster_trans-canada-westbound-part-148-saskatchewan-sentiment-inst.jpg",
+      "cover": "images/cover_trans-canada-westbound-part-148-saskatchewan-sentiment-inst.jpg",
+      "episodes": [
+        {
+          "line": "默认线路",
+          "url": "https://archive.org/download/trans-canada-westbound-part-148-saskatchewan-sentiment-inst/Trans%20Canada%20Westbound%20Part%20148%20Saskatchewan%20Sentiment%20Inst.mp4",
+          "name": "第1集"
+        }
+      ],
+      "source_id": "trans-canada-westbound-part-148-saskatchewan-sentiment-inst",
+      "source_url": "https://archive.org/details/trans-canada-westbound-part-148-saskatchewan-sentiment-inst",
+      "license": "Public Domain / CC",
+      "status": "ok",
+      "validated": true,
+      "genres": [],
+      "id": "1c10095b-f550-4154-88a4-a5a12716f8e4",
+      "created_at": "2026-08-13 04:02:34",
+      "updated_at": "2026-08-13 04:02:34"
+    },
+    {
+      "title": "Saskatchewan Sensation : Dennis P. Dineen",
+      "aliases": [],
+      "year": "",
+      "region": "",
+      "type": "电影",
+      "director": "",
+      "actors": "",
+      "description": "Love those long beautiful trains in the distance. Don't love unloading boxcars by hand.",
+      "duration": "",
+      "rating": "",
+      "subtitle": "",
+      "poster": "images/poster_trans-canada-westbound-part-147-saskatchewan-sensation-inst.jpg",
+      "cover": "images/cover_trans-canada-westbound-part-147-saskatchewan-sensation-inst.jpg",
+      "episodes": [
+        {
+          "line": "默认线路",
+          "url": "https://archive.org/download/trans-canada-westbound-part-147-saskatchewan-sensation-inst/Trans%20Canada%20Westbound%20Part%20147%20Saskatchewan%20Sensation%20Inst.mp4",
+          "name": "第1集"
+        }
+      ],
+      "source_id": "trans-canada-westbound-part-147-saskatchewan-sensation-inst",
+      "source_url": "https://archive.org/details/trans-canada-westbound-part-147-saskatchewan-sensation-inst",
+      "license": "Public Domain / CC",
+      "status": "ok",
+      "validated": true,
+      "genres": [],
+      "id": "d5be58fc-ae9e-4bd5-ac6e-dd088dec21b1",
+      "created_at": "2026-08-13 04:02:34",
+      "updated_at": "2026-08-13 04:02:34"
+    },
+    {
+      "title": "Saskatchewan Seismic : Dennis P. Dineen",
+      "aliases": [],
+      "year": "",
+      "region": "",
+      "type": "电影",
+      "director": "",
+      "actors": "",
+      "description": "There were ghosts of old seismic crews laying many kilometers of cable &amp; jugs along the highway.",
+      "duration": "",
+      "rating": "",
+      "subtitle": "",
+      "poster": "images/poster_trans-canada-westbound-part-146-saskatchewan-seismic-inst.jpg",
+      "cover": "images/cover_trans-canada-westbound-part-146-saskatchewan-seismic-inst.jpg",
+      "episodes": [
+        {
+          "line": "默认线路",
+          "url": "https://archive.org/download/trans-canada-westbound-part-146-saskatchewan-seismic-inst/Trans%20Canada%20Westbound%20Part%20146%20Saskatchewan%20Seismic%20Inst.mp4",
+          "name": "第1集"
+        }
+      ],
+      "source_id": "trans-canada-westbound-part-146-saskatchewan-seismic-inst",
+      "source_url": "https://archive.org/details/trans-canada-westbound-part-146-saskatchewan-seismic-inst",
+      "license": "Public Domain / CC",
+      "status": "ok",
+      "validated": true,
+      "genres": [],
+      "id": "4a343636-c5fd-4d5b-93c6-e90b3111bd2c",
+      "created_at": "2026-08-13 04:02:34",
+      "updated_at": "2026-08-13 04:02:34"
     }
   ],
   "logs": [
     {
-      "time": "2026-08-12 23:13:39",
+      "time": "2026-08-13 04:06:04",
       "level": "info",
-      "msg": "静态订阅包生成：10 部 → E:\\FilmCollector\\tvbox-dist（base=https://lidawei1985.github.io/filmcollector-pages/；海报随包发布 6 张，第三方远程 4 张）"
+      "msg": "静态订阅包生成：30 部 → tvbox-dist-test（base=https://lidawei1985.github.io/filmcollector-pages/；海报随包发布 57 张，第三方远程 0 张；仓库 29 竖版 / 0 横版；精选 5 部）"
     },
     {
-      "time": "2026-08-12 22:19:38",
+      "time": "2026-08-13 04:06:04",
       "level": "info",
-      "msg": "自动更新完成：耗时 5.2s，新增 0 部，上传=False"
+      "msg": "今日精选生成：第 6892 批 / 共 5 部（每 3 天轮换）"
     },
     {
-      "time": "2026-08-12 22:19:38",
+      "time": "2026-08-13 04:06:04",
       "level": "info",
-      "msg": "自动更新：新增 0 部",
-      "count": 0
+      "msg": "海报仓库导出：29 部影片 → repo/img 29 张, repo/slide 0 张"
     },
     {
-      "time": "2026-08-12 22:19:38",
+      "time": "2026-08-13 04:06:03",
       "level": "info",
-      "msg": "auto_feed 发现候选 20 部（来自 5 个合集）"
+      "msg": "海报补齐：新增 0 / 无图源 0 / 失败 3"
     },
     {
-      "time": "2026-08-12 22:18:29",
+      "time": "2026-08-13 04:05:32",
       "level": "info",
-      "msg": "静态订阅包生成：10 部 → E:\\FilmCollector\\tvbox-dist（base=https://example.com/demo/；海报随包发布 6 张，第三方远程 4 张）"
-    },
-    {
-      "time": "2026-08-12 21:53:32",
-      "level": "info",
-      "msg": "静态订阅包生成：1 部 → E:\\FilmCollector\\tvbox-dist-test（base=https://u.github.io/FilmCollector/；海报随包发布 1 张，第三方远程 0 张）"
-    },
-    {
-      "time": "2026-08-12 21:53:31",
-      "level": "info",
-      "msg": "静态订阅包生成：1 部 → E:\\FilmCollector\\tvbox-dist-test（base=https://u.github.io/FilmCollector/；海报随包发布 1 张，第三方远程 0 张）"
-    },
-    {
-      "time": "2026-08-11 14:11:48",
-      "level": "info",
-      "msg": "自动更新完成：耗时 5.2s，新增 1 部，上传=False"
-    },
-    {
-      "time": "2026-08-11 14:11:47",
-      "level": "info",
-      "msg": "静态订阅包生成：10 部 → E:\\FilmCollector\\tvbox-dist（base=https://test_user.github.io/FilmCollector/）"
-    },
-    {
-      "time": "2026-08-11 14:11:47",
-      "level": "info",
-      "msg": "自动更新：新增 1 部",
-      "count": 1
-    },
-    {
-      "time": "2026-08-11 14:11:46",
-      "level": "info",
-      "msg": "auto_feed 发现候选 21 部（来自 5 个合集）"
-    },
-    {
-      "time": "2026-08-11 14:07:30",
-      "level": "info",
-      "msg": "自动更新完成：耗时 9.1s，新增 3 部，上传=False"
-    },
-    {
-      "time": "2026-08-11 14:07:30",
-      "level": "info",
-      "msg": "自动更新：新增 3 部",
-      "count": 3
-    },
-    {
-      "time": "2026-08-11 14:07:27",
-      "level": "info",
-      "msg": "auto_feed 发现候选 24 部（来自 5 个合集）"
-    },
-    {
-      "time": "2026-08-11 12:50:13",
-      "level": "info",
-      "msg": "本地订阅 API 已开启：TVBox http://127.0.0.1:9911/api.php/provide/vod/ ｜ 通用 http://127.0.0.1:9911/api/generic/vod/"
-    },
-    {
-      "time": "2026-08-11 12:50:13",
-      "level": "info",
-      "msg": "双格式订阅源生成：TVBox 6 条 / 通用 6 条；TVBox校验0处，通用校验0处"
-    },
-    {
-      "time": "2026-08-11 12:50:13",
-      "level": "info",
-      "msg": "入库 1 条（耗时 6.95s）"
-    },
-    {
-      "time": "2026-08-11 12:50:13",
-      "level": "info",
-      "msg": "清洗完成：广告过滤 0 条，失效剔除 0 条，图片缓存 1 张",
-      "count": 0
-    },
-    {
-      "time": "2026-08-11 12:50:12",
-      "level": "info",
-      "msg": "采集到原始记录 1 条：https://www.hbomax.com/tw/zh/movies"
-    },
-    {
-      "time": "2026-08-11 12:49:58",
-      "level": "info",
-      "msg": "站点检测：https://www.hbomax.com/tw/zh/movies -> ① 完全支持全自动批量抓取"
-    },
-    {
-      "time": "2026-08-11 12:09:15",
-      "level": "info",
-      "msg": "静态订阅包生成：20 部 → E:\\FilmCollector\\tvbox-dist（base=https://demo.github.io/FilmCollector/）"
-    },
-    {
-      "time": "2026-08-11 11:53:35",
-      "level": "info",
-      "msg": "静态订阅包生成：20 部 → tvbox-dist（base=https://example.github.io/FilmCollector/）"
-    },
-    {
-      "time": "2026-08-11 10:37:26",
-      "level": "info",
-      "msg": "本地订阅 API 已开启：TVBox http://127.0.0.1:9911/api.php/provide/vod/ ｜ 通用 http://127.0.0.1:9911/api/generic/vod/"
-    },
-    {
-      "time": "2026-08-11 10:37:26",
-      "level": "info",
-      "msg": "双格式订阅源生成：TVBox 6 条 / 通用 6 条；TVBox校验0处，通用校验0处"
-    },
-    {
-      "time": "2026-08-11 10:37:26",
-      "level": "info",
-      "msg": "入库 1 条（耗时 2.9s）"
-    },
-    {
-      "time": "2026-08-11 10:37:25",
-      "level": "info",
-      "msg": "清洗完成：广告过滤 0 条，失效剔除 0 条，图片缓存 1 张",
-      "count": 0
-    },
-    {
-      "time": "2026-08-11 10:37:25",
-      "level": "info",
-      "msg": "采集到原始记录 1 条：https://www.hbomax.com/tw/zh/movies"
-    },
-    {
-      "time": "2026-08-11 10:31:48",
-      "level": "info",
-      "msg": "本地订阅 API 已开启：TVBox http://127.0.0.1:9911/api.php/provide/vod/ ｜ 通用 http://127.0.0.1:9911/api/generic/vod/"
-    },
-    {
-      "time": "2026-08-11 10:31:48",
-      "level": "info",
-      "msg": "双格式订阅源生成：TVBox 6 条 / 通用 6 条；TVBox校验0处，通用校验0处"
-    },
-    {
-      "time": "2026-08-11 10:31:48",
-      "level": "info",
-      "msg": "入库 1 条（耗时 1.09s）"
-    },
-    {
-      "time": "2026-08-11 10:31:48",
-      "level": "info",
-      "msg": "清洗完成：广告过滤 0 条，失效剔除 0 条，图片缓存 1 张",
-      "count": 0
-    },
-    {
-      "time": "2026-08-11 10:31:47",
-      "level": "info",
-      "msg": "采集到原始记录 1 条：https://www.hbomax.com/tw/zh/movies"
-    },
-    {
-      "time": "2026-08-11 10:31:45",
-      "level": "info",
-      "msg": "站点检测：https://www.hbomax.com/tw/zh/movies -> ① 完全支持全自动批量抓取"
-    },
-    {
-      "time": "2026-08-11 10:27:20",
-      "level": "info",
-      "msg": "本地订阅 API 已开启：TVBox http://127.0.0.1:9911/api.php/provide/vod/ ｜ 通用 http://127.0.0.1:9911/api/generic/vod/"
-    },
-    {
-      "time": "2026-08-11 10:27:20",
-      "level": "info",
-      "msg": "双格式订阅源生成：TVBox 6 条 / 通用 6 条；TVBox校验0处，通用校验0处"
-    },
-    {
-      "time": "2026-08-11 10:27:20",
-      "level": "info",
-      "msg": "入库 1 条（耗时 4.27s）"
-    },
-    {
-      "time": "2026-08-11 10:27:20",
-      "level": "info",
-      "msg": "清洗完成：广告过滤 0 条，失效剔除 0 条，图片缓存 1 张",
-      "count": 0
-    },
-    {
-      "time": "2026-08-11 10:27:17",
-      "level": "info",
-      "msg": "采集到原始记录 1 条：https://www.hbomax.com/tw/zh/movies"
-    },
-    {
-      "time": "2026-08-11 10:27:14",
-      "level": "info",
-      "msg": "站点检测：https://www.hbomax.com/tw/zh/movies -> ① 完全支持全自动批量抓取"
-    },
-    {
-      "time": "2026-08-11 10:15:07",
-      "level": "info",
-      "msg": "巡检完成：清除失效线路 2 条，广告过滤 0 条",
-      "count": 2
-    },
-    {
-      "time": "2026-08-11 10:14:02",
-      "level": "info",
-      "msg": "批量导入采集完成，新增 1 条"
-    },
-    {
-      "time": "2026-08-11 10:14:02",
-      "level": "info",
-      "msg": "清洗完成：广告过滤 0 条，失效剔除 0 条，图片缓存 1 张",
-      "count": 0
-    },
-    {
-      "time": "2026-08-11 10:13:38",
-      "level": "info",
-      "msg": "站点检测：https://www.hbomax.com/tw/zh/movies -> ① 完全支持全自动批量抓取"
-    },
-    {
-      "time": "2026-08-11 10:12:45",
-      "level": "info",
-      "msg": "站点检测：https://www.hbomax.com/tw/zh/movies -> ① 完全支持全自动批量抓取"
-    },
-    {
-      "time": "2026-08-11 10:09:40",
-      "level": "info",
-      "msg": "批量导入采集完成，新增 1 条"
-    },
-    {
-      "time": "2026-08-11 10:09:40",
-      "level": "info",
-      "msg": "清洗完成：广告过滤 0 条，失效剔除 0 条，图片缓存 1 张",
-      "count": 0
-    },
-    {
-      "time": "2026-08-11 10:09:16",
-      "level": "info",
-      "msg": "站点检测：https://hamivideo.hinet.net/%E5%BD%B1%E5%8A%87%E9%A4%A8%E2%81%BA/%E9%9B%BB%E5%BD%B1/%E6%8E%A8%E8%96%A6.do -> ② 轻度加密·单集手动提取"
-    },
-    {
-      "time": "2026-08-11 10:08:58",
-      "level": "info",
-      "msg": "站点检测：https://video.friday.tw/movie -> "
-    },
-    {
-      "time": "2026-08-11 10:08:36",
-      "level": "info",
-      "msg": "站点检测：https://www.myvideo.net.tw/movie/ -> "
-    },
-    {
-      "time": "2026-08-11 09:21:07",
-      "level": "info",
-      "msg": "本地订阅 API 已开启：TVBox http://127.0.0.1:9911/api.php/provide/vod/ ｜ 通用 http://127.0.0.1:9911/api/generic/vod/"
-    },
-    {
-      "time": "2026-08-11 09:21:07",
-      "level": "info",
-      "msg": "双格式订阅源生成：TVBox 7 条 / 通用 7 条；TVBox校验0处，通用校验0处"
-    },
-    {
-      "time": "2026-08-11 09:21:07",
-      "level": "info",
-      "msg": "入库 6 条（耗时 61.52s）"
-    },
-    {
-      "time": "2026-08-11 09:21:07",
-      "level": "info",
-      "msg": "清洗完成：广告过滤 0 条，失效剔除 0 条，图片缓存 6 张",
-      "count": 0
-    },
-    {
-      "time": "2026-08-11 09:20:27",
-      "level": "info",
-      "msg": "采集到原始记录 6 条："
-    },
-    {
-      "time": "2026-08-11 09:20:27",
-      "level": "info",
-      "msg": "集合采集「feature_films」共 6 条"
-    },
-    {
-      "time": "2026-08-11 09:20:05",
-      "level": "info",
-      "msg": "入库 1 条（耗时 6.74s）"
-    },
-    {
-      "time": "2026-08-11 09:20:05",
-      "level": "info",
-      "msg": "清洗完成：广告过滤 0 条，失效剔除 0 条，图片缓存 1 张",
-      "count": 0
-    },
-    {
-      "time": "2026-08-11 09:20:00",
-      "level": "info",
-      "msg": "采集到原始记录 1 条：https://archive.org/details/ElephantsDream"
-    },
-    {
-      "time": "2026-08-11 09:19:58",
-      "level": "info",
-      "msg": "入库 1 条（耗时 26.07s）"
-    },
-    {
-      "time": "2026-08-11 09:19:58",
-      "level": "info",
-      "msg": "清洗完成：广告过滤 0 条，失效剔除 1 条，图片缓存 0 张",
-      "count": 1
-    },
-    {
-      "time": "2026-08-11 09:19:33",
-      "level": "info",
-      "msg": "采集到原始记录 1 条：https://archive.org/details/BigBuckBunny_124"
-    },
-    {
-      "time": "2026-08-11 09:19:32",
-      "level": "info",
-      "msg": "站点检测：https://archive.org/details/BigBuckBunny_124 -> ② 轻度加密·单集手动提取"
+      "msg": "海报补齐：新增 0 / 无图源 0 / 失败 3"
     }
-  ],
-  "templates": {}
+  ]
 }

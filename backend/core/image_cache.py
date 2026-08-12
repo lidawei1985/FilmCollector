@@ -23,8 +23,40 @@ def re_sub(s):
     return re.sub(r"[^\w\.\-]", "_", s)[:80]
 
 
+# 海报压缩上限（与 poster-warehouse 同一思路：本地优化后再随包上传，省流量、快加载）
+THUMB_WIDTH = 500
+THUMB_QUALITY = 82
+
+
+def _optimize(data):
+    """若环境有 Pillow，则解码→缩放到 THUMB_WIDTH 宽→压成 JPEG；否则原样返回。"""
+    try:
+        from io import BytesIO
+        from PIL import Image
+    except Exception:
+        return data  # 无 Pillow（极少数环境）：退化为原图直存，不影响功能
+    try:
+        im = Image.open(BytesIO(data))
+        if im.mode in ("RGBA", "P", "LA"):
+            im = im.convert("RGB")
+        else:
+            im = im.convert("RGB")
+        if im.width > THUMB_WIDTH:
+            h = int(im.height * THUMB_WIDTH / im.width)
+            im = im.resize((THUMB_WIDTH, h), Image.LANCZOS)
+        out = BytesIO()
+        im.save(out, "JPEG", quality=THUMB_QUALITY, optimize=True)
+        return out.getvalue()
+    except Exception:
+        return data
+
+
 def cache_image(url, prefix="poster"):
-    """下载并校验图片，成功返回本地相对路径（相对 output/），失败返回 None。"""
+    """下载并校验图片，成功返回本地相对路径（相对 output/），失败返回 None。
+
+    下载后会用 Pillow 压缩优化（最大宽度 500px、JPEG q82），随订阅包上传后
+    APK 从我们自己的 Pages 读图，又快又稳，不依赖第三方图床。
+    """
     if not url or not url.startswith("http"):
         return None
     cfg = store.load_config()
@@ -46,9 +78,12 @@ def cache_image(url, prefix="poster"):
                 return None  # 超大图跳过
         if len(data) < 500:
             return None  # 破损/空白图
-        ext = (ct.split("/")[-1].split(";")[0] or "jpg").replace("jpeg", "jpg")
+        # 压缩优化（无 Pillow 时退化为原图）
+        data = _optimize(data)
+        if len(data) < 500:
+            return None
         base = os.path.splitext(_safe_name(url))[0]  # 去掉 URL 自带扩展名，避免双后缀
-        fname = f"{prefix}_{base}.{ext}"
+        fname = f"{prefix}_{base}.jpg"  # 统一优化为 jpg
         # 防重名
         path = os.path.join(IMG_DIR, fname)
         if os.path.exists(path):
@@ -78,6 +113,21 @@ def list_images():
     return sorted(os.listdir(IMG_DIR))
 
 
+def _source_id_of(it):
+    """优先用 source_id；没有则从 source_url 反推 archive.org 标识符。"""
+    sid = (it.get("source_id") or "").strip()
+    if sid:
+        return sid
+    url = (it.get("source_url") or "").strip()
+    if "archive.org" in url:
+        # 形如 https://archive.org/details/<id> 或 .../download/<id>/...
+        import re
+        m = re.search(r"archive\.org/(?:details|download)/([^/?#]+)", url)
+        if m:
+            return m.group(1)
+    return ""
+
+
 def backfill_missing(items):
     """批量把库里缺失 / 仍是远程链接的海报下载到本地图库，原地改写 items 的 poster/cover。
 
@@ -92,7 +142,7 @@ def backfill_missing(items):
             if ref.startswith("images/"):
                 continue  # 已在本地图库，跳过
             if not ref:
-                sid = it.get("source_id")
+                sid = _source_id_of(it)
                 if sid:
                     ref = f"https://archive.org/services/img/{sid}"  # 公共领域片用 archive.org 兜底
                 else:

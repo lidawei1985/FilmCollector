@@ -28,7 +28,7 @@ import os
 import shutil
 from datetime import datetime
 
-from . import store, json_gen
+from . import store, json_gen, poster_repo
 
 DEMO_PATH = os.path.join(store.DATA_DIR, "demo_sources.json")
 OUT_DEFAULT = os.path.join(store.BASE_DIR, "tvbox-dist")
@@ -320,6 +320,30 @@ python -m backend.core.publisher --source demo --base https://你的用户名.gi
 
 重新在你电脑的采集工具里抓取 / 生成后，再跑一次上面的发布命令，
 把新的 `tvbox-dist/` 重新上传覆盖即可（建议开启 Pages 的强制刷新 / 等几分钟 CDN 生效）。
+
+## 独立海报仓库（让 APK 永不依赖第三方图源）
+
+本包除了订阅数据，还会生成一套**按片名哈希命名**的独立海报仓库：
+
+    repo/img/<md5(片名)>.jpg    竖版海报（卡片 / 详情页 / 主视觉竖版）
+    repo/slide/<md5(片名)>.jpg  横版主视觉（首页 hero 大背景，跑高清抓取后自动填充）
+    repo/featured.json          今日精选（自动挑「有片源+有高清图」的影片，每 N 天轮换）
+
+仓库地址即：`https://你的用户名.github.io/FilmCollector/repo/`
+
+**为什么要它**：TVBox / Lumflix 类 APK 对每张海报默认去别人的图床取图，图床失效/防盗链就会白屏。
+把海报随包发布到你的仓库后，APK 按 `md5(片名)` 直接读你自己的地址，零依赖第三方。
+
+**对接 Lumflix / NetTV APK（com.nettv.app）**：
+该 APK 前端已内置独立海报仓库机制（`assets/www/js/api.js` 的 `POSTER_CDN`）。
+只需把它的 `POSTER_CDN` 指向上面的 `repo/` 地址（重建 APK 时改默认值，或运行时设
+`localStorage.nettv_poster_cdn`），APK 就会：
+  1. 所有影片（只要片名在仓库里有图）自动改用你的高清海报；
+  2. 首页 hero 横版大背景改用你的 `repo/slide/` 横版主视觉；
+  3. 自动加载 `repo/featured.json` 作为「今日精选」轮播，几天换一批，无需你手动操作。
+
+> 想让某部片有横版主视觉：用 `tools/grab_posters.py` 抓它的高清图，
+> 落盘到 `output/posters/<片名>/` 即可；重新发布时自动进入 `repo/slide/`。
 """
 
 
@@ -356,7 +380,10 @@ def build_bundle(source="db", base=None, out_dir=OUT_DEFAULT, name=SOURCE_NAME, 
     with open(os.path.join(out_dir, "DEPLOY.md"), "w", encoding="utf-8") as f:
         f.write(DEPLOY_MD)
 
-    store.log("info", f"静态订阅包生成：{len(vods)} 部 → {out_dir}（base={base}；海报随包发布 {posters['copied']} 张，第三方远程 {posters['remote']} 张）")
+    # 6) 独立海报仓库 + 今日精选（与 Lumflix APK 直接对齐：md5(片名) 命名）
+    repo = poster_repo.refresh(base, out_dir=out_dir)
+
+    store.log("info", f"静态订阅包生成：{len(vods)} 部 → {out_dir}（base={base}；海报随包发布 {posters['copied']} 张，第三方远程 {posters['remote']} 张；仓库 {repo['repo']['img']} 竖版 / {repo['repo']['slide']} 横版；精选 {repo['featured']['count']} 部）")
     return {
         "out_dir": out_dir,
         "count": len(vods),
@@ -364,6 +391,9 @@ def build_bundle(source="db", base=None, out_dir=OUT_DEFAULT, name=SOURCE_NAME, 
         "api_js": base + "api.js",
         "data_json": base + "data.json",
         "posters": posters,
+        "repo": repo["repo"],
+        "featured": repo["featured"],
+        "poster_cdn": base + "repo/",
     }
 
 

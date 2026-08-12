@@ -20,7 +20,7 @@ import json
 import time
 from datetime import datetime
 
-from . import store, auto_feed, publisher, deployer, auth_store
+from . import store, auto_feed, publisher, deployer, auth_store, poster_cache
 
 _running = False
 _last_run = {"at": "", "result": {}}
@@ -120,8 +120,15 @@ def run_auto(max_new=None, upload=None, categories=None, source="db", cred=None)
             "errors": [],
         }
 
+        # 2.5) 海报补齐（自建海报仓库）：保证每部片都有本地海报，随包上传后 APK 永不白屏
+        try:
+            pc = poster_cache.refresh_all(base="", save_db=True)
+            report["posters"] = pc["backfill"]
+        except Exception as e:
+            report["errors"].append("poster:" + str(e))
+
         # 3)+4)+5) 上传公网 + APK 源馈闭环
-        if upload and added:
+        if upload and (added or report.get("posters", {}).get("fixed")):
             if cred is None:
                 cred = auth_store.load() if auth_store.has() else None
             if cred and cred.get("token"):

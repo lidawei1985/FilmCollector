@@ -37,12 +37,12 @@ jobs:
           FC_MAX_NEW: '20'                          # 每次最多新增几部，可改
         run: python -m backend.core.cloud_auto
 
-      - name: 把更新后的本地片库提交回仓库（云端累积去重）
+      - name: 把更新后的本地片库与海报源提交回仓库（云端累积去重）
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add backend/data/db.json
-          git diff --cached --quiet || git commit -m "chore: 自动更新本地片库"
+          git add backend/data/db.json output/images/
+          git diff --cached --quiet || git commit -m "chore: 自动更新本地片库与海报"
           git push
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

@@ -120,8 +120,8 @@ def deploy(platform, token, source_dir, repo="FilmCollector", username=None):
 
 # ----------------------------- GitHub -----------------------------
 def _deploy_github(token, source_dir, repo, username):
+    import subprocess
     api = "https://api.github.com"
-    branch = "main"
 
     # 1) 当前用户
     sc, me = _http("GET", f"{api}/user", token)
@@ -133,7 +133,7 @@ def _deploy_github(token, source_dir, repo, username):
         raise DeployError("无法获取 GitHub 用户名，请手动填写。")
 
     repo_url = f"{api}/repos/{username}/{repo}"
-    # 2) 仓库是否存在
+    # 2) 仓库是否存在（不存在则建）
     sc, rj = _http("GET", repo_url, token)
     if sc == 404:
         sc, cj = _http("POST", f"{api}/user/repos", token, json_data={
@@ -143,64 +143,42 @@ def _deploy_github(token, source_dir, repo, username):
         })
         if sc not in (200, 201):
             msg = (cj.get("message") if isinstance(cj, dict) else str(cj))
-            if "name already exists" in str(msg).lower():
-                raise DeployError(f"仓库 {repo} 已存在但无法访问（可能属于其他账号），请换个仓库名。")
             raise DeployError(f"创建 GitHub 仓库失败：{msg}")
-    elif sc != 200:
-        msg = (rj.get("message") if isinstance(rj, dict) else str(rj))
-        raise DeployError(f"访问 GitHub 仓库失败：{msg}")
 
-    # 3) 父提交（空仓库则无）
-    parent = None
-    ref_url = f"{repo_url}/git/refs/heads/{branch}"
-    sc, rj = _http("GET", ref_url, token)
-    if sc == 200:
-        parent = rj["object"]["sha"]
+    # 3) 用本地 git 直推到 gh-pages 分支（与已开启的 GitHub Pages 一致，稳定可靠）
+    auth_remote = f"https://{token}@github.com/{username}/{repo}.git"
+    try:
+        subprocess.run(["git", "-C", source_dir, "init", "-q"], check=True)
+        subprocess.run(["git", "-C", source_dir, "config", "user.email", "filmcollector@local"], check=True)
+        subprocess.run(["git", "-C", source_dir, "config", "user.name", "FilmCollector"], check=True)
+        subprocess.run(["git", "-C", source_dir, "add", "-A"], check=True)
+        r = subprocess.run(["git", "-C", source_dir, "commit", "-q",
+                            "-m", "FilmCollector 订阅更新 " + time.strftime("%Y-%m-%d %H:%M")],
+                           capture_output=True, text=True)
+        if r.returncode != 0 and "nothing to commit" not in (r.stdout + r.stderr):
+            raise DeployError(f"git 提交失败：{(r.stderr or r.stdout)[:200]}")
+        subprocess.run(["git", "-C", source_dir, "remote", "remove", "origin"], capture_output=True)
+        subprocess.run(["git", "-C", source_dir, "remote", "add", "origin", auth_remote], check=True)
+        subprocess.run(["git", "-C", source_dir, "branch", "-M", "gh-pages"], capture_output=True)
+        r = subprocess.run(["git", "-C", source_dir, "push", "-f", "origin", "gh-pages"],
+                           capture_output=True, text=True)
+        if r.returncode != 0:
+            raise DeployError(f"推送到 GitHub 失败：{(r.stderr or '')[:200]}")
+    except DeployError:
+        raise
+    except Exception as e:
+        raise DeployError(f"git 推送异常：{e}")
+    finally:
+        try:
+            subprocess.run(["git", "-C", source_dir, "remote", "remove", "origin"], capture_output=True)
+        except Exception:
+            pass
 
-    # 4) 上传文件为 blobs
-    files = _read_files(source_dir)
-    blobs = {}
-    for name, content in files.items():
-        sc, bj = _http("POST", f"{repo_url}/git/blobs", token, json_data={
-            "content": base64.b64encode(content).decode("ascii"),
-            "encoding": "base64",
-        })
-        if sc not in (200, 201):
-            raise DeployError(f"上传文件 {name} 失败（{sc}）。")
-        blobs[name] = bj["sha"]
-
-    # 5) 创建 tree
-    tree_items = [{"path": n, "mode": "100644", "type": "blob", "sha": s}
-                  for n, s in blobs.items()]
-    sc, tj = _http("POST", f"{repo_url}/git/trees", token, json_data={"tree": tree_items})
-    if sc not in (200, 201):
-        raise DeployError("创建文件树失败，请重试。")
-    tree_sha = tj["sha"]
-
-    # 6) 创建 commit
-    msg = "FilmCollector 订阅更新 " + time.strftime("%Y-%m-%d %H:%M")
-    sc, cj = _http("POST", f"{repo_url}/git/commits", token, json_data={
-        "message": msg, "tree": tree_sha,
-        "parents": [parent] if parent else [],
-    })
-    if sc not in (200, 201):
-        raise DeployError("创建提交失败，请重试。")
-    commit_sha = cj["sha"]
-
-    # 7) 更新 / 创建 ref
-    if parent:
-        sc, _ = _http("PATCH", ref_url, token, json_data={"sha": commit_sha})
-    else:
-        sc, _ = _http("POST", f"{repo_url}/git/refs", token,
-                      json_data={"ref": f"heads/{branch}", "sha": commit_sha})
-    if sc not in (200, 201):
-        raise DeployError("推送到 GitHub 失败，请重试。")
-
-    # 8) 开启 Pages（若未开）
+    # 4) 开启 Pages（gh-pages 源）
     sc, _ = _http("GET", f"{repo_url}/pages", token)
     if sc == 404:
         _http("POST", f"{repo_url}/pages", token,
-              json_data={"source": {"branch": branch, "path": "/"}})
+              json_data={"source": {"branch": "gh-pages", "path": "/"}})
 
     return {
         "platform": "github",
@@ -212,7 +190,6 @@ def _deploy_github(token, source_dir, repo, username):
         "repo_url": f"https://github.com/{username}/{repo}",
         "pages_note": "GitHub Pages 首次开通需等待 1~3 分钟生效，之后每次更新即时可见。",
     }
-
 
 # ----------------------------- Gitee -----------------------------
 def _deploy_gitee(token, source_dir, repo, username):

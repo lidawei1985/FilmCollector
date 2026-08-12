@@ -14,10 +14,13 @@ envs/
 # 采集产生的图片缓存（db.json 需保留，供云端累积去重）
 backend/data/image_cache/
 
-# 导出/构建临时产物
-output/
+# 导出/构建临时产物（output/images 是我们的自建海报仓库，必须进仓库并随云端累积）
+output/json/
+output/backup/
+output/posters/
 node_modules/
 *.zip
 
 # 日志
 *.log
+.tmp_apk_extract/

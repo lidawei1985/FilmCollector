@@ -737,20 +737,30 @@ def _bg_clean_and_generate():
 
 
 def _maybe_redeploy(poster_stats=None):
-    """仅在海报有变化时重新发布到公网，避免无谓推送。失败仅告警，不影响本地。"""
+    """重新发布到公网。触发条件：本轮补齐了新海报，或「今日精选」批次发生轮换。
+    失败仅告警，不影响本地。"""
     cred = auth_store_mod.load() if auth_store_mod.has() else None
     if not cred or not cred.get("token"):
         return
-    if poster_stats and poster_stats.get("fixed", 0) == 0:
-        return  # 本次没有补齐新海报，无需重新发布
     try:
         platform, token = cred["platform"], cred["token"]
         username, repo = cred.get("username"), cred.get("repo", "FilmCollector")
         base = deployer_mod.build_base(platform, username, repo)
-        publisher_mod.build_bundle(source="db", base=base, out_dir=publisher_mod.OUT_DEFAULT, clean=True)
+        # 始终重新生成包（含海报仓库 + 今日精选），以便判断精选批次是否变化
+        res = publisher_mod.build_bundle(source="db", base=base, out_dir=publisher_mod.OUT_DEFAULT, clean=True)
+        new_batch = (res.get("featured") or {}).get("batch")
+        cfg = store.load_config()
+        last_batch = cfg.get("_last_featured_batch")
+        posters_fixed = (poster_stats or {}).get("fixed", 0)
+        changed = posters_fixed > 0 or (new_batch is not None and new_batch != last_batch)
+        if not changed:
+            return  # 没有新海报也没有精选轮换，跳过推送
         auto_pipeline_mod._write_apk_feed(base)
         deployer_mod.deploy(platform, token, publisher_mod.OUT_DEFAULT, repo, username)
-        store.log("info", "定时任务：已重新发布到公网（含最新海报图库）")
+        if new_batch is not None:
+            cfg["_last_featured_batch"] = new_batch
+            store.save_config(cfg)
+        store.log("info", f"定时任务：已重新发布到公网（新海报 {posters_fixed} 张；精选第 {new_batch} 批）")
     except Exception as e:
         store.log("warn", f"定时重新发布失败：{e}")
 
