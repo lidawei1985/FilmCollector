@@ -1,0 +1,12 @@
+name: _diag3
+on:
+  schedule:
+    - cron: '23 17 * * *'
+  workflow_dispatch: {}
+permissions:
+  contents: write
+jobs:
+  collect:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "diag3 ok"
