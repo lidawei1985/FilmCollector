@@ -161,6 +161,27 @@
       <p class="hint" id="auto-explain">闭环说明：上传时会额外生成 <code>apk_feed.json</code>（含订阅地址）一并推到公网；你的「指定 APK」首次启动读取它即可自动加载片源，无需手动粘贴——这就是闭环。</p>
     </div>
 
+    <h4>☁️ 一键开启云端自动（电脑关机也每天自动加新片 · 最省事）</h4>
+    <div class="card" id="cloud-card">
+      <p class="hint">这是<strong>最省事</strong>的一步：你只需<strong>第一次</strong>在下面填一次 Token（工具会记住），点一下——工具自动把源码推到 GitHub、开好「每天定时采集」、并把订阅源部署好。<strong>从此电脑关着、睡觉、出门，光幕影院 APK 也会自动涨新片</strong>，你什么都不用管。<br>之后只需在光幕影院 APK 里<strong>粘贴一次</strong>下面生成的订阅地址（APK 内「订阅 / 源管理」添加）。</p>
+      <div class="row">
+        <label>平台：</label>
+        <select id="ci-platform">
+          <option value="github">GitHub（推荐·免实名·免费）</option>
+        </select>
+        <button onclick="openTokenHelp()">如何获取 Token？</button>
+      </div>
+      <div class="row">
+        <input id="ci-token" type="password" placeholder="粘贴 Access Token（自动记住，只需第一次）" size="40">
+        <input id="ci-username" placeholder="用户名（GitHub 可留空自动获取）" size="22">
+      </div>
+      <div class="row">
+        <button class="primary" id="ci-btn" onclick="doCloudInit()">☁️ 一键开启云端自动</button>
+        <span id="ci-msg" class="progress"></span>
+      </div>
+      <div id="ci-result" class="card hidden"></div>
+    </div>
+
     <h4>🚀 一键部署到公网（生成 + 推送到 GitHub/Gitee Pages · 电视/手机全球可看）</h4>
     <div class="card">
       <p class="hint">这一步把你的片库直接发布成一个<strong>公网订阅地址</strong>——别人电视/手机上任意 TVBox 粘贴即用，<strong>不用开你电脑、不连你家 WiFi</strong>。只需<strong>第一次</strong>去平台生成一次 Token（工具会记住），以后点一下就更新。<br><b>📱 你的 APK 怎么接海报：</b>把下面生成的 <code>subscribe.json</code>（或 <code>data.json</code>）地址，粘贴进你 APK 的「订阅 / 源管理」即可。海报地址会自动改成<strong>指向你自己的仓库</strong>，APK 里每部片子都有图、且永不依赖第三方图源——<strong>整个过程不用改 APK 一行代码</strong>。</p>

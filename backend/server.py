@@ -25,6 +25,7 @@ from .core import deployer as deployer_mod
 from .core import auth_store as auth_store_mod
 from .core import auto_feed as auto_feed_mod
 from .core import auto_pipeline as auto_pipeline_mod
+from .core import cloud_init as cloud_init_mod
 
 FRONTEND_DIR = os.path.join(store.ASSET_DIR, "frontend")
 CLIENT_DIR = os.path.join(store.ASSET_DIR, "frontend", "client")
@@ -343,6 +344,24 @@ def api_auto_settings():
     store.save_config(cfg)
     return jsonify({"ok": True, **{k: cfg[k] for k in (
         "auto_mode", "auto_on_launch", "auto_upload", "auto_max_new", "auto_categories")}})
+
+
+@app.route("/api/app/cloud_init", methods=["POST"])
+def api_cloud_init():
+    """一键开启云端无人值守：推源码(含定时任务)到代码仓库 + 部署订阅包到 Pages 仓库。"""
+    data = request.get_json(force=True, silent=True) or {}
+    platform = (data.get("platform") or "github").lower()
+    token = (data.get("token") or "").strip()
+    username = (data.get("username") or "").strip() or None
+    code_repo = (data.get("code_repo") or "FilmCollector").strip()
+    subscribe_repo = (data.get("subscribe_repo") or "filmcollector-pages").strip()
+    try:
+        res = cloud_init_mod.init_cloud(platform, token, code_repo, subscribe_repo, username)
+        return jsonify(res)
+    except deployer_mod.DeployError as e:
+        return jsonify({"ok": False, "msg": str(e)}), 400
+    except Exception as e:
+        return jsonify({"ok": False, "msg": "云端初始化异常：" + str(e)}), 500
 
 
 @app.route("/api/app/api/toggle", methods=["POST"])

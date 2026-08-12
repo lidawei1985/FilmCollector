@@ -377,12 +377,46 @@ async function loadDeployConfig() {
           t.placeholder = '已记住（' + d.token_mask + '），留空即用旧的';
         }
         $('dep-btn').textContent = '🚀 更新部署（已记住 Token）';
+        // 云端自动按钮同样预填"已记住"
+        const ct = $('ci-token');
+        if (ct) { ct.value = ''; ct.placeholder = '已记住（' + d.token_mask + '），留空即用旧的'; }
+        const cb = $('ci-btn');
+        if (cb) cb.textContent = '☁️ 开启云端自动（已记住 Token）';
       } else {
         $('dep-btn').textContent = '🚀 一键部署到公网';
       }
       if (typeof onPlatformChange === 'function') onPlatformChange();
     }
   } catch (e) { /* 忽略 */ }
+}
+
+// ---------- ☁️ 一键开启云端自动 ----------
+async function doCloudInit() {
+  const platform = $('ci-platform').value;
+  const token = $('ci-token').value.trim();
+  const username = $('ci-username').value.trim();
+  $('ci-msg').textContent = '正在推源码+开定时+部署订阅（首次约 30~90 秒，请耐心等）…';
+  $('ci-result').classList.remove('hidden');
+  $('ci-result').innerHTML = '⏳ 正在把源码推到 GitHub 并开启每天定时，请稍候…';
+  try {
+    const r = await api('/api/app/cloud_init', {
+      method: 'POST', headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ platform, token, username, code_repo: 'FilmCollector', subscribe_repo: 'filmcollector-pages' }),
+    });
+    if (!r.ok) { $('ci-result').innerHTML = '❌ ' + (r.msg || '开启失败'); $('ci-msg').textContent = ''; return; }
+    $('ci-msg').textContent = '✔ 云端已开启';
+    const note = r.pages_note ? `<p class="hint">${r.pages_note}</p>` : '';
+    $('ci-result').innerHTML =
+      `<div class="lvl1">✔ <b>云端已开启！</b>${r.msg || ''}</div>` +
+      `<div class="lvl1">📦 代码仓库：<a href="${r.code_repo}" target="_blank">${r.code_repo}</a></div>` +
+      `<p><b>📺 光幕影院 APK 订阅地址（粘贴一次即可，之后自动更新）：</b><br><code>${r.subscribe}</code></p>` +
+      `<div class="action-box"><button class="big-btn" onclick="copyText('${r.subscribe}')">📋 复制订阅地址</button></div>` +
+      note +
+      `<p class="hint">以后什么都不用做：每天自动采集→上传，电脑关着也照常。想立刻看效果，可在 GitHub 仓库 Actions 里手动 Run workflow 一次。</p>`;
+  } catch (e) {
+    $('ci-result').innerHTML = '❌ 出错：' + (e.message || e);
+    $('ci-msg').textContent = '';
+  }
 }
 
 // ---------- 🤖 全自动闭环：找片→采集→打包→上传公网→喂指定 APK ----------
