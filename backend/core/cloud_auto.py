@@ -8,7 +8,7 @@ cloud_auto.py —— 云端无界面入口（供 GitHub Actions / 任意定时�
 环境变量：
   FC_TOKEN       必填，GitHub / Gitee Personal Access Token（带 public_repo 权限）
   FC_USERNAME    选填，缺省由平台反查
-  FC_REPO        选填，Pages 仓库名；不存在会自动创建，默认 FilmCollector
+  FC_REPO        选填，Pages（订阅）仓库名；不存在会自动创建，默认 filmcollector-pages
   FC_PLATFORM    选填，默认 github
   FC_MAX_NEW     选填，本次最多新增几部，默认 20
   FC_CATEGORIES  选填，逗号分隔的合集筛选（留空=全部）
@@ -27,7 +27,7 @@ def main():
     token = (os.environ.get("FC_TOKEN") or "").strip()
     platform = (os.environ.get("FC_PLATFORM") or "github").strip() or "github"
     username = (os.environ.get("FC_USERNAME") or "").strip() or None
-    repo = (os.environ.get("FC_REPO") or "").strip() or "FilmCollector"
+    repo = (os.environ.get("FC_REPO") or "").strip() or "filmcollector-pages"
     try:
         max_new = int((os.environ.get("FC_MAX_NEW") or "20").strip() or "20")
     except ValueError:
