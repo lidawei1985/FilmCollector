@@ -1,0 +1,39 @@
+name: _diag4
+on:
+  workflow_dispatch: {}
+permissions:
+  contents: write
+jobs:
+  collect:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - name: 拉取代码
+        uses: actions/checkout@v4
+
+      - name: 设置 Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+
+      - name: 安装轻量依赖
+        run: pip install -r requirements-ci.txt
+
+      - name: 运行自动采集 + 部署到 GitHub Pages
+        env:
+          FC_TOKEN: ${{ secrets.DEPLOY_TOKEN }}     # 必填：带 public_repo 权限的 PAT
+          FC_USERNAME: ${{ secrets.DEPLOY_USER }}   # 必填：你的 GitHub 用户名
+          FC_REPO: ${{ secrets.DEPLOY_REPO }}       # 选填：Pages 仓库名；留空默认 FilmCollector（建议单独起一个，如 filmcollector-pages）
+          FC_PLATFORM: github
+          FC_MAX_NEW: '20'                          # 每次最多新增几部，可改
+        run: python -m backend.core.cloud_auto
+
+      - name: 把更新后的本地片库提交回仓库（云端累积去重）
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add backend/data/db.json
+          git diff --cached --quiet || git commit -m "chore: 自动更新本地片库"
+          git push
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
