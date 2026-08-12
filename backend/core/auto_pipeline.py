@@ -128,7 +128,10 @@ def run_auto(max_new=None, upload=None, categories=None, source="db", cred=None)
             report["errors"].append("poster:" + str(e))
 
         # 3)+4)+5) 上传公网 + APK 源馈闭环
-        if upload and (added or report.get("posters", {}).get("fixed")):
+        # 只要开启上传就执行（部署是幂等的 force-push）：
+        # 即便本次没有新增、海报也已齐全，也要保证「自愈补齐 / 历史空海报」能稳定落到线上，
+        # 不让 deploy 因 added/fixed 都为 0 而跳过，导致个别影片线上长期缺封面。
+        if upload:
             if cred is None:
                 cred = auth_store.load() if auth_store.has() else None
             if cred and cred.get("token"):
