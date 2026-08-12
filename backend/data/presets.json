@@ -1,0 +1,79 @@
+[
+  {
+    "id": "ia_feature_films",
+    "name": "Internet Archive · 公共领域电影（真实可采集）",
+    "url": "https://archive.org/details/windjammer",
+    "license": "Public Domain",
+    "mode": "server",
+    "template": {
+      "fields": {
+        "title": "[itemprop=\"name\"]"
+      },
+      "episodes": {}
+    },
+    "note": "Internet Archive 公共领域影片详情页：标题取 itemprop=name，海报/简介走 og 标签，播放地址自动嗅探页面内 .mp4（多清晰度自动合并为一条）。已确认内容为公有领域，可直接采集。",
+    "enabled": true
+  },
+  {
+    "id": "ia_feature_films_collection",
+    "name": "Internet Archive · 公共领域电影合集（一键采集一批）",
+    "url": "https://archive.org/details/feature_films",
+    "license": "Public Domain",
+    "mode": "server",
+    "collection": "feature_films",
+    "template": {
+      "fields": {
+        "title": "[itemprop=\"name\"]"
+      },
+      "episodes": {}
+    },
+    "note": "通过 archive.org advancedsearch 列举 feature_films 集合内全部公共领域影片，逐条采集详情页，一个预设即可扩出一批真实片源。已确认集合内容为公有领域。",
+    "enabled": true
+  },
+  {
+    "id": "ia_big_buck_bunny",
+    "name": "Big Buck Bunny（Blender · CC-BY）",
+    "url": "https://archive.org/details/BigBuckBunny_124",
+    "license": "CC BY 3.0",
+    "mode": "server",
+    "template": {
+      "fields": {
+        "title": "[itemprop=\"name\"]"
+      },
+      "episodes": {}
+    },
+    "note": "Blender 开源动画短片，CC-BY 3.0 授权，页面含直接 mp4 下载，可直接采集。",
+    "enabled": true
+  },
+  {
+    "id": "ia_elephants_dream",
+    "name": "Elephants Dream（Blender · CC-BY）",
+    "url": "https://archive.org/details/ElephantsDream",
+    "license": "CC BY 3.0",
+    "mode": "server",
+    "template": {
+      "fields": {
+        "title": "[itemprop=\"name\"]"
+      },
+      "episodes": {}
+    },
+    "note": "Blender 开源动画短片，CC-BY 3.0 授权，页面含多清晰度 mp4，可直接采集。",
+    "enabled": true
+  },
+  {
+    "id": "publicdomainTorrents",
+    "name": "Public Domain Torrents",
+    "url": "https://www.publicdomaintorrents.info/",
+    "license": "Public Domain",
+    "note": "示例：经典老片公有领域资源站，访问前请确认授权。",
+    "enabled": false
+  },
+  {
+    "id": "opensource_movies",
+    "name": "Open Source / CC 授权短片合集",
+    "url": "",
+    "license": "CC BY / CC0",
+    "note": "占位：把你有授权的 CC 片源首页地址填到此处 url 即可。",
+    "enabled": false
+  }
+]

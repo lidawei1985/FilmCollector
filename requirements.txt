@@ -1,0 +1,7 @@
+flask>=3.0
+requests>=2.31
+beautifulsoup4>=4.12
+lxml>=5.0
+pywebview>=5.0
+pyinstaller>=6.0
+cryptography>=42.0

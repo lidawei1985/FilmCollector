@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>影视资源采集器 · 零代码版</title>
+<link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+<!-- 新手引导 -->
+<div id="onboard" class="onboard hidden">
+  <div class="onboard-card">
+    <div class="onboard-head">
+      <h2>欢迎使用 · 四步向导</h2>
+      <button id="ob-close" class="close-btn" title="关闭向导">✕</button>
+    </div>
+    <div id="onboard-step" class="onboard-body"></div>
+    <div class="onboard-actions">
+      <button id="ob-prev">上一步</button>
+      <button id="ob-next" class="primary">下一步</button>
+      <button id="ob-skip">跳过向导</button>
+    </div>
+  </div>
+</div>
+
+<header class="topbar">
+  <div class="brand">🎬 影视资源采集器 <span class="ver">v1.0 本地版</span></div>
+  <nav id="nav">
+    <button data-tab="detect" class="active">站点检测</button>
+    <button data-tab="scrape">零代码采集</button>
+    <button data-tab="library">资源库</button>
+    <button data-tab="gen">生成 & API</button>
+    <button data-tab="images">图库</button>
+    <button data-tab="logs">日志</button>
+    <button data-tab="settings">设置</button>
+    <button data-tab="public">公共领域源</button>
+  </nav>
+  <div class="status" id="api-status">API：未开启</div>
+</header>
+
+<main>
+  <!-- 站点检测 -->
+  <section id="tab-detect" class="tab active">
+    <h3>① 站点兼容性自动检测</h3>
+    <p class="hint">粘贴任意影视网页链接，自动识别加密等级 / 反爬策略 / 视频流格式，无需自行判断。</p>
+    <div class="row">
+      <input id="detect-url" placeholder="https://example.com/movie/123" size="60">
+      <button class="primary" onclick="doDetect()">检测</button>
+    </div>
+    <div id="detect-result" class="card hidden"></div>
+  </section>
+
+  <!-- 零代码采集 -->
+  <section id="tab-scrape" class="tab">
+    <h3>② 零代码可视化采集</h3>
+    <p class="hint">方式一：自动嗅探（零配置）。方式二：内置浏览器点击元素选字段。方式三：高强度站点手动粘贴播放地址兜底。</p>
+
+    <div class="card">
+      <h4>方式一 · 自动嗅探 / 批量</h4>
+      <textarea id="scrape-urls" rows="3" placeholder="每行一个链接，自动嗅探视频流并入库"></textarea>
+      <div class="row">
+        <button class="primary" onclick="doAutoScrape()">开始采集</button>
+        <label>最大翻页 <input id="scrape-pages" type="number" value="1" min="1" max="20" style="width:60px"></label>
+        <span id="scrape-progress" class="progress"></span>
+      </div>
+    </div>
+
+    <div class="card">
+      <h4>方式二 · 内置浏览器点击采集（桌面端可用）</h4>
+      <div class="row">
+        <input id="pick-url" placeholder="目标页面链接" size="55">
+        <button onclick="openBrowser()">打开内置浏览器</button>
+        <button onclick="doBrowserPick()">采集已打开页面</button>
+      </div>
+      <p class="hint">在内置浏览器中点击页面元素即可自动识别字段（片名/海报/分集等），无需写选择器。</p>
+      <div id="pick-status" class="progress"></div>
+    </div>
+
+    <div class="card">
+      <h4>方式三 · 高强度加密站点兜底（手动添加）</h4>
+      <div class="grid2">
+        <input id="m-title" placeholder="片名">
+        <input id="m-year" placeholder="年份">
+        <input id="m-type" placeholder="类型(电影/连续剧/短剧/动漫/综艺/纪录片/少儿)">
+        <input id="m-region" placeholder="地区">
+        <input id="m-poster" placeholder="海报地址(可选)">
+        <input id="m-line" placeholder="线路名" value="手动线路">
+      </div>
+      <textarea id="m-urls" rows="4" placeholder="每行一个播放地址(m3u8/mp4)"></textarea>
+      <button class="primary" onclick="doManualAdd()">手动入库</button>
+    </div>
+  </section>
+
+  <!-- 资源库 -->
+  <section id="tab-library" class="tab">
+    <h3>③ 资源库（可视化表格编辑）</h3>
+    <div class="row">
+      <select id="lib-type"><option value="">全部分区</option><option>电影</option><option>连续剧</option><option>短剧</option><option>动漫</option><option>综艺</option><option>纪录片</option><option>少儿</option></select>
+      <input id="lib-q" placeholder="搜索片名/演员" size="30" oninput="loadLibrary()">
+      <button onclick="loadLibrary()">刷新</button>
+      <button onclick="doCleanDead()">巡检失效链接</button>
+    </div>
+    <div id="lib-table" class="table-wrap"></div>
+  </section>
+
+  <!-- 生成 & API -->
+  <section id="tab-gen" class="tab">
+    <h3>④ 双格式生成 JSON 订阅源 & 本地 API</h3>
+    <div class="row">
+      <button class="primary" onclick="doGenerate()">一键生成双格式订阅源</button>
+      <button id="api-btn" onclick="toggleApi()">开启本地 API</button>
+    </div>
+    <div id="gen-result" class="card hidden"></div>
+
+    <h4>本地 API（两组接口 · 按需复制）</h4>
+    <pre id="api-url"></pre>
+
+    <h4>已生成文件（TVBox 标准 / 通用纯净 各一套）</h4>
+    <div id="gen-files"></div>
+
+    <h4>导出至电脑任意文件夹</h4>
+    <div class="row">
+      <input id="export-folder" placeholder="目标文件夹路径，如 E:\MyFilms" size="45">
+      <button onclick="exportFolder()">导出两套 JSON</button>
+      <span id="export-msg" class="progress"></span>
+    </div>
+
+    <h4>客户端双格式导出（纯本地处理 · catalog.json + 通用纯净）</h4>
+    <div class="card">
+      <p class="hint">字段映射 / 格式转换 / 校验全部在本地完成，不依赖后端。导出前自动校验必填字段（id、name、type、play_list）与 JSON 语法，缺失项弹窗提示；海报自动防盗链补全并缓存本地。</p>
+      <div class="row">
+        <button class="primary" onclick="doClientExport()">导出 TVBox catalog.json + 通用纯净</button>
+        <span id="client-export-msg" class="progress"></span>
+      </div>
+      <div id="client-export-result" class="card hidden"></div>
+    </div>
+
+    <h4>🤖 全自动模式（找片 → 打包 → 上传公网 → 喂你的 APK，一次设置全程不用管）</h4>
+    <div class="card" id="auto-card">
+      <p class="hint">开启后：工具会<strong>自动从公共领域片库挑新片 → 采集入库 → 打包成订阅源 → 推到公网 → 再把源喂给你的指定 APK</strong>，你只管看。只需<strong>第一次</strong>在下面填一次 Token（工具会记住），以后打开工具就全自动跑，连地址都不用填。</p>
+      <div class="row">
+        <label class="switch"><input type="checkbox" id="auto-mode" onchange="saveAutoSettings()"> 开启全自动</label>
+        <label class="switch"><input type="checkbox" id="auto-onlaunch" onchange="saveAutoSettings()"> 打开工具自动跑</label>
+        <label class="switch"><input type="checkbox" id="auto-upload" onchange="saveAutoSettings()"> 自动上传公网</label>
+      </div>
+      <div class="row">
+        <span>每次最多加</span>
+        <input id="auto-maxnew" type="number" min="1" max="100" value="20" style="width:64px">
+        <span>部新片</span>
+        <button onclick="saveAutoSettings()">保存设置</button>
+      </div>
+      <div class="row" id="auto-coll-row">
+        <span>只挑这些合集：</span>
+        <span id="auto-coll-list" class="hint"></span>
+      </div>
+      <div class="row">
+        <button class="primary" id="auto-run-btn" onclick="doAutoNow()">🤖 立即全自动跑一次</button>
+        <span id="auto-msg" class="progress"></span>
+      </div>
+      <div id="auto-result" class="card hidden"></div>
+      <p class="hint" id="auto-explain">闭环说明：上传时会额外生成 <code>apk_feed.json</code>（含订阅地址）一并推到公网；你的「指定 APK」首次启动读取它即可自动加载片源，无需手动粘贴——这就是闭环。</p>
+    </div>
+
+    <h4>🚀 一键部署到公网（生成 + 推送到 GitHub/Gitee Pages · 电视/手机全球可看）</h4>
+    <div class="card">
+      <p class="hint">这一步把你的片库直接发布成一个<strong>公网订阅地址</strong>——别人电视/手机上任意 TVBox 粘贴即用，<strong>不用开你电脑、不连你家 WiFi</strong>。只需<strong>第一次</strong>去平台生成一次 Token（工具会记住），以后点一下就更新。<br><b>📱 你的 APK 怎么接海报：</b>把下面生成的 <code>subscribe.json</code>（或 <code>data.json</code>）地址，粘贴进你 APK 的「订阅 / 源管理」即可。海报地址会自动改成<strong>指向你自己的仓库</strong>，APK 里每部片子都有图、且永不依赖第三方图源——<strong>整个过程不用改 APK 一行代码</strong>。</p>
+      <div class="row">
+        <label>平台：</label>
+        <select id="dep-platform" onchange="onPlatformChange()">
+          <option value="github">GitHub（推荐·免实名·全球通用）</option>
+          <option value="gitee">Gitee（国内·需实名开通 Pages）</option>
+        </select>
+        <button onclick="openTokenHelp()">如何获取 Token？</button>
+      </div>
+      <div class="row">
+        <input id="dep-token" type="password" placeholder="粘贴 Access Token（自动记住，只需第一次）" size="38">
+        <input id="dep-username" placeholder="用户名（GitHub 可留空自动获取）" size="22">
+        <input id="dep-repo" placeholder="仓库名" value="FilmCollector" size="12">
+      </div>
+      <div class="row">
+        <button class="primary" id="dep-btn" onclick="doDeploy()">🚀 一键部署到公网</button>
+        <span id="dep-msg" class="progress"></span>
+      </div>
+      <div id="pub-result" class="card hidden"></div>
+    </div>
+  </section>
+
+  <!-- 图库 -->
+  <section id="tab-images" class="tab">
+    <h3>⑤ 本地素材图库</h3>
+    <button onclick="loadImages()">刷新</button>
+    <button onclick="delBrokenImages()">删除破损图</button>
+    <div id="img-list" class="img-grid"></div>
+  </section>
+
+  <!-- 日志 -->
+  <section id="tab-logs" class="tab">
+    <h3>⑥ 实时日志</h3>
+    <button onclick="loadLogs()">刷新</button>
+    <div id="log-list" class="logs"></div>
+  </section>
+
+  <!-- 设置 -->
+  <section id="tab-settings" class="tab">
+    <h3>⑦ 设置（自动化默认全开）</h3>
+    <div class="card">
+      <label>抓取间隔(秒) <input id="set-interval" type="number" step="0.5" min="0.5"></label>
+      <label><input id="set-rotate" type="checkbox"> 轮换 UA（轻量反爬）</label>
+      <label><input id="set-adfilter" type="checkbox"> 广告域名过滤</label>
+      <label><input id="set-imgcache" type="checkbox"> 海报本地缓存</label>
+      <label>API 地址 <input id="set-host" size="14"> : <input id="set-port" size="6"></label>
+      <label><input id="set-sched" type="checkbox"> 定时循环(每日)</label>
+      <button class="primary" onclick="saveConfig()">保存设置</button>
+    </div>
+    <div class="card">
+      <h4>广告域名黑名单</h4>
+      <textarea id="set-ad" rows="4"></textarea>
+      <button onclick="saveAd()">保存黑名单</button>
+    </div>
+    <div class="card">
+      <h4>数据备份 / 回滚</h4>
+      <button onclick="loadBackups()">列出备份</button>
+      <div id="backup-list"></div>
+      <button class="danger" onclick="clearCache()">一键清空缓存/失效资源</button>
+    </div>
+  </section>
+
+  <!-- 公共领域源 -->
+  <section id="tab-public" class="tab">
+    <h3>⑧ 公共领域 / CC 免费影视采集源（内置）</h3>
+    <p class="hint">以下为可配置的公有领域/CC 授权片源「起始样例」，默认不抓取。请先确认你有权访问目标页面、内容确为公有领域/CC 授权，再点「加入采集」走本地检测→采集→清洗→JSON/API 链路。高强度加密/验证码站点将自动转入手动复制兜底，未内置绕过站点安全校验的能力。</p>
+    <div class="card">
+      <h4>新增采集源预设</h4>
+      <div class="grid2">
+        <input id="p-name" placeholder="源名称">
+        <input id="p-license" placeholder="授权(Public Domain/CC)" value="Public Domain">
+        <input id="p-url" placeholder="片源首页地址" size="50" style="grid-column:1 / -1">
+      </div>
+      <button class="primary" onclick="addPreset()">添加预设</button>
+    </div>
+    <div id="preset-list" class="table-wrap"></div>
+  </section>
+</main>
+
+<!-- 校验弹窗 -->
+<div id="modal" class="modal hidden">
+  <div class="modal-card">
+    <h3 id="modal-title"></h3>
+    <div id="modal-body"></div>
+    <div class="modal-actions"><button id="modal-close-btn" class="primary" onclick="closeModal();return false;">我知道了</button></div>
+  </div>
+</div>
+
+<script src="/field_map.js"></script>
+<script src="/export_engine.js"></script>
+<script src="/app.js"></script>
+</body>
+</html>

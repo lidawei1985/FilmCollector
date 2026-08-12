@@ -1,0 +1,35 @@
+// 模块级 build.gradle（安卓 TV / 手机通用壳）
+plugins {
+    id 'com.android.application'
+    id 'kotlin-android'
+}
+
+android {
+    namespace 'com.filmcollector.client'
+    compileSdk 34
+
+    defaultConfig {
+        applicationId "com.filmcollector.client"
+        minSdk 21          // 安卓 5.0，覆盖老旧电视盒子
+        targetSdk 34
+        versionCode 1
+        versionName "1.0"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
+    }
+    kotlinOptions { jvmTarget = '17' }
+}
+
+dependencies {
+    implementation 'androidx.appcompat:appcompat:1.6.1'
+    implementation 'androidx.leanback:leanback:1.0.0'   // TV 支持库
+    implementation 'org.jetbrains.kotlin:kotlin-stdlib:1.9.22'
+}

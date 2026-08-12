@@ -1,0 +1,23 @@
+# 构建 / 部署产物（不进代码仓库；tvbox-dist 由云端推到独立的 Pages 仓库）
+tvbox-dist/
+dist/
+build/
+*.exe
+__pycache__/
+*.pyc
+
+# 本地虚拟环境
+.venv/
+venv/
+envs/
+
+# 采集产生的图片缓存（db.json 需保留，供云端累积去重）
+backend/data/image_cache/
+
+# 导出/构建临时产物
+output/
+node_modules/
+*.zip
+
+# 日志
+*.log

@@ -1,0 +1,6 @@
+# 云端自动化专用轻量依赖（仅采集+部署所需，不含 flask/pywebview/pyinstaller）
+# 用于 GitHub Actions 快速安装，避免桌面端重依赖在 Linux 上安装失败。
+requests>=2.31
+beautifulsoup4>=4.12
+lxml>=5.0
+cryptography>=42.0

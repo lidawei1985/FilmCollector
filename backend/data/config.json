@@ -1,0 +1,29 @@
+{
+  "api_host": "127.0.0.1",
+  "api_port": 9911,
+  "api_enabled": true,
+  "request_interval": 1.5,
+  "rotate_ua": true,
+  "max_retry": 2,
+  "timeout": 12,
+  "schedule": {
+    "enabled": false,
+    "mode": "daily",
+    "hour": 3
+  },
+  "auto_clean": true,
+  "ad_filter": true,
+  "image_cache": true,
+  "auto_mode": false,
+  "auto_on_launch": true,
+  "auto_max_new": 20,
+  "auto_upload": true,
+  "auto_categories": [],
+  "auto_last_run": "2026-08-12 22:19:38",
+  "auto_last_result": {
+    "added": 0,
+    "uploaded": false,
+    "subscribe": null,
+    "needs_token": false
+  }
+}

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<plist version="1.0">
+<dict>
+    <key>CFBundleName</key>
+    <string>FilmCollector</string>
+    <key>CFBundleDisplayName</key>
+    <string>FilmCollector</string>
+    <key>CFBundleIdentifier</key>
+    <string>com.filmcollector.client</string>
+    <key>CFBundleVersion</key>
+    <string>1</string>
+    <key>CFBundleShortVersionString</key>
+    <string>1.0</string>
+    <key>CFBundleExecutable</key>
+    <string>FilmCollector</string>
+    <key>LSRequiresIPhoneOS</key>
+    <true/>
+    <key>UIStatusBarHidden</key>
+    <true/>
+    <key>UILaunchScreen</key>
+    <dict><key>UINavigationBar</key><dict/></dict>
+    <!-- 放开 HTTP 明文（本机采集工具默认 http://IP:9911） -->
+    <key>NSAppTransportSecurity</key>
+    <dict>
+        <key>NSAllowsArbitraryLoads</key>
+        <true/>
+    </dict>
+</dict>
+</plist>

@@ -1,0 +1,867 @@
+{
+  "items": [
+    {
+      "title": "Big Buck Bunny",
+      "aliases": "",
+      "year": "",
+      "region": "",
+      "type": "电影",
+      "director": "",
+      "actors": "",
+      "description": "Big Buck Bunny is a comedy about a well-tempered rabbit Big Buck, who finds his day spoiled by the rude actions of the forest bullies, three rodents. In the...",
+      "duration": "",
+      "rating": "",
+      "subtitle": "",
+      "poster": "",
+      "cover": "",
+      "episodes": [],
+      "source_url": "https://archive.org/details/BigBuckBunny_124",
+      "status": "dead",
+      "validated": true,
+      "genres": [],
+      "id": "5feee853-34a4-4e49-86a6-bd5016a2e397",
+      "created_at": "2026-08-11 09:19:58",
+      "updated_at": "2026-08-11 10:14:12"
+    },
+    {
+      "title": "Elephants Dream",
+      "aliases": "",
+      "year": "",
+      "region": "",
+      "type": "连续剧",
+      "director": "",
+      "actors": "",
+      "description": "From the official website: Elephants Dream is the story of two strange characters exploring a capricious and seemingly infinite machine. The elder, Proog,...",
+      "duration": "",
+      "rating": "",
+      "subtitle": "",
+      "poster": "images/poster_ed_1024_000030.jpg",
+      "cover": "",
+      "episodes": [
+        {
+          "name": "播放",
+          "url": "https://archive.org/download/ElephantsDream/ed_1024.mp4",
+          "line": "默认线路"
+        },
+        {
+          "name": "播放",
+          "url": "https://archive.org/download/ElephantsDream/ed_hd.mp4",
+          "line": "默认线路"
+        }
+      ],
+      "source_url": "https://archive.org/details/ElephantsDream",
+      "status": "ok",
+      "validated": true,
+      "genres": [],
+      "id": "c0b03f29-01bb-4446-ad50-0d240f0f4a67",
+      "created_at": "2026-08-11 09:20:05",
+      "updated_at": "2026-08-11 10:14:16"
+    },
+    {
+      "title": "Wings",
+      "aliases": "",
+      "year": "",
+      "region": "",
+      "type": "电影",
+      "director": "",
+      "actors": "",
+      "description": "Two young men, one rich, one middle class, who are in love with the same woman, become fighter pilots in World War I.",
+      "duration": "",
+      "rating": "",
+      "subtitle": "",
+      "poster": "images/poster_Wings_1927__000117.jpg",
+      "cover": "",
+      "episodes": [
+        {
+          "name": "线路片段1",
+          "url": "https://archive.org/download/wings-1927_202404/Wings%281927%29.mp4",
+          "line": "默认线路"
+        }
+      ],
+      "source_url": "https://archive.org/details/wings-1927_202404",
+      "status": "ok",
+      "validated": true,
+      "genres": [],
+      "id": "c8d872ed-00fe-462d-b9c2-e8b64968cf1b",
+      "created_at": "2026-08-11 09:21:07",
+      "updated_at": "2026-08-11 10:14:18"
+    },
+    {
+      "title": "Winners of the West 1940 colorized cliffhanger serial (Dick Foran)",
+      "aliases": "",
+      "year": "",
+      "region": "",
+      "type": "连续剧",
+      "director": "",
+      "actors": "",
+      "description": "King Carter doesn't want the railroad to go through his territory, so he induces the local Indians into attacking the railroad crew. The head of the crew is...",
+      "duration": "",
+      "rating": "",
+      "subtitle": "",
+      "poster": "images/poster_01_Redskins_Ride_Again_000116.jpg",
+      "cover": "",
+      "episodes": [
+        {
+          "name": "线路片段1",
+          "url": "https://archive.org/download/winners-of-the-west-1940/01%20Redskins%20Ride%20Again.mp4",
+          "line": "默认线路"
+        },
+        {
+          "name": "线路片段2",
+          "url": "https://archive.org/download/winners-of-the-west-1940/02%20The%20Wreck%20at%20Red%20River%20Gorge.mp4",
+          "line": "默认线路"
+        },
+        {
+          "name": "线路片段3",
+          "url": "https://archive.org/download/winners-of-the-west-1940/03%20The%20Bridge%20of%20Disaster.mp4",
+          "line": "默认线路"
+        },
+        {
+          "name": "线路片段4",
+          "url": "https://archive.org/download/winners-of-the-west-1940/04%20Trapped%20by%20Redskins.mp4",
+          "line": "默认线路"
+        },
+        {
+          "name": "线路片段5",
+          "url": "https://archive.org/download/winners-of-the-west-1940/05%20Death%20Strikes%20the%20Trail.mp4",
+          "line": "默认线路"
+        },
+        {
+          "name": "线路片段6",
+          "url": "https://archive.org/download/winners-of-the-west-1940/06%20A%20Leap%20for%20Life.mp4",
+          "line": "默认线路"
+        },
+        {
+          "name": "线路片段7",
+          "url": "https://archive.org/download/winners-of-the-west-1940/07%20Thundering%20Terror.mp4",
+          "line": "默认线路"
+        },
+        {
+          "name": "线路片段8",
+          "url": "https://archive.org/download/winners-of-the-west-1940/08%20The%20Flaming%20Arsenal.mp4",
+          "line": "默认线路"
+        },
+        {
+          "name": "线路片段9",
+          "url": "https://archive.org/download/winners-of-the-west-1940/09%20Sacrificed%20by%20Savages.mp4",
+          "line": "默认线路"
+        },
+        {
+          "name": "线路片段10",
+          "url": "https://archive.org/download/winners-of-the-west-1940/10%20Under%20Crashing%20Timbers.mp4",
+          "line": "默认线路"
+        },
+        {
+          "name": "线路片段11",
+          "url": "https://archive.org/download/winners-of-the-west-1940/11%20Bullets%20in%20the%20Dark.mp4",
+          "line": "默认线路"
+        },
+        {
+          "name": "线路片段12",
+          "url": "https://archive.org/download/winners-of-the-west-1940/12%20The%20Battle%20of%20Blackhawk.mp4",
+          "line": "默认线路"
+        }
+      ],
+      "source_url": "https://archive.org/details/winners-of-the-west-1940",
+      "status": "ok",
+      "validated": true,
+      "genres": [],
+      "id": "c365ad4e-7f58-41a7-9c2a-9003e3a4779a",
+      "created_at": "2026-08-11 09:21:07",
+      "updated_at": "2026-08-11 10:14:41"
+    },
+    {
+      "title": "Wise Girls (1929)",
+      "aliases": "",
+      "year": "",
+      "region": "",
+      "type": "电影",
+      "director": "",
+      "actors": "",
+      "description": "I've been researching newly public domain films from 1929 and earlier, so I'm uploading the best possible copies that I can find.This comedy follows a plumber...",
+      "duration": "",
+      "rating": "",
+      "subtitle": "",
+      "poster": "images/poster_wise-girls_1929_000114.jpg",
+      "cover": "",
+      "episodes": [],
+      "source_url": "https://archive.org/details/wise-girls_1929_202506",
+      "status": "dead",
+      "validated": true,
+      "genres": [],
+      "id": "6e1c79c2-a177-40c4-a663-1f247e93f794",
+      "created_at": "2026-08-11 09:21:07",
+      "updated_at": "2026-08-11 10:14:53"
+    },
+    {
+      "title": "Wilful Willie (1942)",
+      "aliases": "",
+      "year": "",
+      "region": "",
+      "type": "电影",
+      "director": "",
+      "actors": "",
+      "description": "Wilful Willie is a Terrytoons cartoon directed by Connie Rasinski.Watch on RetroFlix: https://retroflix.org/wilful-willie-1942/",
+      "duration": "",
+      "rating": "",
+      "subtitle": "",
+      "poster": "images/poster_Wilful_Willie__1942__000058.jpg",
+      "cover": "",
+      "episodes": [
+        {
+          "name": "线路片段1",
+          "url": "https://archive.org/download/wilful-willie-1942/Wilful%20Willie%20%281942%29.mp4",
+          "line": "默认线路"
+        }
+      ],
+      "source_url": "https://archive.org/details/wilful-willie-1942",
+      "status": "ok",
+      "validated": true,
+      "genres": [],
+      "id": "5f352e0b-1f5c-4725-aa80-3ef1e269ad30",
+      "created_at": "2026-08-11 09:21:07",
+      "updated_at": "2026-08-11 10:15:03"
+    },
+    {
+      "title": "Windjammer",
+      "aliases": "",
+      "year": "",
+      "region": "",
+      "type": "电影",
+      "director": "",
+      "actors": "",
+      "description": "You can find more information regarding this film on its IMDb page.",
+      "duration": "",
+      "rating": "",
+      "subtitle": "",
+      "poster": "images/poster_windjammer_000060.jpg",
+      "cover": "",
+      "episodes": [
+        {
+          "name": "播放",
+          "url": "https://archive.org/download/windjammer/windjammer.mp4",
+          "line": "默认线路"
+        }
+      ],
+      "source_url": "https://archive.org/details/windjammer",
+      "status": "ok",
+      "validated": true,
+      "genres": [],
+      "id": "c2d6fb12-24d8-4d7d-aa67-daf1a8794d01",
+      "created_at": "2026-08-11 09:21:07",
+      "updated_at": "2026-08-11 10:15:05"
+    },
+    {
+      "title": "Who Killed Buddy Blue? - Kimber Sissons, Anthony Addabbo",
+      "aliases": "",
+      "year": "",
+      "region": "",
+      "type": "电影",
+      "director": "",
+      "actors": "",
+      "description": "Pay cable broadcast",
+      "duration": "",
+      "rating": "",
+      "subtitle": "",
+      "poster": "images/poster_Who_Killed_Buddy_Blue_-_1995_000058.jpg",
+      "cover": "",
+      "episodes": [
+        {
+          "name": "播放",
+          "url": "https://archive.org/download/who-killed-buddy-blue-1995/Who%20Killed%20Buddy%20Blue%20-%201995.ia.mp4",
+          "line": "默认线路"
+        }
+      ],
+      "source_url": "https://archive.org/details/who-killed-buddy-blue-1995",
+      "status": "ok",
+      "validated": true,
+      "genres": [],
+      "id": "3cf80691-5ced-479f-8903-3313b9eb55a9",
+      "created_at": "2026-08-11 09:21:07",
+      "updated_at": "2026-08-11 10:15:07"
+    },
+    {
+      "title": "電影線上看、推薦人氣電影 - 影劇館⁺ | HamiVideo",
+      "aliases": "",
+      "year": "",
+      "region": "",
+      "type": "电影",
+      "director": "",
+      "actors": "",
+      "description": "獨家搶先看裴晟祐×鄭家藍×李絮×趙漢哲×尹敬浩《終極搜查》、成龍×張子楓×梁家輝《捕風追影》！現象級動漫《劇場版「鬼滅之刃」無限城篇 第一章 猗窩座再襲》、趙麗穎×蘭西雅×啜妮×王菊×程瀟《向陽‧花》！ 即將上架古天樂×林峯×宣萱×郭羨妮×滕麗名《尋秦記》、張孝全×林依晨×金士傑×馬志翔×丁寧×陳季霞×蔡亘晏《深度安靜》、全智賢×具教煥×池昌旭×申鉉彬×金信祿《屍速禁區》、黃子華×鄭秀文《夜王》！不論您是動作片、喜劇片、恐怖片還是浪漫愛情片的愛好者，Hami Video讓您輕鬆找到喜愛想看的內容，立即一同線上探索。",
+      "duration": "",
+      "rating": "",
+      "subtitle": "",
+      "poster": "images/poster_getHamiVideoImg.jpg",
+      "cover": "",
+      "episodes": [],
+      "source_url": "https://hamivideo.hinet.net/%E5%BD%B1%E5%8A%87%E9%A4%A8%E2%81%BA/%E9%9B%BB%E5%BD%B1/%E6%8E%A8%E8%96%A6.do",
+      "status": "dead",
+      "validated": true,
+      "genres": [
+        "爱情",
+        "恐怖"
+      ],
+      "id": "002c1180-4a49-4cdf-8b60-6c21f60748ec",
+      "created_at": "2026-08-11 10:09:40",
+      "updated_at": "2026-08-11 10:15:07"
+    },
+    {
+      "title": "觀看 電影 | HBO Max",
+      "aliases": "",
+      "year": "",
+      "region": "",
+      "type": "电影",
+      "director": "",
+      "actors": "",
+      "description": "觀看 電影 盡在 HBO Max. 暢享好萊塢最熱門大片，涵蓋動作、冒險、喜劇、劇情等各類影片，每週末均有新片上線。",
+      "duration": "",
+      "rating": "",
+      "subtitle": "",
+      "poster": "images/poster_Splash_20Screen_20HD_20720x480.jpg",
+      "cover": "",
+      "episodes": [],
+      "source_url": "https://www.hbomax.com/tw/zh/movies",
+      "status": "dead",
+      "validated": true,
+      "genres": [],
+      "id": "065617de-7d99-4e24-b432-1cd25d8a8a1c",
+      "created_at": "2026-08-11 10:14:02",
+      "updated_at": "2026-08-11 10:15:07"
+    },
+    {
+      "title": "觀看 電影 | HBO Max",
+      "aliases": "",
+      "year": "",
+      "region": "",
+      "type": "电影",
+      "director": "",
+      "actors": "",
+      "description": "觀看 電影 盡在 HBO Max. 暢享好萊塢最熱門大片，涵蓋動作、冒險、喜劇、劇情等各類影片，每週末均有新片上線。",
+      "duration": "",
+      "rating": "",
+      "subtitle": "",
+      "poster": "images/poster_Splash_20Screen_20HD_20720x480.jpg",
+      "cover": "",
+      "episodes": [],
+      "source_url": "https://www.hbomax.com/tw/zh/movies",
+      "status": "dead",
+      "validated": true,
+      "genres": [],
+      "id": "1d165b20-845a-4a67-82b6-cfc8da7b973e",
+      "created_at": "2026-08-11 10:27:20",
+      "updated_at": "2026-08-11 10:27:20"
+    },
+    {
+      "title": "觀看 電影 | HBO Max",
+      "aliases": "",
+      "year": "",
+      "region": "",
+      "type": "电影",
+      "director": "",
+      "actors": "",
+      "description": "觀看 電影 盡在 HBO Max. 暢享好萊塢最熱門大片，涵蓋動作、冒險、喜劇、劇情等各類影片，每週末均有新片上線。",
+      "duration": "",
+      "rating": "",
+      "subtitle": "",
+      "poster": "images/poster_Splash_20Screen_20HD_20720x480.jpg",
+      "cover": "",
+      "episodes": [],
+      "source_url": "https://www.hbomax.com/tw/zh/movies",
+      "status": "dead",
+      "validated": true,
+      "genres": [],
+      "id": "c04a44c5-e189-4074-90a2-1c74a2015a48",
+      "created_at": "2026-08-11 10:31:48",
+      "updated_at": "2026-08-11 10:31:48"
+    },
+    {
+      "title": "觀看 電影 | HBO Max",
+      "aliases": "",
+      "year": "",
+      "region": "",
+      "type": "电影",
+      "director": "",
+      "actors": "",
+      "description": "觀看 電影 盡在 HBO Max. 暢享好萊塢最熱門大片，涵蓋動作、冒險、喜劇、劇情等各類影片，每週末均有新片上線。",
+      "duration": "",
+      "rating": "",
+      "subtitle": "",
+      "poster": "images/poster_Splash_20Screen_20HD_20720x480.jpg",
+      "cover": "",
+      "episodes": [],
+      "source_url": "https://www.hbomax.com/tw/zh/movies",
+      "status": "dead",
+      "validated": true,
+      "genres": [],
+      "id": "2350e861-5a19-4c3a-928f-13b889cf006b",
+      "created_at": "2026-08-11 10:37:26",
+      "updated_at": "2026-08-11 10:37:26"
+    },
+    {
+      "title": "觀看 電影 | HBO Max",
+      "aliases": "",
+      "year": "",
+      "region": "",
+      "type": "电影",
+      "director": "",
+      "actors": "",
+      "description": "觀看 電影 盡在 HBO Max. 暢享好萊塢最熱門大片，涵蓋動作、冒險、喜劇、劇情等各類影片，每週末均有新片上線。",
+      "duration": "",
+      "rating": "",
+      "subtitle": "",
+      "poster": "images/poster_Splash_20Screen_20HD_20720x480.jpg",
+      "cover": "",
+      "episodes": [],
+      "source_url": "https://www.hbomax.com/tw/zh/movies",
+      "status": "dead",
+      "validated": true,
+      "genres": [],
+      "id": "9bb3f0c3-b27c-4ecc-9204-1037f346ac5a",
+      "created_at": "2026-08-11 12:50:13",
+      "updated_at": "2026-08-11 12:50:13"
+    },
+    {
+      "title": "Papa Tiene Novia (1941) : Free Download, Borrow, and Streaming : Internet Archive",
+      "aliases": "",
+      "year": "",
+      "region": "",
+      "type": "",
+      "director": "",
+      "actors": "",
+      "description": "Papá tiene novia es una película argentina del género de comedia filmada en blanco y negro dirigida por Carlos Schlieper sobre su propio guion...",
+      "duration": "",
+      "rating": "",
+      "subtitle": "",
+      "poster": "https://archive.org/download/papa-tiene-novia-1941/papa-tiene-novia-1941.thumbs/Papa tiene novia (1941)_000060.jpg",
+      "cover": "",
+      "episodes": [
+        {
+          "name": "线路片段1",
+          "url": "https://archive.org/download/papa-tiene-novia-1941/Papa%20tiene%20novia%20%281941%29.mp4",
+          "line": "默认线路"
+        }
+      ],
+      "source_url": "https://archive.org/details/papa-tiene-novia-1941",
+      "source_id": "papa-tiene-novia-1941",
+      "license": "Public Domain / CC",
+      "status": "ok",
+      "id": "e1fd2450-31fc-479d-b483-1fa89e889dac",
+      "created_at": "2026-08-11 14:07:28",
+      "updated_at": "2026-08-11 14:07:28"
+    },
+    {
+      "title": "Argentinisima (duo) : Free Download, Borrow, and Streaming : Internet Archive",
+      "aliases": "",
+      "year": "",
+      "region": "",
+      "type": "",
+      "director": "",
+      "actors": "",
+      "description": "Películas",
+      "duration": "",
+      "rating": "",
+      "subtitle": "",
+      "poster": "https://archive.org/download/argentinisima-duo/argentinisima-duo.thumbs/Argentinisima (1972)_000060.jpg",
+      "cover": "",
+      "episodes": [
+        {
+          "name": "线路片段1",
+          "url": "https://archive.org/download/argentinisima-duo/Argentinisima%20%281972%29.mp4",
+          "line": "默认线路"
+        },
+        {
+          "name": "线路片段2",
+          "url": "https://archive.org/download/argentinisima-duo/Argentinisima%20II%20%281973%29.mp4",
+          "line": "默认线路"
+        }
+      ],
+      "source_url": "https://archive.org/details/argentinisima-duo",
+      "source_id": "argentinisima-duo",
+      "license": "Public Domain / CC",
+      "status": "ok",
+      "id": "672a1c53-21aa-40e6-9b9b-91ae87252cf3",
+      "created_at": "2026-08-11 14:07:29",
+      "updated_at": "2026-08-11 14:07:29"
+    },
+    {
+      "title": "He Nacido En La Rivera (1972) : Free Download, Borrow, and Streaming : Internet Archive",
+      "aliases": "",
+      "year": "",
+      "region": "",
+      "type": "",
+      "director": "",
+      "actors": "",
+      "description": "Película",
+      "duration": "",
+      "rating": "",
+      "subtitle": "",
+      "poster": "https://archive.org/download/he-nacido-en-la-rivera-1972/he-nacido-en-la-rivera-1972.thumbs/He nacido en la rivera (1972)_000060.jpg",
+      "cover": "",
+      "episodes": [
+        {
+          "name": "线路片段1",
+          "url": "https://archive.org/download/he-nacido-en-la-rivera-1972/He%20nacido%20en%20la%20rivera%20%281972%29.mp4",
+          "line": "默认线路"
+        }
+      ],
+      "source_url": "https://archive.org/details/he-nacido-en-la-rivera-1972",
+      "source_id": "he-nacido-en-la-rivera-1972",
+      "license": "Public Domain / CC",
+      "status": "ok",
+      "id": "60ba8a95-0f70-47e4-a1b5-ff8e616a530f",
+      "created_at": "2026-08-11 14:07:30",
+      "updated_at": "2026-08-11 14:07:30"
+    },
+    {
+      "title": "Don Quijote Del Altillo (1936)",
+      "aliases": "",
+      "year": "",
+      "region": "",
+      "type": "",
+      "director": "",
+      "actors": "",
+      "description": "Don Quijote del altillo es una película argentina en blanco y negro dirigida por Manuel Romero sobre su propio guion que se estrenó el 3 de junio de...",
+      "duration": "",
+      "rating": "",
+      "subtitle": "",
+      "poster": "https://archive.org/download/don-quijote-del-altillo-1936/don-quijote-del-altillo-1936.thumbs/Don Quijote del altillo (1936)_000060.jpg",
+      "cover": "",
+      "episodes": [
+        {
+          "name": "线路片段1",
+          "url": "https://archive.org/download/don-quijote-del-altillo-1936/Don%20Quijote%20del%20altillo%20%281936%29.mp4",
+          "line": "默认线路"
+        }
+      ],
+      "source_url": "https://archive.org/details/don-quijote-del-altillo-1936",
+      "source_id": "don-quijote-del-altillo-1936",
+      "license": "Public Domain / CC",
+      "status": "ok",
+      "id": "d03e6420-b4c2-4f2c-8e4c-cfac093bde57",
+      "created_at": "2026-08-11 14:11:47",
+      "updated_at": "2026-08-11 14:11:47"
+    }
+  ],
+  "logs": [
+    {
+      "time": "2026-08-12 22:19:38",
+      "level": "info",
+      "msg": "自动更新完成：耗时 5.2s，新增 0 部，上传=False"
+    },
+    {
+      "time": "2026-08-12 22:19:38",
+      "level": "info",
+      "msg": "自动更新：新增 0 部",
+      "count": 0
+    },
+    {
+      "time": "2026-08-12 22:19:38",
+      "level": "info",
+      "msg": "auto_feed 发现候选 20 部（来自 5 个合集）"
+    },
+    {
+      "time": "2026-08-12 22:18:29",
+      "level": "info",
+      "msg": "静态订阅包生成：10 部 → E:\\FilmCollector\\tvbox-dist（base=https://example.com/demo/；海报随包发布 6 张，第三方远程 4 张）"
+    },
+    {
+      "time": "2026-08-12 21:53:32",
+      "level": "info",
+      "msg": "静态订阅包生成：1 部 → E:\\FilmCollector\\tvbox-dist-test（base=https://u.github.io/FilmCollector/；海报随包发布 1 张，第三方远程 0 张）"
+    },
+    {
+      "time": "2026-08-12 21:53:31",
+      "level": "info",
+      "msg": "静态订阅包生成：1 部 → E:\\FilmCollector\\tvbox-dist-test（base=https://u.github.io/FilmCollector/；海报随包发布 1 张，第三方远程 0 张）"
+    },
+    {
+      "time": "2026-08-11 14:11:48",
+      "level": "info",
+      "msg": "自动更新完成：耗时 5.2s，新增 1 部，上传=False"
+    },
+    {
+      "time": "2026-08-11 14:11:47",
+      "level": "info",
+      "msg": "静态订阅包生成：10 部 → E:\\FilmCollector\\tvbox-dist（base=https://test_user.github.io/FilmCollector/）"
+    },
+    {
+      "time": "2026-08-11 14:11:47",
+      "level": "info",
+      "msg": "自动更新：新增 1 部",
+      "count": 1
+    },
+    {
+      "time": "2026-08-11 14:11:46",
+      "level": "info",
+      "msg": "auto_feed 发现候选 21 部（来自 5 个合集）"
+    },
+    {
+      "time": "2026-08-11 14:07:30",
+      "level": "info",
+      "msg": "自动更新完成：耗时 9.1s，新增 3 部，上传=False"
+    },
+    {
+      "time": "2026-08-11 14:07:30",
+      "level": "info",
+      "msg": "自动更新：新增 3 部",
+      "count": 3
+    },
+    {
+      "time": "2026-08-11 14:07:27",
+      "level": "info",
+      "msg": "auto_feed 发现候选 24 部（来自 5 个合集）"
+    },
+    {
+      "time": "2026-08-11 12:50:13",
+      "level": "info",
+      "msg": "本地订阅 API 已开启：TVBox http://127.0.0.1:9911/api.php/provide/vod/ ｜ 通用 http://127.0.0.1:9911/api/generic/vod/"
+    },
+    {
+      "time": "2026-08-11 12:50:13",
+      "level": "info",
+      "msg": "双格式订阅源生成：TVBox 6 条 / 通用 6 条；TVBox校验0处，通用校验0处"
+    },
+    {
+      "time": "2026-08-11 12:50:13",
+      "level": "info",
+      "msg": "入库 1 条（耗时 6.95s）"
+    },
+    {
+      "time": "2026-08-11 12:50:13",
+      "level": "info",
+      "msg": "清洗完成：广告过滤 0 条，失效剔除 0 条，图片缓存 1 张",
+      "count": 0
+    },
+    {
+      "time": "2026-08-11 12:50:12",
+      "level": "info",
+      "msg": "采集到原始记录 1 条：https://www.hbomax.com/tw/zh/movies"
+    },
+    {
+      "time": "2026-08-11 12:49:58",
+      "level": "info",
+      "msg": "站点检测：https://www.hbomax.com/tw/zh/movies -> ① 完全支持全自动批量抓取"
+    },
+    {
+      "time": "2026-08-11 12:09:15",
+      "level": "info",
+      "msg": "静态订阅包生成：20 部 → E:\\FilmCollector\\tvbox-dist（base=https://demo.github.io/FilmCollector/）"
+    },
+    {
+      "time": "2026-08-11 11:53:35",
+      "level": "info",
+      "msg": "静态订阅包生成：20 部 → tvbox-dist（base=https://example.github.io/FilmCollector/）"
+    },
+    {
+      "time": "2026-08-11 10:37:26",
+      "level": "info",
+      "msg": "本地订阅 API 已开启：TVBox http://127.0.0.1:9911/api.php/provide/vod/ ｜ 通用 http://127.0.0.1:9911/api/generic/vod/"
+    },
+    {
+      "time": "2026-08-11 10:37:26",
+      "level": "info",
+      "msg": "双格式订阅源生成：TVBox 6 条 / 通用 6 条；TVBox校验0处，通用校验0处"
+    },
+    {
+      "time": "2026-08-11 10:37:26",
+      "level": "info",
+      "msg": "入库 1 条（耗时 2.9s）"
+    },
+    {
+      "time": "2026-08-11 10:37:25",
+      "level": "info",
+      "msg": "清洗完成：广告过滤 0 条，失效剔除 0 条，图片缓存 1 张",
+      "count": 0
+    },
+    {
+      "time": "2026-08-11 10:37:25",
+      "level": "info",
+      "msg": "采集到原始记录 1 条：https://www.hbomax.com/tw/zh/movies"
+    },
+    {
+      "time": "2026-08-11 10:31:48",
+      "level": "info",
+      "msg": "本地订阅 API 已开启：TVBox http://127.0.0.1:9911/api.php/provide/vod/ ｜ 通用 http://127.0.0.1:9911/api/generic/vod/"
+    },
+    {
+      "time": "2026-08-11 10:31:48",
+      "level": "info",
+      "msg": "双格式订阅源生成：TVBox 6 条 / 通用 6 条；TVBox校验0处，通用校验0处"
+    },
+    {
+      "time": "2026-08-11 10:31:48",
+      "level": "info",
+      "msg": "入库 1 条（耗时 1.09s）"
+    },
+    {
+      "time": "2026-08-11 10:31:48",
+      "level": "info",
+      "msg": "清洗完成：广告过滤 0 条，失效剔除 0 条，图片缓存 1 张",
+      "count": 0
+    },
+    {
+      "time": "2026-08-11 10:31:47",
+      "level": "info",
+      "msg": "采集到原始记录 1 条：https://www.hbomax.com/tw/zh/movies"
+    },
+    {
+      "time": "2026-08-11 10:31:45",
+      "level": "info",
+      "msg": "站点检测：https://www.hbomax.com/tw/zh/movies -> ① 完全支持全自动批量抓取"
+    },
+    {
+      "time": "2026-08-11 10:27:20",
+      "level": "info",
+      "msg": "本地订阅 API 已开启：TVBox http://127.0.0.1:9911/api.php/provide/vod/ ｜ 通用 http://127.0.0.1:9911/api/generic/vod/"
+    },
+    {
+      "time": "2026-08-11 10:27:20",
+      "level": "info",
+      "msg": "双格式订阅源生成：TVBox 6 条 / 通用 6 条；TVBox校验0处，通用校验0处"
+    },
+    {
+      "time": "2026-08-11 10:27:20",
+      "level": "info",
+      "msg": "入库 1 条（耗时 4.27s）"
+    },
+    {
+      "time": "2026-08-11 10:27:20",
+      "level": "info",
+      "msg": "清洗完成：广告过滤 0 条，失效剔除 0 条，图片缓存 1 张",
+      "count": 0
+    },
+    {
+      "time": "2026-08-11 10:27:17",
+      "level": "info",
+      "msg": "采集到原始记录 1 条：https://www.hbomax.com/tw/zh/movies"
+    },
+    {
+      "time": "2026-08-11 10:27:14",
+      "level": "info",
+      "msg": "站点检测：https://www.hbomax.com/tw/zh/movies -> ① 完全支持全自动批量抓取"
+    },
+    {
+      "time": "2026-08-11 10:15:07",
+      "level": "info",
+      "msg": "巡检完成：清除失效线路 2 条，广告过滤 0 条",
+      "count": 2
+    },
+    {
+      "time": "2026-08-11 10:14:02",
+      "level": "info",
+      "msg": "批量导入采集完成，新增 1 条"
+    },
+    {
+      "time": "2026-08-11 10:14:02",
+      "level": "info",
+      "msg": "清洗完成：广告过滤 0 条，失效剔除 0 条，图片缓存 1 张",
+      "count": 0
+    },
+    {
+      "time": "2026-08-11 10:13:38",
+      "level": "info",
+      "msg": "站点检测：https://www.hbomax.com/tw/zh/movies -> ① 完全支持全自动批量抓取"
+    },
+    {
+      "time": "2026-08-11 10:12:45",
+      "level": "info",
+      "msg": "站点检测：https://www.hbomax.com/tw/zh/movies -> ① 完全支持全自动批量抓取"
+    },
+    {
+      "time": "2026-08-11 10:09:40",
+      "level": "info",
+      "msg": "批量导入采集完成，新增 1 条"
+    },
+    {
+      "time": "2026-08-11 10:09:40",
+      "level": "info",
+      "msg": "清洗完成：广告过滤 0 条，失效剔除 0 条，图片缓存 1 张",
+      "count": 0
+    },
+    {
+      "time": "2026-08-11 10:09:16",
+      "level": "info",
+      "msg": "站点检测：https://hamivideo.hinet.net/%E5%BD%B1%E5%8A%87%E9%A4%A8%E2%81%BA/%E9%9B%BB%E5%BD%B1/%E6%8E%A8%E8%96%A6.do -> ② 轻度加密·单集手动提取"
+    },
+    {
+      "time": "2026-08-11 10:08:58",
+      "level": "info",
+      "msg": "站点检测：https://video.friday.tw/movie -> "
+    },
+    {
+      "time": "2026-08-11 10:08:36",
+      "level": "info",
+      "msg": "站点检测：https://www.myvideo.net.tw/movie/ -> "
+    },
+    {
+      "time": "2026-08-11 09:21:07",
+      "level": "info",
+      "msg": "本地订阅 API 已开启：TVBox http://127.0.0.1:9911/api.php/provide/vod/ ｜ 通用 http://127.0.0.1:9911/api/generic/vod/"
+    },
+    {
+      "time": "2026-08-11 09:21:07",
+      "level": "info",
+      "msg": "双格式订阅源生成：TVBox 7 条 / 通用 7 条；TVBox校验0处，通用校验0处"
+    },
+    {
+      "time": "2026-08-11 09:21:07",
+      "level": "info",
+      "msg": "入库 6 条（耗时 61.52s）"
+    },
+    {
+      "time": "2026-08-11 09:21:07",
+      "level": "info",
+      "msg": "清洗完成：广告过滤 0 条，失效剔除 0 条，图片缓存 6 张",
+      "count": 0
+    },
+    {
+      "time": "2026-08-11 09:20:27",
+      "level": "info",
+      "msg": "采集到原始记录 6 条："
+    },
+    {
+      "time": "2026-08-11 09:20:27",
+      "level": "info",
+      "msg": "集合采集「feature_films」共 6 条"
+    },
+    {
+      "time": "2026-08-11 09:20:05",
+      "level": "info",
+      "msg": "入库 1 条（耗时 6.74s）"
+    },
+    {
+      "time": "2026-08-11 09:20:05",
+      "level": "info",
+      "msg": "清洗完成：广告过滤 0 条，失效剔除 0 条，图片缓存 1 张",
+      "count": 0
+    },
+    {
+      "time": "2026-08-11 09:20:00",
+      "level": "info",
+      "msg": "采集到原始记录 1 条：https://archive.org/details/ElephantsDream"
+    },
+    {
+      "time": "2026-08-11 09:19:58",
+      "level": "info",
+      "msg": "入库 1 条（耗时 26.07s）"
+    },
+    {
+      "time": "2026-08-11 09:19:58",
+      "level": "info",
+      "msg": "清洗完成：广告过滤 0 条，失效剔除 1 条，图片缓存 0 张",
+      "count": 1
+    },
+    {
+      "time": "2026-08-11 09:19:33",
+      "level": "info",
+      "msg": "采集到原始记录 1 条：https://archive.org/details/BigBuckBunny_124"
+    },
+    {
+      "time": "2026-08-11 09:19:32",
+      "level": "info",
+      "msg": "站点检测：https://archive.org/details/BigBuckBunny_124 -> ② 轻度加密·单集手动提取"
+    }
+  ],
+  "templates": {}
+}
