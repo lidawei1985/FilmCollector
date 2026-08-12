@@ -545,6 +545,11 @@
   ],
   "logs": [
     {
+      "time": "2026-08-12 23:13:39",
+      "level": "info",
+      "msg": "静态订阅包生成：10 部 → E:\\FilmCollector\\tvbox-dist（base=https://lidawei1985.github.io/filmcollector-pages/；海报随包发布 6 张，第三方远程 4 张）"
+    },
+    {
       "time": "2026-08-12 22:19:38",
       "level": "info",
       "msg": "自动更新完成：耗时 5.2s，新增 0 部，上传=False"
