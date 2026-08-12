@@ -1,0 +1,48 @@
+name: 自动采集并更新订阅源
+
+# 作用：每天定时（或手动）自动「发现新片 → 采集入库 → 生成 TVBox 订阅包 → 推到 GitHub Pages」。
+# 你关机、睡觉、出门，它都在云端跑；光幕影院 APK 只要导入一次订阅地址就会自动拉到新片。
+on:
+  schedule:
+    # UTC 时间；17:23 ≈ 北京时间次日凌晨 01:23。避开整点，减少平台拥挤。
+    # 想改时间：把前两个数字改成「分钟 小时」（24 小时制，UTC）。例如每天上午 9 点北京=UTC 1:00 → '0 1 * * *'。
+    - cron: '23 17 * * *'
+  workflow_dispatch: {}   # 允许在 GitHub 网页「Actions → 此工作流 → Run workflow」手动点一次
+
+permissions:
+  contents: write        # 用于把更新后的本地片库提交回仓库（让云端也能累积去重）
+
+jobs:
+  collect:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - name: 拉取代码
+        uses: actions/checkout@v4
+
+      - name: 设置 Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+
+      - name: 安装轻量依赖
+        run: pip install -r requirements-ci.txt
+
+      - name: 运行自动采集 + 部署到 GitHub Pages
+        env:
+          FC_TOKEN: ${{ secrets.DEPLOY_TOKEN }}     # 必填：带 public_repo 权限的 PAT
+          FC_USERNAME: ${{ secrets.DEPLOY_USER }}   # 必填：你的 GitHub 用户名
+          FC_REPO: ${{ secrets.DEPLOY_REPO }}       # 选填：Pages 仓库名；留空默认 FilmCollector（建议单独起一个，如 filmcollector-pages）
+          FC_PLATFORM: github
+          FC_MAX_NEW: '20'                          # 每次最多新增几部，可改
+        run: python -m backend.core.cloud_auto
+
+      - name: 把更新后的本地片库提交回仓库（云端累积去重）
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add backend/data/db.json
+          git diff --cached --quiet || git commit -m "chore: 自动更新本地片库"
+          git push
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
