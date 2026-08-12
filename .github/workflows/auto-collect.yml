@@ -32,7 +32,7 @@ jobs:
         env:
           FC_TOKEN: ${{ secrets.DEPLOY_TOKEN }}     # 必填：带 public_repo 权限的 PAT
           FC_USERNAME: ${{ secrets.DEPLOY_USER }}   # 必填：你的 GitHub 用户名
-          FC_REPO: ${{ secrets.DEPLOY_REPO }}       # 选填：Pages 仓库名；留空默认 FilmCollector（建议单独起一个，如 filmcollector-pages）
+          FC_REPO: ${{ secrets.DEPLOY_REPO }}       # 选填：Pages 仓库名；留空默认 filmcollector-pages
           FC_PLATFORM: github
           FC_MAX_NEW: '20'                          # 每次最多新增几部，可改
         run: python -m backend.core.cloud_auto
