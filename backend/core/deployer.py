@@ -11,6 +11,8 @@ import os
 import base64
 import time
 import json
+import shutil
+import tempfile
 
 try:
     import requests
@@ -145,40 +147,57 @@ def _deploy_github(token, source_dir, repo, username):
             msg = (cj.get("message") if isinstance(cj, dict) else str(cj))
             raise DeployError(f"创建 GitHub 仓库失败：{msg}")
 
-    # 3) 用本地 git 直推到 gh-pages 分支（与已开启的 GitHub Pages 一致，稳定可靠）
+    # 3) 部署到「实际被 Pages 服务」的 main 分支（该分支还含 APK 需要的 combined.json）。
+    #    采用「克隆 → 覆盖包文件 → 提交 → 推送」的非破坏方式：
+    #    只更新静态包内的文件，仓库里原有的 combined.json / apk_feed.json 等一律保留。
+    branch = "main"
     auth_remote = f"https://{token}@github.com/{username}/{repo}.git"
+    tmp = tempfile.mkdtemp(prefix="fc_deploy_")
     try:
-        subprocess.run(["git", "-C", source_dir, "init", "-q"], check=True)
-        subprocess.run(["git", "-C", source_dir, "config", "user.email", "filmcollector@local"], check=True)
-        subprocess.run(["git", "-C", source_dir, "config", "user.name", "FilmCollector"], check=True)
-        subprocess.run(["git", "-C", source_dir, "add", "-A"], check=True)
-        r = subprocess.run(["git", "-C", source_dir, "commit", "-q",
+        r = subprocess.run(["git", "clone", "--depth", "1", "--branch", branch,
+                            auth_remote, tmp], capture_output=True, text=True)
+        if r.returncode != 0:
+            # main 尚不存在（全新空仓库）：本地初始化一个 main 分支
+            subprocess.run(["git", "init", "-q", tmp], check=True)
+            subprocess.run(["git", "-C", tmp, "branch", "-M", branch], check=True)
+            subprocess.run(["git", "-C", tmp, "remote", "add", "origin", auth_remote], check=True)
+        # 把静态包内容覆盖进克隆区（目录整体替换，文件直接覆盖；不碰仓库其它文件）
+        for name in os.listdir(source_dir):
+            s = os.path.join(source_dir, name)
+            d = os.path.join(tmp, name)
+            if os.path.isdir(s):
+                if os.path.isdir(d):
+                    shutil.rmtree(d)
+                shutil.copytree(s, d)
+            else:
+                shutil.copy2(s, d)
+        subprocess.run(["git", "-C", tmp, "config", "user.email", "filmcollector@local"], check=True)
+        subprocess.run(["git", "-C", tmp, "config", "user.name", "FilmCollector"], check=True)
+        subprocess.run(["git", "-C", tmp, "add", "-A"], check=True)
+        r = subprocess.run(["git", "-C", tmp, "commit", "-q",
                             "-m", "FilmCollector 订阅更新 " + time.strftime("%Y-%m-%d %H:%M")],
                            capture_output=True, text=True)
-        if r.returncode != 0 and "nothing to commit" not in (r.stdout + r.stderr):
+        if "nothing to commit" in (r.stdout + r.stderr):
+            pass  # 内容无变化，无需推送
+        elif r.returncode != 0:
             raise DeployError(f"git 提交失败：{(r.stderr or r.stdout)[:200]}")
-        subprocess.run(["git", "-C", source_dir, "remote", "remove", "origin"], capture_output=True)
-        subprocess.run(["git", "-C", source_dir, "remote", "add", "origin", auth_remote], check=True)
-        subprocess.run(["git", "-C", source_dir, "branch", "-M", "gh-pages"], capture_output=True)
-        r = subprocess.run(["git", "-C", source_dir, "push", "-f", "origin", "gh-pages"],
-                           capture_output=True, text=True)
-        if r.returncode != 0:
-            raise DeployError(f"推送到 GitHub 失败：{(r.stderr or '')[:200]}")
+        else:
+            r = subprocess.run(["git", "-C", tmp, "push", "-f", "origin", branch],
+                               capture_output=True, text=True)
+            if r.returncode != 0:
+                raise DeployError(f"推送到 GitHub 失败：{(r.stderr or '')[:200]}")
     except DeployError:
         raise
     except Exception as e:
         raise DeployError(f"git 推送异常：{e}")
     finally:
-        try:
-            subprocess.run(["git", "-C", source_dir, "remote", "remove", "origin"], capture_output=True)
-        except Exception:
-            pass
+        shutil.rmtree(tmp, ignore_errors=True)
 
-    # 4) 开启 Pages（gh-pages 源）
+    # 4) 确保 Pages 服务 main 分支（根目录）
     sc, _ = _http("GET", f"{repo_url}/pages", token)
     if sc == 404:
         _http("POST", f"{repo_url}/pages", token,
-              json_data={"source": {"branch": "gh-pages", "path": "/"}})
+              json_data={"source": {"branch": branch, "path": "/"}})
 
     return {
         "platform": "github",
