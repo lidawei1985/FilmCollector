@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>影视客户端 · FilmCollector</title>
+<link rel="stylesheet" href="/client/css/client.css">
+</head>
+<body data-platform="desktop">
+<!-- 顶部栏 -->
+<header id="topbar">
+  <div class="brand">🎬 FilmCollector</div>
+  <div class="searchbox">
+    <input id="search-input" type="search" placeholder="搜索影片 / 演员 / 导演" autocomplete="off">
+    <button id="search-btn" class="focusable">搜索</button>
+  </div>
+  <div class="top-actions">
+    <button id="mode-toggle" class="focusable" title="切换界面模式">📺 TV</button>
+    <button id="source-btn" class="focusable" title="源管理">⚙ 源</button>
+  </div>
+</header>
+
+<div id="layout">
+  <!-- 桌面/侧栏导航 -->
+  <nav id="sidenav">
+    <button class="navbtn focusable active" data-view="home">🏠 首页</button>
+    <button class="navbtn focusable" data-view="search">🔍 搜索</button>
+    <button class="navbtn focusable" data-view="sources">📡 源管理</button>
+    <button class="navbtn focusable" data-view="clean">🧹 清洗过滤</button>
+    <button class="navbtn focusable" data-view="about">ℹ 关于</button>
+  </nav>
+
+  <!-- 主内容 -->
+  <main id="content">
+    <!-- 首页 -->
+    <section class="view" id="view-home">
+      <h2 class="view-title">分类浏览</h2>
+      <div id="cat-grid" class="cat-grid"></div>
+      <h3 class="section-title">最近更新</h3>
+      <div id="home-list" class="card-grid"></div>
+    </section>
+
+    <!-- 搜索 -->
+    <section class="view hidden" id="view-search">
+      <h2 class="view-title">搜索结果</h2>
+      <div id="search-list" class="card-grid"></div>
+      <div id="search-empty" class="empty hidden">没有找到结果，换个关键词试试。</div>
+    </section>
+
+    <!-- 源管理 -->
+    <section class="view hidden" id="view-sources">
+      <h2 class="view-title">订阅源管理</h2>
+      <div class="source-add">
+        <input id="src-url" class="focusable" type="text" placeholder="粘贴 catalog.json 链接 或 直连 API 地址（如 http://127.0.0.1:9911/api.php/provide/vod/）">
+        <select id="src-kind">
+          <option value="tvbox">TVBox 格式</option>
+          <option value="generic">通用纯净格式</option>
+        </select>
+        <button id="src-add" class="focusable primary">添加源</button>
+      </div>
+      <p class="hint">默认已内置「本机采集库（本地 API）」，即本机采集工具生成的数据源。可额外添加其它订阅源。</p>
+      <div id="src-list" class="src-list"></div>
+    </section>
+
+    <!-- 清洗过滤 -->
+    <section class="view hidden" id="view-clean">
+      <h2 class="view-title">自动清洗 / 过滤</h2>
+      <div class="clean-actions">
+        <button id="clean-run" class="focusable primary">一键巡检清洗（本机库）</button>
+        <button id="clean-cache" class="focusable">清理失效资源</button>
+      </div>
+      <div id="clean-stats" class="stats-row"></div>
+      <h3 class="section-title">最近日志</h3>
+      <div id="clean-log" class="log-box"></div>
+    </section>
+
+    <!-- 关于 -->
+    <section class="view hidden" id="view-about">
+      <h2 class="view-title">关于</h2>
+      <div class="about-box">
+        <p>FilmCollector 影视客户端 · 四端通用框架（安卓TV / 手机安卓 / Windows / 越狱iOS）。</p>
+        <p>数据来自本机采集工具生成的 JSON 订阅源与本地 API，仅在本机与你有权的源之间流通。</p>
+        <p class="warn">采集对象以你有权访问的页面为前提；高强度加密/验证码站点采用手动复制播放地址兜底，未内置绕过站点安全校验的能力。</p>
+      </div>
+    </section>
+
+    <!-- 详情 / 播放（覆盖层） -->
+    <section class="view hidden" id="view-detail"></section>
+  </main>
+</div>
+
+<!-- 手机底部导航 -->
+<nav id="bottomnav">
+  <button class="navbtn focusable active" data-view="home">🏠</button>
+  <button class="navbtn focusable" data-view="search">🔍</button>
+  <button class="navbtn focusable" data-view="sources">📡</button>
+  <button class="navbtn focusable" data-view="clean">🧹</button>
+</nav>
+
+<!-- 源管理弹窗 -->
+<div id="source-modal" class="modal hidden">
+  <div class="modal-card">
+    <button class="modal-close focusable" id="source-close">✕</button>
+    <div id="source-modal-body"></div>
+  </div>
+</div>
+
+<script src="/client/js/hls.min.js" onerror="window.__HLS_CDN=true"></script>
+<script src="/client/js/platform.js"></script>
+<script src="/client/js/api.js"></script>
+<script src="/client/js/player.js"></script>
+<script src="/client/js/app.js"></script>
+</body>
+</html>
