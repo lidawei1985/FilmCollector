@@ -142,7 +142,7 @@ def build_subscribe(base, vods):
         ],
         "parses": [],
         "flags": flags,
-        "spider": "FilmCollector",
+        "spider": "",
     }
 
 
@@ -177,7 +177,19 @@ function classes() {
 
 function home() {
   var d = loadData();
-  return JSON.stringify({ class: classes(), list: d.list || [], page: 1, pageCount: 1, total: (d.list || []).length, limit: (d.list || []).length });
+  var groups = {};
+  (d.list || []).forEach(function (v) {
+    var t = v.type_name || '电影';
+    if (!groups[t]) groups[t] = [];
+    groups[t].push(v);
+  });
+  var list = [];
+  for (var t in groups) {
+    list.push({ type_id: t, type_name: t, list: groups[t] });
+  }
+  // 兜底：如果没有按 type_name 分组，直接返回全部影片的平铺列表
+  if (!list.length) list = d.list || [];
+  return JSON.stringify({ class: classes(), list: list, page: 1, pageCount: 1, total: (d.list || []).length, limit: (d.list || []).length });
 }
 function homeVod() { return home(); }
 function homeContent() { return home(); }
