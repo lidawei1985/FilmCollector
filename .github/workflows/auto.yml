@@ -1,0 +1,25 @@
+name: FilmCollector 自动供片
+on:
+  schedule:
+    - cron: '30 21 * * *'   # UTC 21:30 ≈ 北京时间 05:30，每天自动跑一次（错开本机 04:30，避免两边同时推 Pages 冲突）
+  workflow_dispatch:         # 也可在 GitHub 网页手动点一次
+permissions:
+  contents: write
+jobs:
+  feed:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: pip install -r requirements.txt
+      - name: 运行自动供片
+        run: python tools/ci_auto.py
+        env:
+          FC_DEPLOY_TOKEN: ${{ secrets.FC_DEPLOY_TOKEN }}
+          FC_PLATFORM: github
+          FC_USERNAME: ${{ secrets.FC_USERNAME }}
+          FC_REPO: filmcollector-pages
