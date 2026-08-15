@@ -1564,9 +1564,147 @@
       "id": "4a343636-c5fd-4d5b-93c6-e90b3111bd2c",
       "created_at": "2026-08-13 04:02:34",
       "updated_at": "2026-08-13 04:02:34"
+    },
+    {
+      "title": "FILM Seoul Vibe",
+      "aliases": "",
+      "year": "",
+      "region": "",
+      "type": "",
+      "director": "",
+      "actors": "",
+      "description": "Film",
+      "duration": "",
+      "rating": "",
+      "subtitle": "",
+      "poster": "images/poster_FILM-Seoul_Vibe_000060.jpg",
+      "cover": "images/cover_film-seoul-vibe.jpg",
+      "episodes": [
+        {
+          "name": "线路片段1",
+          "url": "https://archive.org/download/film-seoul-vibe/FILM-Seoul%20Vibe.mp4",
+          "line": "默认线路"
+        }
+      ],
+      "source_url": "https://archive.org/details/film-seoul-vibe",
+      "source_id": "film-seoul-vibe",
+      "license": "Public Domain / CC",
+      "status": "ok",
+      "id": "86a50b97-33fa-4a19-a5e4-5ebdd955a982",
+      "created_at": "2026-08-15 21:41:47",
+      "updated_at": "2026-08-15 21:41:47"
+    },
+    {
+      "title": "FILM The Witch Part 1",
+      "aliases": "",
+      "year": "",
+      "region": "",
+      "type": "",
+      "director": "",
+      "actors": "",
+      "description": "Film",
+      "duration": "",
+      "rating": "",
+      "subtitle": "",
+      "poster": "images/poster_FILM-_The_Witch_Part_1_000060.jpg",
+      "cover": "images/cover_film-the-witch-part-1.jpg",
+      "episodes": [
+        {
+          "name": "线路片段1",
+          "url": "https://archive.org/download/film-the-witch-part-1/FILM-%20The%20Witch%20Part%201.mp4",
+          "line": "默认线路"
+        }
+      ],
+      "source_url": "https://archive.org/details/film-the-witch-part-1",
+      "source_id": "film-the-witch-part-1",
+      "license": "Public Domain / CC",
+      "status": "ok",
+      "id": "11e9741e-17a8-44ca-a762-205e25f1a946",
+      "created_at": "2026-08-15 21:42:06",
+      "updated_at": "2026-08-15 21:42:06"
+    },
+    {
+      "title": "FILM Matching",
+      "aliases": "",
+      "year": "",
+      "region": "",
+      "type": "",
+      "director": "",
+      "actors": "",
+      "description": "Film",
+      "duration": "",
+      "rating": "",
+      "subtitle": "",
+      "poster": "images/poster_FILM_-_Matching_000030.jpg",
+      "cover": "images/cover_film-matching.jpg",
+      "episodes": [
+        {
+          "name": "线路片段1",
+          "url": "https://archive.org/download/film-matching/FILM%20-%20Matching.mp4",
+          "line": "默认线路"
+        }
+      ],
+      "source_url": "https://archive.org/details/film-matching",
+      "source_id": "film-matching",
+      "license": "Public Domain / CC",
+      "status": "ok",
+      "id": "83cf5082-4dfb-401f-9d1c-be921f7b5c4e",
+      "created_at": "2026-08-15 21:42:26",
+      "updated_at": "2026-08-15 21:42:26"
     }
   ],
   "logs": [
+    {
+      "time": "2026-08-15 21:43:01",
+      "level": "info",
+      "msg": "自动更新完成：耗时 147.1s，新增 3 部，上传=True"
+    },
+    {
+      "time": "2026-08-15 21:42:59",
+      "level": "info",
+      "msg": "静态订阅包生成：33 部 → /home/runner/work/FilmCollector/FilmCollector/tvbox-dist（base=https://lidawei1985.github.io/filmcollector-pages/；海报随包发布 66 张，第三方远程 0 张；仓库 33 竖版 / 0 横版；精选 5 部）"
+    },
+    {
+      "time": "2026-08-15 21:42:59",
+      "level": "info",
+      "msg": "今日精选生成：第 6893 批 / 共 5 部（每 3 天轮换）"
+    },
+    {
+      "time": "2026-08-15 21:42:59",
+      "level": "info",
+      "msg": "海报仓库导出：33 部影片 → repo/img 33 张, repo/slide 0 张"
+    },
+    {
+      "time": "2026-08-15 21:42:59",
+      "level": "info",
+      "msg": "海报仓库刷新完成：库 33 部 | 补齐 3 | repo/img 33 张, slide 0 张 | 精选 5 部"
+    },
+    {
+      "time": "2026-08-15 21:42:59",
+      "level": "info",
+      "msg": "今日精选生成：第 6893 批 / 共 5 部（每 3 天轮换）"
+    },
+    {
+      "time": "2026-08-15 21:42:59",
+      "level": "info",
+      "msg": "海报仓库导出：33 部影片 → repo/img 33 张, repo/slide 0 张"
+    },
+    {
+      "time": "2026-08-15 21:42:59",
+      "level": "info",
+      "msg": "海报补齐：新增 3 / 无图源 0 / 失败 0"
+    },
+    {
+      "time": "2026-08-15 21:42:26",
+      "level": "info",
+      "msg": "自动更新：新增 3 部",
+      "count": 3
+    },
+    {
+      "time": "2026-08-15 21:41:29",
+      "level": "info",
+      "msg": "auto_feed 发现候选 3 部（来自 5 个合集）"
+    },
     {
       "time": "2026-08-14 21:45:26",
       "level": "info",

@@ -19,9 +19,9 @@
   "auto_max_new": 20,
   "auto_upload": true,
   "auto_categories": [],
-  "auto_last_run": "2026-08-14 21:45:26",
+  "auto_last_run": "2026-08-15 21:43:01",
   "auto_last_result": {
-    "added": 0,
+    "added": 3,
     "uploaded": true,
     "subscribe": "https://lidawei1985.github.io/filmcollector-pages/subscribe.json",
     "needs_token": false
