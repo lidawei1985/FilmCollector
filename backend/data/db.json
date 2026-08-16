@@ -1577,7 +1577,7 @@
       "duration": "",
       "rating": "",
       "subtitle": "",
-      "poster": "images/poster_FILM-Seoul_Vibe_000060.jpg",
+      "poster": "images/poster_film-seoul-vibe.jpg",
       "cover": "images/cover_film-seoul-vibe.jpg",
       "episodes": [
         {
@@ -1606,7 +1606,7 @@
       "duration": "",
       "rating": "",
       "subtitle": "",
-      "poster": "images/poster_FILM-_The_Witch_Part_1_000060.jpg",
+      "poster": "images/poster_film-the-witch-part-1.jpg",
       "cover": "images/cover_film-the-witch-part-1.jpg",
       "episodes": [
         {
@@ -1635,7 +1635,7 @@
       "duration": "",
       "rating": "",
       "subtitle": "",
-      "poster": "images/poster_FILM_-_Matching_000030.jpg",
+      "poster": "images/poster_film-matching.jpg",
       "cover": "images/cover_film-matching.jpg",
       "episodes": [
         {
@@ -1654,6 +1654,57 @@
     }
   ],
   "logs": [
+    {
+      "time": "2026-08-16 21:40:19",
+      "level": "info",
+      "msg": "自动更新完成：耗时 5.7s，新增 0 部，上传=True"
+    },
+    {
+      "time": "2026-08-16 21:40:18",
+      "level": "info",
+      "msg": "静态订阅包生成：33 部 → /home/runner/work/FilmCollector/FilmCollector/tvbox-dist（base=https://lidawei1985.github.io/filmcollector-pages/；海报随包发布 66 张，第三方远程 0 张；仓库 33 竖版 / 0 横版；精选 5 部）"
+    },
+    {
+      "time": "2026-08-16 21:40:18",
+      "level": "info",
+      "msg": "今日精选生成：第 6893 批 / 共 5 部（每 3 天轮换）"
+    },
+    {
+      "time": "2026-08-16 21:40:18",
+      "level": "info",
+      "msg": "海报仓库导出：33 部影片 → repo/img 33 张, repo/slide 0 张"
+    },
+    {
+      "time": "2026-08-16 21:40:17",
+      "level": "info",
+      "msg": "海报仓库刷新完成：库 33 部 | 补齐 6 | repo/img 33 张, slide 0 张 | 精选 5 部"
+    },
+    {
+      "time": "2026-08-16 21:40:17",
+      "level": "info",
+      "msg": "今日精选生成：第 6893 批 / 共 5 部（每 3 天轮换）"
+    },
+    {
+      "time": "2026-08-16 21:40:17",
+      "level": "info",
+      "msg": "海报仓库导出：33 部影片 → repo/img 33 张, repo/slide 0 张"
+    },
+    {
+      "time": "2026-08-16 21:40:17",
+      "level": "info",
+      "msg": "海报补齐：新增 6 / 无图源 0 / 失败 0"
+    },
+    {
+      "time": "2026-08-16 21:40:16",
+      "level": "info",
+      "msg": "自动更新：新增 0 部",
+      "count": 0
+    },
+    {
+      "time": "2026-08-16 21:40:16",
+      "level": "info",
+      "msg": "auto_feed 发现候选 0 部（来自 5 个合集）"
+    },
     {
       "time": "2026-08-15 21:43:01",
       "level": "info",
