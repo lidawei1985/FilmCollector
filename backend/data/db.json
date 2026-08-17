@@ -1651,9 +1651,89 @@
       "id": "83cf5082-4dfb-401f-9d1c-be921f7b5c4e",
       "created_at": "2026-08-15 21:42:26",
       "updated_at": "2026-08-15 21:42:26"
+    },
+    {
+      "title": "Los Hijos Artificiales (1943)",
+      "aliases": "",
+      "year": "",
+      "region": "",
+      "type": "",
+      "director": "",
+      "actors": "",
+      "description": "Película",
+      "duration": "",
+      "rating": "",
+      "subtitle": "",
+      "poster": "images/poster_Los_hijos_artificiales__1943__000060.jpg",
+      "cover": "images/cover_los-hijos-artificiales-1943.jpg",
+      "episodes": [
+        {
+          "name": "线路片段1",
+          "url": "https://archive.org/download/los-hijos-artificiales-1943/Los%20hijos%20artificiales%20%281943%29.mp4",
+          "line": "默认线路"
+        }
+      ],
+      "source_url": "https://archive.org/details/los-hijos-artificiales-1943",
+      "source_id": "los-hijos-artificiales-1943",
+      "license": "Public Domain / CC",
+      "status": "ok",
+      "id": "f73d0491-461b-43a5-a007-35c8bff34467",
+      "created_at": "2026-08-17 21:45:45",
+      "updated_at": "2026-08-17 21:45:45"
     }
   ],
   "logs": [
+    {
+      "time": "2026-08-17 21:45:50",
+      "level": "info",
+      "msg": "自动更新完成：耗时 8.3s，新增 1 部，上传=True"
+    },
+    {
+      "time": "2026-08-17 21:45:47",
+      "level": "info",
+      "msg": "静态订阅包生成：34 部 → /home/runner/work/FilmCollector/FilmCollector/tvbox-dist（base=https://lidawei1985.github.io/filmcollector-pages/；海报随包发布 68 张，第三方远程 0 张；仓库 34 竖版 / 0 横版；精选 5 部）"
+    },
+    {
+      "time": "2026-08-17 21:45:47",
+      "level": "info",
+      "msg": "今日精选生成：第 6894 批 / 共 5 部（每 3 天轮换）"
+    },
+    {
+      "time": "2026-08-17 21:45:47",
+      "level": "info",
+      "msg": "海报仓库导出：34 部影片 → repo/img 34 张, repo/slide 0 张"
+    },
+    {
+      "time": "2026-08-17 21:45:47",
+      "level": "info",
+      "msg": "海报仓库刷新完成：库 34 部 | 补齐 7 | repo/img 34 张, slide 0 张 | 精选 5 部"
+    },
+    {
+      "time": "2026-08-17 21:45:47",
+      "level": "info",
+      "msg": "今日精选生成：第 6894 批 / 共 5 部（每 3 天轮换）"
+    },
+    {
+      "time": "2026-08-17 21:45:47",
+      "level": "info",
+      "msg": "海报仓库导出：34 部影片 → repo/img 34 张, repo/slide 0 张"
+    },
+    {
+      "time": "2026-08-17 21:45:47",
+      "level": "info",
+      "msg": "海报补齐：新增 7 / 无图源 0 / 失败 0"
+    },
+    {
+      "time": "2026-08-17 21:45:45",
+      "level": "info",
+      "msg": "自动更新：新增 1 部",
+      "count": 1
+    },
+    {
+      "time": "2026-08-17 21:45:44",
+      "level": "info",
+      "msg": "auto_feed 发现候选 1 部（来自 5 个合集）"
+    },
     {
       "time": "2026-08-16 21:40:19",
       "level": "info",
