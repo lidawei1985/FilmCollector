@@ -23,7 +23,7 @@ import time
 import re
 from datetime import datetime
 
-from . import store, auto_feed, publisher, deployer, auth_store, poster_cache, net
+from . import store, auto_feed, publisher, deployer, auth_store, poster_cache, net, alerts, run_lock
 
 _running = False
 _last_run = {"at": "", "result": {}}
@@ -85,6 +85,24 @@ def _ensure_continuity(cfg):
     return 0
 
 
+def _rotate_auto_log(log_path, keep_lines=2000, max_bytes=2_000_000):
+    """auto.log 轮转：超过阈值则仅保留末尾 keep_lines 行，防止 7×24 无人运行撑爆磁盘。"""
+    try:
+        if not os.path.exists(log_path):
+            return
+        if os.path.getsize(log_path) < max_bytes:
+            return
+        with open(log_path, "r", encoding="utf-8", errors="replace") as f:
+            lines = f.readlines()
+        tail = lines[-keep_lines:] if len(lines) > keep_lines else lines
+        tmp = log_path + ".tmp"
+        with open(tmp, "w", encoding="utf-8") as f:
+            f.writelines(tail)
+        os.replace(tmp, log_path)
+    except Exception:
+        pass
+
+
 def _write_status(report, restored=0, health="ok"):
     """写入运行状态 JSON + 追加日志，便于一眼看健康度、不再'悄悄停更'。"""
     path = os.path.join(store.DATA_DIR, "run_status.json")
@@ -120,6 +138,7 @@ def _write_status(report, restored=0, health="ok"):
                     f"restored={entry['restored']} dead={entry['dead_removed']} "
                     f"fixed={entry['fixed']} total={entry['total']} up={entry['uploaded']} "
                     f"err={entry['errors']}\n")
+        _rotate_auto_log(log_path)
     except Exception:
         pass
 
@@ -247,44 +266,53 @@ def _run_core(cfg, max_new, upload, categories, source, cred, restored):
     except Exception as e:
         report["errors"].append("poster:" + str(e))
 
-    # 3)+4)+5) 生成订阅包（本地始终生成，保证"自动生成结果"）+ 有 Token 才部署公网
-    if upload:
-        if cred is None:
-            cred = auth_store.load() if auth_store.has() else None
-        token = (cred or {}).get("token")
-        platform = (cred or {}).get("platform")
-        username = (cred or {}).get("username")
-        repo = (cred or {}).get("repo", "FilmCollector")
-        # base：有凭据用部署 base；否则用上次部署 base 或占位（本地预览/手动部署用）
-        if platform and username:
-            base = deployer.build_base(platform, username, repo)
+    # 3)+4)+5) 本地始终生成订阅包（无论是否部署，都保证「自动生成结果」，
+    #          可本地预览 / 手动部署；公网部署仅在 upload 且有 Token 时发生。
+    if cred is None:
+        cred = auth_store.load() if auth_store.has() else None
+    token = (cred or {}).get("token")
+    platform = (cred or {}).get("platform")
+    username = (cred or {}).get("username")
+    repo = (cred or {}).get("repo", "FilmCollector")
+    # base：有凭据用部署 base；否则用上次部署 base 或占位（本地预览/手动部署用）
+    if platform and username:
+        base = deployer.build_base(platform, username, repo)
+    else:
+        base = cfg.get("last_deploy_base") or "https://YOUR-USERNAME.github.io/FilmCollector"
+
+    # 始终生成本地订阅包（即使无 Token，也保证输出订阅数据，便于本地预览/手动部署）
+    try:
+        publisher.build_bundle(
+            source=source, base=base, out_dir=publisher.OUT_DEFAULT,
+            clean=True, meta={"source_status": source_status,
+                              "last_run_added": len(added),
+                              "blocked": source_blocked})
+        _write_apk_feed(base)
+        report["bundle_built"] = True
+    except Exception as e:
+        report["errors"].append("bundle:" + str(e))
+
+    # 仅当 upload 且存在有效 Token 才部署到公网（保留上次有效订阅保护仍适用部署动作）
+    if upload and token:
+        # —— 保留上次有效订阅：库异常骤减（远超死链能解释）则拒绝推送 ——
+        if new_count == 0:
+            report["errors"].append("无可发布内容，已保留上次有效订阅（未覆盖线上）")
+            report["kept_last_good"] = True
+        elif prev_count and new_count < max(1, int(prev_count * 0.5)) \
+                and (prev_count - new_count) > len(pruned_removed):
+            report["errors"].append(
+                f"片库异常骤减（{prev_count}→{new_count}），远超死链剔除量，"
+                f"已保留上次有效订阅，请检查本地数据库是否被损坏")
+            report["kept_last_good"] = True
         else:
-            base = cfg.get("last_deploy_base") or "https://YOUR-USERNAME.github.io/FilmCollector"
-
-        # 始终生成本地订阅包（即使无 Token，也保证输出订阅数据，便于本地预览/手动部署）
-        try:
-            publisher.build_bundle(
-                source=source, base=base, out_dir=publisher.OUT_DEFAULT,
-                clean=True, meta={"source_status": source_status,
-                                  "last_run_added": len(added),
-                                  "blocked": source_blocked})
-            _write_apk_feed(base)
-            report["bundle_built"] = True
-        except Exception as e:
-            report["errors"].append("bundle:" + str(e))
-
-        # 仅当存在有效 Token 才部署到公网（保留上次有效订阅保护仍适用部署动作）
-        if token:
-            # —— 保留上次有效订阅：库异常骤减（远超死链能解释）则拒绝推送 ——
-            if new_count == 0:
-                report["errors"].append("无可发布内容，已保留上次有效订阅（未覆盖线上）")
-                report["kept_last_good"] = True
-            elif prev_count and new_count < max(1, int(prev_count * 0.5)) \
-                    and (prev_count - new_count) > len(pruned_removed):
-                report["errors"].append(
-                    f"片库异常骤减（{prev_count}→{new_count}），远超死链剔除量，"
-                    f"已保留上次有效订阅，请检查本地数据库是否被损坏")
-                report["kept_last_good"] = True
+            # —— 部署前检查：先把能在「推送前」发现的问题挡在门外 ——
+            pf = deployer.preflight(platform, token, publisher.OUT_DEFAULT, repo, username, base)
+            if not pf["ok"]:
+                report["errors"].append("preflight: " + "; ".join(
+                    c["detail"] for c in pf["checks"] if not c["ok"]))
+                report["needs_token"] = not token
+                alerts.raise_alert("deploy_preflight", alerts.LEVEL_WARN,
+                                   "部署前检查未通过，已跳过公网推送（保留本地包/上次有效订阅）")
             else:
                 try:
                     res = deployer.deploy(platform, token, publisher.OUT_DEFAULT, repo, username)
@@ -292,21 +320,31 @@ def _run_core(cfg, max_new, upload, categories, source, cred, restored):
                     report["subscribe"] = res.get("subscribe")
                     report["platform"] = platform
                     report["apk_feed"] = base.rstrip("/") + "/apk_feed.json"
+                    report["prev_sha"] = res.get("prev_sha")
                     cfg["last_deploy_base"] = base.rstrip("/")
                     cfg["last_deploy_count"] = new_count
-                    # 部署后自检：确认线上订阅已真正更新
+                    # 部署后线上健康检查（subscribe/data/health 全部在线且合法）
                     try:
-                        report["deploy_verified"] = bool(deployer.verify(base))
-                        if not report["deploy_verified"]:
+                        hc = deployer.online_health_check(base)
+                        report["deploy_verified"] = bool(hc.get("ok"))
+                        if not hc.get("ok"):
+                            # 推送了但线上没生效 → 回滚到上一版本，避免脏数据长期挂线
+                            deployer.rollback(platform, token, repo, username,
+                                              res.get("prev_sha"))
                             report["errors"].append(
-                                "deploy_verify: 线上订阅未确认（可能 CDN 缓存延迟，稍后自动恢复）")
+                                "online_health: 线上文件未全部生效，已回滚到上一版本")
+                            report["kept_last_good"] = True
+                            alerts.raise_alert("deploy_rolled_back", alerts.LEVEL_CRITICAL,
+                                               "部署后线上健康检查失败，已自动回滚到上一版本")
                     except Exception as ve:
-                        report["errors"].append("deploy_verify:" + str(ve))
+                        report["errors"].append("online_health:" + str(ve))
                 except Exception as e:
                     report["errors"].append(str(e))
                     report["needs_token"] = ("Token" in str(e)) or ("token" in str(e).lower())
-        else:
-            report["needs_token"] = True
+                    alerts.raise_alert("deploy_failed", alerts.LEVEL_CRITICAL,
+                                       f"部署失败：{e}")
+    elif upload and not token:
+        report["needs_token"] = True
 
     # 记录运行状态
     _last_run = {
@@ -334,14 +372,24 @@ def _run_core(cfg, max_new, upload, categories, source, cred, restored):
 
 
 def run_auto(max_new=None, upload=None, categories=None, source="db", cred=None):
-    """全自动一步跑完（含连续性恢复 + 快照备份 + 瞬时重试 + 状态写入）。返回 report dict。
+    """全自动一步跑完（含连续性恢复 + 快照备份 + 跨进程锁 + 瞬时重试 + 状态写入）。返回 report dict。
 
     cred: 可选，云端模式从环境变量注入的凭据字典
           {token, platform, username, repo}；为 None 时回退本机 auth_store。
     """
     global _running, _last_run
     if _running:
-        return {"ok": False, "msg": "已有自动任务在运行中，请稍候。"}
+        return {"ok": False, "msg": "本进程已有自动任务在运行中，请稍候。"}
+    # 跨进程锁：防止「Windows 计划任务(--auto-once) + GUI 自动启动 + 网页点一次 + 服务端定时巡检」
+    # 同时跑导致 db.json 写穿 / tvbox-dist 半截。拿不到锁就跳过本次，绝不强抢。
+    try:
+        lk = run_lock.RunLock("auto_run")
+        if not lk.acquire():
+            store.log("warn", "自动更新被跳过：另一进程正持有 auto_run 锁（防并发损坏）")
+            return {"ok": False, "msg": "另一进程正在运行自动更新，已跳过本次以保证安全"}
+    except Exception as e:
+        store.log("warn", "跨进程锁异常，放行执行：" + str(e))
+        lk = None
     _running = True
     t0 = time.time()
     try:
@@ -355,6 +403,9 @@ def run_auto(max_new=None, upload=None, categories=None, source="db", cred=None)
 
         # 0) 目录连续性：本地库空时回拉（必须在备份与跑核心之前）
         restored = _ensure_continuity(cfg)
+        if restored:
+            alerts.raise_alert("continuity_restored", alerts.LEVEL_WARN,
+                               f"目录连续性：本地库空，已从备份/已部署仓库恢复 {restored} 部")
         # 运行前快照备份（防损坏/误操作可回滚）
         try:
             store.backup_db()
@@ -363,38 +414,57 @@ def run_auto(max_new=None, upload=None, categories=None, source="db", cred=None)
 
         report = None
         last_exc = None
-        for attempt in range(2):
+        # 瞬时网络失败自动重试（最多 3 次，退避 30s→60s），非瞬时错误立即放弃
+        backoff = (30, 60)
+        for attempt in range(3):
             try:
                 report = _run_core(cfg, max_new, upload, categories, source, cred, restored)
                 last_exc = None
                 break
             except Exception as e:
                 last_exc = e
-                if attempt == 0 and _is_transient(e):
-                    store.log("warn", f"自动更新瞬时失败，30s 后重试：{e}")
-                    time.sleep(30)
+                if attempt < 2 and _is_transient(e):
+                    wait = backoff[min(attempt, len(backoff) - 1)]
+                    store.log("warn", f"自动更新瞬时失败，{wait}s 后第 {attempt + 2} 次重试：{e}")
+                    time.sleep(wait)
                     continue
                 break
 
         if report is None:
             report = {"ok": False, "msg": str(last_exc)}
+            alerts.raise_alert("run_crashed", alerts.LEVEL_CRITICAL,
+                               f"自动更新崩溃：{last_exc}")
 
         # 健康度：上游封禁/异常保护→degraded；崩溃且未上传→error
         health = "ok"
         if report.get("source_status") == "blocked":
             health = "degraded"
+            alerts.raise_alert("source_blocked", alerts.LEVEL_WARN,
+                               "上游片源被限流，已保留上次有效片库（通常 1 小时后自动恢复）")
         if report.get("kept_last_good") and not report.get("uploaded"):
             health = "degraded"
+            alerts.raise_alert("kept_last_good", alerts.LEVEL_CRITICAL,
+                               "片库异常骤减/无内容，已拒绝推送并保留上次有效订阅（请检查本地库是否损坏）")
         if not report.get("ok") and not report.get("uploaded"):
             health = "error"
         elif report.get("errors") and health == "ok":
             health = "degraded"
         _write_status(report, restored=restored, health=health)
+
+        # 长期运行报告（轻量，落盘 report_daily.json + 追加 report.log）
+        try:
+            from . import report as _report_mod
+            _report_mod.write_report(days=7)
+        except Exception:
+            pass
         return report
     except Exception as e:
         store.log("error", f"自动更新异常：{e}")
+        alerts.raise_alert("run_crashed", alerts.LEVEL_CRITICAL, f"自动更新异常：{e}")
         _write_status({"ok": False, "msg": str(e), "added": 0, "total": 0,
                        "errors": [str(e)]}, health="error")
         return {"ok": False, "msg": str(e)}
     finally:
         _running = False
+        if lk is not None:
+            lk.release()

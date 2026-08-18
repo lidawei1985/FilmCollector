@@ -99,11 +99,21 @@ def load_db():
             return json.load(f)
 
 
+def _atomic_write(path, obj):
+    """原子写：先写临时文件再 os.replace，进程中断也不会留下半截 JSON（防库损坏）。"""
+    os.makedirs(os.path.dirname(path) or ".", exist_ok=True)
+    tmp = path + ".tmp"
+    with open(tmp, "w", encoding="utf-8") as f:
+        json.dump(obj, f, ensure_ascii=False, indent=2)
+        f.flush()
+        os.fsync(f.fileno())
+    os.replace(tmp, path)
+
+
 def save_db(db):
     _ensure()
     with _lock:
-        with open(DB_PATH, "w", encoding="utf-8") as f:
-            json.dump(db, f, ensure_ascii=False, indent=2)
+        _atomic_write(DB_PATH, db)
 
 
 def load_config():
@@ -136,8 +146,7 @@ def get_lan_ip():
 def save_config(cfg):
     _ensure_dirs()
     with _lock:
-        with open(CONFIG_PATH, "w", encoding="utf-8") as f:
-            json.dump(cfg, f, ensure_ascii=False, indent=2)
+        _atomic_write(CONFIG_PATH, cfg)
 
 
 def load_ad_domains():

@@ -86,6 +86,52 @@ def is_disabled(ep):
     return health.get("status") == STATUS_DISABLED
 
 
+def score_movie(it):
+    """影片级聚合评分（0~100），用于排序 / 今日精选 / 统计。
+
+    组成：
+      - 取该片「最佳可播资源」的评分（清晰度 + 健康 + 速度）作为画质基础；
+      - 有可播资源(active/warning/degraded)才给「可播分」，disabled 全隐藏则压低；
+      - 新鲜度：越新采集的片轻微加权（让新片有机会上浮，但不喧宾夺主）；
+      - 健康度：整体资源越健康越高。
+    不参与发布(disabled)的资源不会拉高影片分；缺播放地址的片给低分（沉底）。
+    """
+    eps = it.get("episodes") or []
+    if not eps:
+        return 5  # 无播放地址：沉底
+    best = 0
+    active_like = 0
+    disabled = 0
+    for ep in eps:
+        s = score_resource(ep)
+        if s > best:
+            best = s
+        st = (ep.get("health") or {}).get("status", STATUS_ACTIVE)
+        if st in (STATUS_ACTIVE, STATUS_WARNING, STATUS_DEGRADED):
+            active_like += 1
+        if st == STATUS_DISABLED:
+            disabled += 1
+    # 可播占比加权（全 disabled 则压到很低）
+    playable_ratio = active_like / len(eps)
+    base = best * 0.85 + 15 * playable_ratio
+    # 新鲜度：30 天内 +5，否则 0（温和）
+    fresh = 0
+    ca = it.get("created_at") or it.get("updated_at") or ""
+    try:
+        from datetime import datetime as _dt
+        d = _dt.strptime(ca[:19], "%Y-%m-%d %H:%M:%S")
+        if (_dt.now() - d).days <= 30:
+            fresh = 5
+    except Exception:
+        pass
+    return max(0, min(100, int(base + fresh)))
+
+
+def rank_items(items):
+    """返回按 score_movie 降序排列的影片列表（最佳内容排前，供首页/精选）。"""
+    return sorted(items, key=score_movie, reverse=True)
+
+
 def on_success(ep, latency=None):
     """一次播放地址检测成功：回到 active，失败清零，记录延迟。"""
     h = dict(ep.get("health") or {})

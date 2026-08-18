@@ -52,3 +52,6 @@ Thumbs.db
 # 运行时状态 / 本地备份（不进仓库）
 backend/data/run_status.json
 backend/data/config.json.bak
+# 跨进程运行锁目录与每日运营报告（运行态，不进仓库；2026-08-19）
+output/.locks/
+output/report_daily.json

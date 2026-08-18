@@ -145,9 +145,17 @@ def main():
         if auto_once:
             _boot_log("AUTO-ONCE 模式：开始单次自动更新片库并部署")
             try:
-                from backend.core import auto_pipeline
-                rep = auto_pipeline.run_auto()
-                _boot_log("AUTO-ONCE 完成：" + str(rep)[:600])
+                from backend.core import auto_pipeline, run_lock
+                # 跨进程锁：确保与 GUI 自动启动 / 网页手动触发 不会并发损坏库
+                lk = run_lock.RunLock("auto_run")
+                if not lk.acquire():
+                    _boot_log("AUTO-ONCE 跳过：另一进程正持有 auto_run 锁")
+                    return
+                try:
+                    rep = auto_pipeline.run_auto()
+                    _boot_log("AUTO-ONCE 完成：" + str(rep)[:600])
+                finally:
+                    lk.release()
             except Exception as e:
                 _boot_log("AUTO-ONCE 失败：" + str(e))
             return

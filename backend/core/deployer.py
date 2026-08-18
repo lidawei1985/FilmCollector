@@ -153,6 +153,7 @@ def _deploy_github(token, source_dir, repo, username):
     branch = "main"
     auth_remote = f"https://{token}@github.com/{username}/{repo}.git"
     tmp = tempfile.mkdtemp(prefix="fc_deploy_")
+    prev_sha = None
     try:
         r = subprocess.run(["git", "clone", "--depth", "1", "--branch", branch,
                             auth_remote, tmp], capture_output=True, text=True)
@@ -161,6 +162,9 @@ def _deploy_github(token, source_dir, repo, username):
             subprocess.run(["git", "init", "-q", tmp], check=True)
             subprocess.run(["git", "-C", tmp, "branch", "-M", branch], check=True)
             subprocess.run(["git", "-C", tmp, "remote", "add", "origin", auth_remote], check=True)
+        else:
+            # 推送前版本（用于失败回滚）
+            prev_sha = _github_prev_sha(tmp)
         # 把静态包内容覆盖进克隆区（目录整体替换，文件直接覆盖；不碰仓库其它文件）
         for name in os.listdir(source_dir):
             s = os.path.join(source_dir, name)
@@ -203,6 +207,7 @@ def _deploy_github(token, source_dir, repo, username):
         "platform": "github",
         "username": username,
         "repo": repo,
+        "prev_sha": prev_sha,
         "subscribe": f"https://{username}.github.io/{repo}/subscribe.json",
         "api_js": f"https://{username}.github.io/{repo}/api.js",
         "data_json": f"https://{username}.github.io/{repo}/data.json",
@@ -295,6 +300,7 @@ def _deploy_gitee(token, source_dir, repo, username):
         "platform": "gitee",
         "username": username,
         "repo": repo,
+        "prev_sha": parent,
         "subscribe": f"https://{username}.gitee.io/{repo}/subscribe.json",
         "api_js": f"https://{username}.gitee.io/{repo}/api.js",
         "data_json": f"https://{username}.gitee.io/{repo}/data.json",
@@ -333,3 +339,140 @@ def verify(base, timeout=30):
         return False
     except Exception:
         return False
+
+
+# ----------------------------- 部署前检查 / 线上健康检查 / 回滚 -----------------------------
+def preflight(platform, token, source_dir, repo="FilmCollector", username=None, base=None):
+    """部署前检查：把一切可在「推送前」发现的问题挡在门外，避免把坏包推上线。
+
+    返回 {ok: bool, checks: [ {name, ok, detail} ]}。任何一项不通过 → ok=False。
+    无 Token 时只检查本地部分（仍可生成本地包），不触碰公网。
+    """
+    checks = []
+    # 1) 静态包目录存在且非空
+    if os.path.isdir(source_dir) and os.listdir(source_dir):
+        checks.append({"name": "静态包目录", "ok": True, "detail": source_dir})
+    else:
+        checks.append({"name": "静态包目录", "ok": False, "detail": f"未找到或为空：{source_dir}"})
+
+    # 2) 关键产物齐全（subscribe / data / health）
+    for fn in ("subscribe.json", "data.json", "health.json"):
+        p = os.path.join(source_dir, fn)
+        checks.append({"name": f"产物 {fn}", "ok": os.path.isfile(p),
+                       "detail": "ok" if os.path.isfile(p) else "缺失"})
+
+    # 3) Token（无则本地流程可继续，但公网推送会被拦）
+    if token and token.strip():
+        checks.append({"name": "Token", "ok": True, "detail": "已配置"})
+        # 4) 平台 API 可达 + Token 有效（仅在有 Token 时联网检查）
+        if platform == "github":
+            sc, _ = _http("GET", "https://api.github.com/user", token)
+            checks.append({"name": "GitHub Token 有效", "ok": sc == 200,
+                           "detail": f"HTTP {sc}"})
+        elif platform == "gitee":
+            sc, _ = _http("GET", "https://gitee.com/api/v5/user", token)
+            checks.append({"name": "Gitee Token 有效", "ok": sc == 200,
+                           "detail": f"HTTP {sc}"})
+        else:
+            checks.append({"name": "平台", "ok": False, "detail": f"不支持：{platform}"})
+    else:
+        checks.append({"name": "Token", "ok": False,
+                       "detail": "未配置（仅本地生成，不推送公网）"})
+
+    # 5) 仓库可达（有 Token 时）— 防止推到一个不存在/无权限的仓库
+    if token and token.strip() and platform in ("github", "gitee"):
+        if platform == "github" and username:
+            sc, _ = _http("GET", f"https://api.github.com/repos/{username}/{repo}", token)
+            checks.append({"name": "GitHub 仓库可达", "ok": sc in (200, 404),
+                           "detail": f"HTTP {sc}（404=将自动创建）"})
+        elif platform == "gitee" and username:
+            sc, _ = _http("GET", f"https://gitee.com/api/v5/repos/{username}/{repo}",
+                          token, params={"access_token": token})
+            checks.append({"name": "Gitee 仓库可达", "ok": sc in (200, 404),
+                           "detail": f"HTTP {sc}（404=将自动创建）"})
+
+    ok = all(c["ok"] for c in checks)
+    return {"ok": ok, "checks": checks}
+
+
+def online_health_check(base, timeout=30):
+    """部署后线上健康检查：逐个确认关键文件在线且为合法 JSON。
+
+    返回 {ok: bool, files: {文件名: {ok, status, kind}}}。
+    比 verify() 更细：不只看 subscribe，还看 data / health，便于定位哪类文件没生效。
+    """
+    out = {}
+    ok_all = True
+    if not base:
+        return {"ok": False, "files": {}}
+    files = {
+        "subscribe.json": "subscription",
+        "data.json": "catalog",
+        "health.json": "health",
+    }
+    for fn, kind in files.items():
+        url = base.rstrip("/") + "/" + fn + "?cb=" + str(int(time.time()))
+        rec = {"ok": False, "status": 0, "kind": kind}
+        try:
+            if requests:
+                r = requests.get(url, headers={"User-Agent": "FilmCollector"}, timeout=timeout)
+                rec["status"] = r.status_code
+                if r.status_code == 200:
+                    try:
+                        r.json()
+                        rec["ok"] = True
+                    except Exception:
+                        rec["ok"] = False
+            else:
+                rec["status"] = 0
+        except Exception:
+            rec["status"] = 0
+        if not rec["ok"]:
+            ok_all = False
+        out[fn] = rec
+    return {"ok": ok_all, "files": out}
+
+
+def _github_prev_sha(tmp_clone):
+    """读取本地克隆区的当前 HEAD sha（推送前的版本，用于回滚）。"""
+    try:
+        import subprocess
+        r = subprocess.run(["git", "-C", tmp_clone, "rev-parse", "HEAD"],
+                           capture_output=True, text=True)
+        if r.returncode == 0:
+            return r.stdout.strip()
+    except Exception:
+        pass
+    return None
+
+
+def github_rollback(token, username, repo, branch, prev_sha):
+    """把 GitHub 仓库某分支强制回退到 prev_sha（部署失败/验证失败时的回滚）。
+
+    通过 Git Data API 直接更新分支 ref 到旧 commit，等价于「撤销本次推送」。
+    返回 True/False。
+    """
+    if not prev_sha:
+        return False
+    api = "https://api.github.com"
+    ref_url = f"{api}/repos/{username}/{repo}/git/refs/heads/{branch}"
+    sc, _ = _http("PATCH", ref_url, token, json_data={"sha": prev_sha})
+    return sc in (200, 201)
+
+
+def rollback(platform, token, repo, username, prev_sha, branch=None):
+    """部署失败/线上验证失败后的回滚：把仓库分支强制回到 prev_sha（撤销本次推送）。
+
+    返回 True/False。prev_sha 由 deploy() 返回（推送前的版本）。
+    若 prev_sha 为空（如全新空仓库首推），则无旧版本可回，返回 False（本就没什么可丢）。
+    """
+    if not prev_sha:
+        return False
+    if platform == "gitee":
+        branch = branch or "master"
+        ref_url = f"https://gitee.com/api/v5/repos/{username}/{repo}/git/refs/heads/{branch}"
+        sc, _ = _http("PATCH", ref_url, token, json_data={"access_token": token, "sha": prev_sha})
+        return sc in (200, 201)
+    # 默认 github
+    branch = branch or "main"
+    return github_rollback(token, username, repo, branch, prev_sha)

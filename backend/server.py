@@ -26,6 +26,8 @@ from .core import auth_store as auth_store_mod
 from .core import auto_feed as auto_feed_mod
 from .core import auto_pipeline as auto_pipeline_mod
 from .core import cloud_init as cloud_init_mod
+from .core import run_lock as run_lock_mod
+from .core import alerts as alerts_mod
 
 FRONTEND_DIR = os.path.join(store.ASSET_DIR, "frontend")
 CLIENT_DIR = os.path.join(store.ASSET_DIR, "frontend", "client")
@@ -328,6 +330,35 @@ def api_auto_status():
         "has_token": bool(cred and cred.get("token")),
         "collections": auto_feed_mod.CURATED_COLLECTIONS,
     })
+
+
+@app.route("/api/app/alerts", methods=["GET"])
+def api_alerts():
+    """当前报警列表（无人值守可观测性）：哪些故障需要人工介入。"""
+    active = alerts_mod.list_alerts(include_resolved=False)
+    allc = alerts_mod.list_alerts(include_resolved=True)
+    return jsonify({"ok": True, "active": active, "total_logged": len(allc),
+                    "critical": [a["key"] for a in active if a.get("level") == "critical"]})
+
+
+@app.route("/api/app/alerts/resolve", methods=["POST"])
+def api_alert_resolve():
+    data = request.get_json(force=True, silent=True) or {}
+    key = data.get("key")
+    if key:
+        alerts_mod.resolve_alert(key)
+    else:
+        alerts_mod.clear_resolved()
+    return jsonify({"ok": True})
+
+
+@app.route("/api/app/stats", methods=["GET"])
+def api_stats():
+    """运营统计快照：总量/分类/年份/资源健康/评分分布/热门 Top。"""
+    from .core import stats as stats_mod
+    db = store.load_db()
+    st = stats_mod.build_stats(db, top_n=20)
+    return jsonify({"ok": True, "stats": st})
 
 
 @app.route("/api/app/auto/settings", methods=["POST"])
@@ -711,29 +742,37 @@ def _scheduler_loop():
 
 
 def _bg_clean_and_generate():
-    db = store.load_db()
-    cfg = store.load_config()
-    ad_domains = store.load_ad_domains() if cfg.get("ad_filter", True) else []
-    dead = 0
-    ad_filtered = 0
-    for it in db["items"]:
-        kept = [ep for ep in it.get("episodes", [])
-                if not cleaner.is_ad_url(ep.get("url", ""), ad_domains)
-                and cleaner.validate_url(ep.get("url", ""), cfg)[0]]
-        dead += len(it.get("episodes", [])) - len(kept)
-        it["episodes"] = kept
-        it["status"] = "ok" if kept else "dead"
-    store.save_db(db)
-    # 海报补全：把缺失/远程的海报下载进本地图库（APK 始终有图的兜底）
-    poster_stats = image_cache.backfill_missing(db["items"])
-    if poster_stats["fixed"]:
+    # 跨进程锁：与 app.py --auto-once / /api/app/auto 互斥，避免同时 rmtree+tvbox-dist 或写穿 db.json
+    lk = run_lock_mod.RunLock("auto_run")
+    if not lk.acquire():
+        store.log("warn", "定时巡检被跳过：另一进程正持有 auto_run 锁")
+        return
+    try:
+        db = store.load_db()
+        cfg = store.load_config()
+        ad_domains = store.load_ad_domains() if cfg.get("ad_filter", True) else []
+        dead = 0
+        ad_filtered = 0
+        for it in db["items"]:
+            kept = [ep for ep in it.get("episodes", [])
+                    if not cleaner.is_ad_url(ep.get("url", ""), ad_domains)
+                    and cleaner.validate_url(ep.get("url", ""), cfg)[0]]
+            dead += len(it.get("episodes", [])) - len(kept)
+            it["episodes"] = kept
+            it["status"] = "ok" if kept else "dead"
         store.save_db(db)
-        store.log("info", f"定时补全海报 {poster_stats['fixed']} 张（无图源 {poster_stats['skipped']}，失败 {poster_stats['failed']}）")
-    json_gen.generate()
-    # 若有上传凭据且开启上传：重新发布到公网（含最新海报图库），让 APK 拿到更新
-    if cfg.get("auto_upload", True):
-        _maybe_redeploy(poster_stats)
-    store.log("info", f"定时任务：巡检清除失效 {dead} 条并重新生成订阅源；海报补 {poster_stats['fixed']} 张")
+        # 海报补全：把缺失/远程的海报下载进本地图库（APK 始终有图的兜底）
+        poster_stats = image_cache.backfill_missing(db["items"])
+        if poster_stats["fixed"]:
+            store.save_db(db)
+            store.log("info", f"定时补全海报 {poster_stats['fixed']} 张（无图源 {poster_stats['skipped']}，失败 {poster_stats['failed']}）")
+        json_gen.generate()
+        # 若有上传凭据且开启上传：重新发布到公网（含最新海报图库），让 APK 拿到更新
+        if cfg.get("auto_upload", True):
+            _maybe_redeploy(poster_stats)
+        store.log("info", f"定时任务：巡检清除失效 {dead} 条并重新生成订阅源；海报补 {poster_stats['fixed']} 张")
+    finally:
+        lk.release()
 
 
 def _maybe_redeploy(poster_stats=None):

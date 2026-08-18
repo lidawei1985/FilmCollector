@@ -473,7 +473,7 @@ fetch('health.json?cb='+Date.now()).then(r=>r.json()).then(d=>{{
 
 # ---------------- 主流程 ----------------
 def build_bundle(source="db", base=None, out_dir=OUT_DEFAULT, name=SOURCE_NAME,
-                 clean=False, meta=None):
+                 clean=False, meta=None, write_stats=True):
     if not base:
         base = "https://YOUR-USERNAME.github.io/FilmCollector"
         print("[publisher] 未指定 --base，已用占位地址，请部署前用 --base 重新生成！")
@@ -484,9 +484,29 @@ def build_bundle(source="db", base=None, out_dir=OUT_DEFAULT, name=SOURCE_NAME,
         raise RuntimeError("没有可发布的内容（检查 --source 或先抓取内容）")
     vods = _to_vods(items)
 
+    # 0.0) 按影片聚合评分降序排列：最佳内容排前（首页/搜索/精选都受益）
+    try:
+        from . import quality
+        vods.sort(key=quality.score_movie, reverse=True)
+    except Exception:
+        pass
+
+    # 准备输出目录：clean 先清空，避免上一次产物残留。
+    # 必须在「写任何文件之前」执行，否则会误删前面刚写好的 stats.json 等。
     if clean and os.path.isdir(out_dir):
         shutil.rmtree(out_dir)
     os.makedirs(out_dir, exist_ok=True)
+
+    # 0.1) 运营统计端点（机器可读）：无论是否部署公网都随包发布，
+    #      保证「本地预览 / 开机自运行 / 仅本地模式」也能看到 stats.json。
+    if write_stats:
+        try:
+            from . import stats as stats_mod
+            st = stats_mod.build_stats(store.load_db(), top_n=20)
+            st["base"] = base.rstrip("/") + "/"
+            _write_json(os.path.join(out_dir, "stats.json"), st)
+        except Exception as e:
+            store.log("warn", "发布 stats.json 失败：" + str(e))
 
     # 0) 海报图库：把本地图库中引用的海报复制进包，并把相对地址改写为公网绝对地址
     posters = _attach_posters(vods, base, out_dir)
