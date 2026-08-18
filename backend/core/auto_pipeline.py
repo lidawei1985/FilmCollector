@@ -247,11 +247,34 @@ def _run_core(cfg, max_new, upload, categories, source, cred, restored):
     except Exception as e:
         report["errors"].append("poster:" + str(e))
 
-    # 3)+4)+5) 上传公网 + APK 源馈闭环
+    # 3)+4)+5) 生成订阅包（本地始终生成，保证"自动生成结果"）+ 有 Token 才部署公网
     if upload:
         if cred is None:
             cred = auth_store.load() if auth_store.has() else None
-        if cred and cred.get("token"):
+        token = (cred or {}).get("token")
+        platform = (cred or {}).get("platform")
+        username = (cred or {}).get("username")
+        repo = (cred or {}).get("repo", "FilmCollector")
+        # base：有凭据用部署 base；否则用上次部署 base 或占位（本地预览/手动部署用）
+        if platform and username:
+            base = deployer.build_base(platform, username, repo)
+        else:
+            base = cfg.get("last_deploy_base") or "https://YOUR-USERNAME.github.io/FilmCollector"
+
+        # 始终生成本地订阅包（即使无 Token，也保证输出订阅数据，便于本地预览/手动部署）
+        try:
+            publisher.build_bundle(
+                source=source, base=base, out_dir=publisher.OUT_DEFAULT,
+                clean=True, meta={"source_status": source_status,
+                                  "last_run_added": len(added),
+                                  "blocked": source_blocked})
+            _write_apk_feed(base)
+            report["bundle_built"] = True
+        except Exception as e:
+            report["errors"].append("bundle:" + str(e))
+
+        # 仅当存在有效 Token 才部署到公网（保留上次有效订阅保护仍适用部署动作）
+        if token:
             # —— 保留上次有效订阅：库异常骤减（远超死链能解释）则拒绝推送 ——
             if new_count == 0:
                 report["errors"].append("无可发布内容，已保留上次有效订阅（未覆盖线上）")
@@ -264,17 +287,6 @@ def _run_core(cfg, max_new, upload, categories, source, cred, restored):
                 report["kept_last_good"] = True
             else:
                 try:
-                    platform = cred["platform"]
-                    token = cred["token"]
-                    username = cred["username"]
-                    repo = cred.get("repo", "FilmCollector")
-                    base = deployer.build_base(platform, username, repo)
-                    publisher.build_bundle(
-                        source=source, base=base, out_dir=publisher.OUT_DEFAULT,
-                        clean=True, meta={"source_status": source_status,
-                                          "last_run_added": len(added),
-                                          "blocked": source_blocked})
-                    _write_apk_feed(base)
                     res = deployer.deploy(platform, token, publisher.OUT_DEFAULT, repo, username)
                     report["uploaded"] = True
                     report["subscribe"] = res.get("subscribe")
