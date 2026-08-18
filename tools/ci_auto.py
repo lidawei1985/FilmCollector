@@ -6,13 +6,12 @@ CI 自动供片：被 GitHub Actions 调用（实现"不依赖本机、永不掉
 关键点（保证"源源不断"且不会把定时任务跑挂）：
 - 片库连续性：run_auto 会先从「已部署的 Pages 仓库 db.json」回拉目录（_ensure_continuity），
   所以即使 CI 机器每次都是全新环境，片库也能接着长，不会清零。
-- 把增长后的 db.json 与 config.json（含 last_deploy_base 连续性基地址）提交回代码仓库，双保险。
+- 注：按 2026-08-19 收口规则，db.json / config.json 已加入 .gitignore，不再回提交「代码仓库」；片库连续性改由 run_auto 从「已部署的 Pages 仓库」回拉（_ensure_continuity）保证。
 - 无论结果如何都 exit 0：状态写入 health.json / run_status.json，GitHub 不会因连续失败而禁用定时任务。
 """
 import os
 import sys
 import subprocess
-import time
 
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
@@ -47,19 +46,10 @@ def main():
     if rep.get("needs_token"):
         print("[提醒] 未检测到有效 Token，本次仅本地更新片库、未部署。请在仓库 Secrets 配置 FC_DEPLOY_TOKEN。")
 
-    # 把增长后的片库目录 + 连续性配置提交回代码仓库，保证下次运行能接着长
-    try:
-        _git("config", "user.email", "filmcollector@ci.local")
-        _git("config", "user.name", "FilmCollector CI")
-        _git("add", "backend/data/db.json", "backend/data/config.json")
-        code, msg = _git("commit", "-m", "chore: 自动更新片库目录 " + time.strftime("%Y-%m-%d %H:%M"))
-        if code == 0:
-            _git("push")
-            print("片库目录已提交回代码仓库（双保险连续性）。")
-        else:
-            print("无需提交 db（无变化）。")
-    except Exception as e:
-        print("db 提交跳过：", e)
+    # 按 2026-08-19 收口规则：backend/data/db.json 与 config.json 已加入 .gitignore，
+    # 不再回提交「代码仓库」（避免把运行态/机器相关文件带进 git 历史）。
+    # 片库连续性由 auto_pipeline.run_auto 从「已部署的 Pages 仓库」回拉（_ensure_continuity）保证；
+    # 订阅产物经 cred 直接推送到独立的 filmcollector-pages 仓库，不经过此处 git 提交代码仓库。
 
     # 永远成功退出：状态已写入 health.json / run_status.json，避免 GitHub 禁用定时任务
     sys.exit(0)

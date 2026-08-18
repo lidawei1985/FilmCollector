@@ -10,7 +10,7 @@ on:
   workflow_dispatch: {}   # 允许在 GitHub 网页「Actions → 此工作流 → Run workflow」手动点一次
 
 permissions:
-  contents: write        # 用于把更新后的本地片库提交回仓库（让云端也能累积去重）
+  contents: write        # 用于把更新后的海报源提交回仓库（让云端也能累积海报仓库）
 
 jobs:
   collect:
@@ -37,12 +37,12 @@ jobs:
           FC_MAX_NEW: '20'                          # 每次最多新增几部，可改
         run: python -m backend.core.cloud_auto
 
-      - name: 把更新后的本地片库与海报源提交回仓库（云端累积去重）
+      - name: 把更新后的海报源提交回仓库（云端累积海报仓库）
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add backend/data/db.json output/images/
-          git diff --cached --quiet || git commit -m "chore: 自动更新本地片库与海报"
+          git add output/images/
+          git diff --cached --quiet || git commit -m "chore: 自动更新海报源"
           git push
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
