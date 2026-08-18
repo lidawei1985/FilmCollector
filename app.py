@@ -139,7 +139,19 @@ def _boot_log(msg):
 
 def main():
     api_only = "--api-only" in sys.argv
+    auto_once = "--auto-once" in sys.argv
     try:
+        # --auto-once：无头单次自动更新后退出（供 Windows 定时任务 / CI 调用，实现"长效自动供片"）
+        if auto_once:
+            _boot_log("AUTO-ONCE 模式：开始单次自动更新片库并部署")
+            try:
+                from backend.core import auto_pipeline
+                rep = auto_pipeline.run_auto()
+                _boot_log("AUTO-ONCE 完成：" + str(rep)[:600])
+            except Exception as e:
+                _boot_log("AUTO-ONCE 失败：" + str(e))
+            return
+
         # 后端在后台线程运行
         t = threading.Thread(target=run_flask, daemon=True)
         t.start()

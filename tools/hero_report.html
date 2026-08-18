@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="zh-CN"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Hero 模块验收报告</title>
+<style>
+ body{font-family:system-ui,'Microsoft YaHei',sans-serif;margin:0;background:#0f1420;color:#e8edf5}
+ header{padding:20px 26px;background:#161d2e;border-bottom:1px solid #2a3550}
+ h1{margin:0;font-size:22px} h2{margin:22px 0 8px;font-size:18px;color:#9fc0ff}
+ .sub{color:#8aa0c0;font-size:13px;margin-top:6px}
+ .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:12px;padding:18px 26px}
+ .card{background:#1a2236;border:1px solid #2a3550;border-radius:10px;padding:14px}
+ .card .n{font-size:26px;font-weight:700;color:#fff} .card .l{font-size:13px;color:#9fb3d6;margin-top:4px}
+ table{border-collapse:collapse;width:calc(100% - 52px);margin:0 26px 10px}
+ th,td{border:1px solid #2a3550;padding:8px 10px;text-align:left;font-size:14px}
+ th{background:#1a2236;color:#cfe0ff} td{background:#141b2c}
+ code{background:#0b0f18;padding:2px 6px;border-radius:4px;color:#7fd1ff}
+ .warn{color:#ffb86b;padding:0 26px} .ok{color:#7CFFB2}
+ .sec{padding:0 26px}
+</style></head>
+<body><header>
+<h1>🎬 Hero 主视觉模块 · 综合验收报告</h1>
+<div class="sub">生成时间：2026-08-16 02:59:22 ｜ 评分规则未改动 ｜ 仅新增 hero* 字段与 hero.json，不破坏现有 poster/cover/episodes 与订阅契约</div>
+</header>
+
+<div class="grid">
+ <div class="card"><div class="n">30</div><div class="l">影片总数</div></div>
+ <div class="card"><div class="n">30</div><div class="l">有可用源</div></div>
+ <div class="card"><div class="n">1</div><div class="l">有高清 Backdrop</div></div>
+ <div class="card"><div class="n ok">1</div><div class="l">Hero 入选</div></div>
+ <div class="card"><div class="n">29</div><div class="l">淘汰</div></div>
+ <div class="card"><div class="n">30</div><div class="l">源可用且健康≥40</div></div>
+</div>
+
+<h2>一、Hero 资格评估（hero.py → hero.json）</h2>
+<table>
+<tr><th>指标</th><th>数值</th></tr>
+<tr><td>影片总数</td><td>30</td></tr><tr><td>有可用源</td><td>30</td></tr><tr><td>有 Poster</td><td>30</td></tr><tr><td>有高清 Hero Poster</td><td>2</td></tr><tr><td>有高清 Backdrop</td><td>1</td></tr><tr><td>Hero 入选</td><td>1</td></tr><tr><td>淘汰</td><td>29</td></tr><tr><td>平均 Poster 宽</td><td>3149 px</td></tr><tr><td>平均 Backdrop 宽</td><td>6000 px</td></tr><tr><td>最高 Backdrop 分辨率</td><td>6000x1465</td></tr>
+</table>
+
+<h2>二、Hero 素材采集（hero_fetch.py 真实外网采集）</h2><table><tr><td>扫描影片数</td><td>30</td></tr><tr><td>找到 Poster（候选）</td><td>2</td></tr><tr><td>高清 Poster（≥800px）</td><td>2</td></tr><tr><td>找到 Backdrop（候选）</td><td>1</td></tr><tr><td>高清 Backdrop（≥1280px）</td><td>1</td></tr><tr><td>Poster+Backdrop 同片匹配</td><td>1</td></tr><tr><td>缓存命中（不重复下载）</td><td>3</td></tr><tr><td>重复图片（已去重）</td><td>0</td></tr><tr><td>缓存命中率（估算）</td><td>50.0%</td></tr><tr><td>失败计数（分类）</td><td>{"MATCH_UNCERTAIN": 40, "LOW_RESOLUTION": 2}</td></tr></table>
+
+<h2>三、淘汰原因 TOP（hero.json）</h2>
+<table><tr><th>原因</th><th>数量</th></tr><tr><td>no_backdrop</td><td>29</td></tr><tr><td>no_hero_poster</td><td>28</td></tr><tr><td>quality_insufficient</td><td>1</td></tr></table>
+
+<h2>四、随机 ≥10 部最终 Hero · 真实文件校验</h2>
+<table>
+<tr><th>影片</th><th>Poster（真实分辨率/大小）</th><th>Backdrop（真实分辨率/大小）</th>
+<th>源健康</th><th>匹配</th><th>Hero分</th><th>评级</th></tr>
+<tr><td>Wings</td><td>2056x3000, 1179KB ✅</td><td>6000x1465, 3688KB ✅</td><td>88</td><td>1.0</td><td>93</td><td>A</td></tr>
+</table>
+
+<div class="sec">
+<h2>五、结论与说明</h2>
+<p class='ok'>✅ Hero 评分规则保持不变；Hero 资格 = 稳定源 + 高清 Poster(≥800) + 高清 Backdrop(≥1280) + 准确匹配，缺一即淘汰（宁缺毋滥）。</p>
+<p class='warn'>⚠️ 当前入选数为 1。若入选为 0，<b>不是 Hero 判断逻辑的问题</b>，而是当前采集库（archive.org 冷门片/家庭录像/西语老 B 级片）在合法免费图源（Wikimedia / TMDB）上<b>确实没有高清宣传图</b>。
+Hero 不会把 5KB 缩略图、错图、假高清塞进去凑数。</p>
+<p>提升真实入选的路径（不降低标准）：
+  <br>① 配置免费 <b>TMDB API Key</b>（同片 Poster+Backdrop 绑定保证，覆盖率最高）：
+     <code>set TMDB_API_KEY=你的key</code> 后重跑 <code>python tools/hero_fetch.py --source tmdb,wikimedia --run-hero</code>；
+  <br>② 向库里补充「本身在 TMDB/Wikimedia 上有高清图的影片」（主流电影 / 知名老片），自然会被 Hero 选中。</p>
+<p class='ok'>✅ 下一步：hero_fetch.py 已实现严格匹配 / 同片绑定 / 质量门禁 / URL+image hash 缓存 / 失败分类 / 限额并发；配合 TMDB Key 即可规模化产出真实 Hero。</p>
+</div>
+</body></html>

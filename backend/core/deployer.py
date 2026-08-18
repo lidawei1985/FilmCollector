@@ -145,7 +145,7 @@ def _deploy_github(token, source_dir, repo, username):
         })
         if sc not in (200, 201):
             msg = (cj.get("message") if isinstance(cj, dict) else str(cj))
-            raise DeployError(f"创建 GitHub 仓库失败：{msg}")
+            raise DeployError(f"GitHub Token 权限不足或创建仓库失败（请重新生成带 public_repo 权限的 Token）：{msg}")
 
     # 3) 部署到「实际被 Pages 服务」的 main 分支（该分支还含 APK 需要的 combined.json）。
     #    采用「克隆 → 覆盖包文件 → 提交 → 推送」的非破坏方式：
@@ -236,7 +236,7 @@ def _deploy_gitee(token, source_dir, repo, username):
             raise DeployError(f"创建 Gitee 仓库失败：{msg}")
     elif sc != 200:
         msg = (rj.get("message") if isinstance(rj, dict) else str(rj))
-        raise DeployError(f"访问 Gitee 仓库失败：{msg}")
+        raise DeployError(f"Gitee Token 失效或权限不足（请重新生成带 projects 权限的令牌）：{msg}")
 
     # 父提交
     parent = None
@@ -309,3 +309,27 @@ if __name__ == "__main__":
         deploy("github", "", "tvbox-dist")
     except DeployError as e:
         print("OK 友好报错:", e)
+
+
+def verify(base, timeout=30):
+    """部署后自检：确认线上订阅已真正生效（检查实际发布的 subscribe.json）。"""
+    if not base:
+        return False
+    url = base.rstrip("/") + "/subscribe.json?cb=" + str(int(time.time()))
+    try:
+        if requests:
+            r = requests.get(url, headers={"User-Agent": "FilmCollector"}, timeout=timeout)
+        else:
+            return False
+        if r.status_code != 200:
+            return False
+        j = r.json()
+        # subscribe.json 含 sites 列表即视为生效
+        if isinstance(j, dict) and j.get("sites"):
+            return True
+        # 兜底：某些形态直接是 data.json 结构（list），也可视为生效
+        if isinstance(j, dict) and j.get("list"):
+            return True
+        return False
+    except Exception:
+        return False

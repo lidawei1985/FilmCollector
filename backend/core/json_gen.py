@@ -21,14 +21,31 @@ BACKUP_DIR = os.path.join(store.BASE_DIR, "output", "backup")
 
 # ---------------- TVBox (maccms 兼容) ----------------
 def _to_tvbox(item):
-    lines = {}
-    for ep in item.get("episodes", []):
-        lines.setdefault(ep.get("line", "默认线路"), []).append(ep)
-    play_from = list(lines.keys())
-    play_url_parts = []
-    for ln in play_from:
-        segs = [f"{ln}${ep.get('url', '')}" for ep in lines[ln]]
+    from . import quality
+    # 过滤 disabled 资源（APK 永不看到），只保留可用资源
+    eps = [ep for ep in item.get("episodes", [])
+           if not quality.is_disabled(ep) and (ep.get("urls") or [ep.get("url")])]
+    if not eps:
+        return None  # 无可用资源 → 整部不发布
+    # 按线路分组，每路内按评分降序（APK 默认选第一条=最高分）
+    by_line = {}
+    for ep in eps:
+        by_line.setdefault(ep.get("line", "默认线路"), []).append(ep)
+    play_from, play_url_parts, first_urls = [], [], []
+    for ln in by_line:
+        eps_ln = sorted(by_line[ln], key=quality.score_resource, reverse=True)
+        play_from.append(ln)
+        segs = []
+        for ep in eps_ln:
+            urls = [u for u in (ep.get("urls") or [ep.get("url")]) if u]
+            for u in urls:
+                segs.append(f"{ln}${u}")
         play_url_parts.append("#".join(segs))
+        # 该线路首选资源（最高分 ep 的候选地址，供 api.js 端探测切换）
+        top = eps_ln[0]
+        tus = [u for u in (top.get("urls") or [top.get("url")]) if u]
+        if tus:
+            first_urls.extend(tus)
     play_url = "$$$".join(play_url_parts)
     return {
         "vod_id": item.get("id") or item.get("source_url") or item.get("title", ""),
@@ -41,13 +58,14 @@ def _to_tvbox(item):
         "vod_director": item.get("director", ""),
         "vod_actor": item.get("actors", ""),
         "vod_content": item.get("description", ""),
-        "vod_remarks": f"共{len(item.get('episodes', []))}集" if item.get("episodes") else "暂无资源",
+        "vod_remarks": f"共{len(eps)}集" if eps else "暂无资源",
         "vod_class": ",".join(item.get("genres", [])),
         "vod_sub": item.get("subtitle", ""),
         "vod_duration": item.get("duration", ""),
         "vod_douban": item.get("rating", ""),
         "vod_play_from": ",".join(play_from),
         "vod_play_url": play_url,
+        "vod_play_urls": first_urls[:3],
     }
 
 
@@ -60,7 +78,9 @@ TYPE_EN = {
 }
 
 def _to_generic(item):
-    eps = item.get("episodes", []) or []
+    from . import quality
+    eps = [ep for ep in (item.get("episodes", []) or [])
+           if not quality.is_disabled(ep) and ep.get("url")]
     play_list = [{"name": ep.get("name", ""), "url": ep.get("url", ""), "line": ep.get("line", "默认线路")}
                  for ep in eps if ep.get("url")]
     actors = item.get("actors", "")
@@ -142,7 +162,7 @@ def generate(items=None):
         items = store.load_db().get("items", [])
     alive = [it for it in items if it.get("status") != "dead"]
 
-    tvbox_vods = [_to_tvbox(it) for it in alive]
+    tvbox_vods = [v for v in (_to_tvbox(it) for it in alive) if v]
     generic_vods = [_to_generic(it) for it in alive]
 
     tvbox_errors = validator.validate_tvbox(tvbox_vods)

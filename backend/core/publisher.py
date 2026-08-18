@@ -142,7 +142,7 @@ def build_subscribe(base, vods):
         ],
         "parses": [],
         "flags": flags,
-        "spider": "FilmCollector",
+        "spider": "",
     }
 
 
@@ -176,6 +176,7 @@ function classes() {
 }
 
 function home() {
+  // TVBox 协议：home() 必须直接返回「平铺的影片列表」，不要分组/嵌套。
   var d = loadData();
   return JSON.stringify({ class: classes(), list: d.list || [], page: 1, pageCount: 1, total: (d.list || []).length, limit: (d.list || []).length });
 }
@@ -207,8 +208,31 @@ function search(wd) {
   return JSON.stringify({ list: list, page: 1, pageCount: 1, total: list.length });
 }
 
-// 播放：传入的 id 即为直链（mp4 等），直接回包。m3u8 等如需解析可在此扩展。
+// 播放：传入的 id 为某个候选直链；在其所属影片的候选列表里逐个探测，返回首个可用地址。
+// archive.org 某个 CDN 节点临时不可达时，自动切到同片的备用直链，单点故障不影响观看。
+function probe(u) {
+  try {
+    var r = request({ url: u, method: 'HEAD' });
+    if (r && (r.code === 200 || r.code === 206 || r.code === 0 || !r.code)) return true;
+  } catch (e) {}
+  try { return !!request(u); } catch (e) { return false; }
+}
 function play(flag, id, flags) {
+  try {
+    var d = loadData();
+    for (var i = 0; i < (d.list || []).length; i++) {
+      var v = d.list[i];
+      var alts = v.vod_play_urls || [v.vod_play_url];
+      var idx = alts.indexOf(id);
+      if (idx >= 0) {
+        var ordered = alts.slice(idx).concat(alts.slice(0, idx));
+        for (var k = 0; k < ordered.length; k++) {
+          if (probe(ordered[k])) return JSON.stringify({ url: ordered[k] });
+        }
+        return JSON.stringify({ url: id }); // 探测不支持则原样返回，让播放器自行尝试
+      }
+    }
+  } catch (e) {}
   return JSON.stringify({ url: id });
 }
 function proxy(opt) { return ''; }
@@ -347,8 +371,109 @@ python -m backend.core.publisher --source demo --base https://你的用户名.gi
 """
 
 
+# ---------------- 健康度端点 ----------------
+def _resource_health_summary():
+    """统计全部播放资源的分级健康分布（active/warning/degraded/disabled）。"""
+    from . import quality
+    try:
+        db = store.load_db()
+    except Exception:
+        return {"active": 0, "warning": 0, "degraded": 0, "disabled": 0, "disabled_titles": []}
+    summ = {"active": 0, "warning": 0, "degraded": 0, "disabled": 0, "disabled_titles": []}
+    for it in db.get("items", []):
+        for ep in it.get("episodes") or []:
+            st = (ep.get("health") or {}).get("status", quality.STATUS_ACTIVE)
+            if st in summ:
+                summ[st] += 1
+            else:
+                summ["active"] += 1
+            if st == quality.STATUS_DISABLED:
+                summ["disabled_titles"].append(it.get("title", "?"))
+    return summ
+
+
+def build_health_json(base, count, meta=None):
+    """机器可读的健康度端点（供 APK / 监控读取）：源是否在线、片库数、资源健康分布、上次更新。"""
+    meta = meta or {}
+    blocked = bool(meta.get("blocked"))
+    status = "degraded" if blocked else "ok"
+    rh = _resource_health_summary()
+    note = ("⚠ 上游片源（archive.org）本次被限流，已保留上次有效片库、未清空；"
+            "通常 1 小时后自动恢复。" if blocked else
+            "✅ 片源在线，片库持续增长且均经分级健康自检可播；异常资源已自动降级/隐藏。")
+    return {
+        "app": "FilmCollector",
+        "status": status,
+        "updated_at": datetime.now().strftime("%Y-%m-%dT%H:%M:%S"),
+        "total": count,
+        "last_run_added": meta.get("last_run_added", 0),
+        "blocked": blocked,
+        "resource_health": {
+            "active": rh["active"],
+            "warning": rh["warning"],
+            "degraded": rh["degraded"],
+            "disabled": rh["disabled"],
+            "disabled_titles": rh["disabled_titles"][:20],
+        },
+        "subscribe": base.rstrip("/") + "/subscribe.json",
+        "note": note,
+    }
+
+
+def build_status_html(base, count, meta=None):
+    """给小白看的状态页（人类可读），并用 JS 实时拉 health.json 刷新。"""
+    meta = meta or {}
+    blocked = bool(meta.get("blocked"))
+    badge = ("🟡 上游限流·已保留旧片库" if blocked else "🟢 在线·持续增长")
+    badge_color = "#b8860b" if blocked else "#1a9d5a"
+    rh = _resource_health_summary()
+    health_rows = (
+        f"<p>资源健康：🟢 正常 <b>{rh['active']}</b> · "
+        f"🟡 观察 <b>{rh['warning']}</b> · 🟠 降级 <b>{rh['degraded']}</b> · "
+        f"⚫ 已隐藏 <b>{rh['disabled']}</b></p>"
+    )
+    disabled_note = ""
+    if rh["disabled_titles"]:
+        shown = "、".join(rh["disabled_titles"][:10])
+        more = f" 等 {rh['disabled']} 条" if rh["disabled"] > 10 else ""
+        disabled_note = f"<p style='color:#9aa7b8;font-size:13px'>已自动隐藏（待恢复）：{shown}{more}</p>"
+    return f"""<!DOCTYPE html>
+<html lang="zh-CN"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{SOURCE_NAME} · 运行状态</title>
+<style>body{{font-family:system-ui,'Microsoft YaHei',sans-serif;max-width:680px;margin:40px auto;padding:0 18px;color:#1b2735;line-height:1.7}}
+.card{{border:1px solid #d8e0ea;border-radius:12px;padding:16px 18px;margin:14px 0;background:#fafcff}}
+.badge{{display:inline-block;padding:6px 14px;border-radius:999px;background:{badge_color};color:#fff;font-weight:600}}
+code{{background:#eef2f7;padding:2px 6px;border-radius:5px;word-break:break-all}} b{{color:#0a6cff}}</style>
+</head><body>
+<h1>🎬 {SOURCE_NAME} · 运行状态</h1>
+<p class="badge">{badge}</p>
+<div class="card"><h3>📊 概览</h3>
+<p>当前片库：<b id="total">{count}</b> 部（均经分级健康自检，可播）</p>
+{health_rows}
+{disabled_note}
+<p>上次更新：<b id="updated">读取中…</b></p>
+<p>本次新增：<b id="added">{meta.get('last_run_added', 0)}</b> 部</p>
+<p>订阅地址：<code>{base.rstrip('/')}/subscribe.json</code></p></div>
+<div class="card"><h3>🩺 说明</h3>
+<p>{('⚠ 上游片源（archive.org）本次被限流，已保留上次有效片库、未清空；通常 1 小时后自动恢复，'
+   '届时自动补片。') if blocked else '✅ 片源在线。系统每天自动找新片、剔除死链、异常资源自动降级/隐藏、'
+   '部署到公网，无需你任何操作。'}</p></div>
+<p style="color:#7a8aa0;font-size:13px">本页为自动化运行状态快照；详细历史见仓库内 run_status.json。</p>
+<script>
+fetch('health.json?cb='+Date.now()).then(r=>r.json()).then(d=>{{
+  if(d.total!==undefined) document.getElementById('total').textContent=d.total;
+  if(d.updated_at) document.getElementById('updated').textContent=d.updated_at;
+  if(d.last_run_added!==undefined) document.getElementById('added').textContent=d.last_run_added;
+}}).catch(()=>{{}});
+</script>
+</body></html>
+"""
+
+
 # ---------------- 主流程 ----------------
-def build_bundle(source="db", base=None, out_dir=OUT_DEFAULT, name=SOURCE_NAME, clean=False):
+def build_bundle(source="db", base=None, out_dir=OUT_DEFAULT, name=SOURCE_NAME,
+                 clean=False, meta=None):
     if not base:
         base = "https://YOUR-USERNAME.github.io/FilmCollector"
         print("[publisher] 未指定 --base，已用占位地址，请部署前用 --base 重新生成！")
@@ -379,9 +504,30 @@ def build_bundle(source="db", base=None, out_dir=OUT_DEFAULT, name=SOURCE_NAME, 
     # 5) 部署说明
     with open(os.path.join(out_dir, "DEPLOY.md"), "w", encoding="utf-8") as f:
         f.write(DEPLOY_MD)
+    # 6) 健康度端点 + 状态页（供 APK / 小白一眼看源是否在线）
+    _write_json(os.path.join(out_dir, "health.json"), build_health_json(base, len(vods), meta))
+    with open(os.path.join(out_dir, "status.html"), "w", encoding="utf-8") as f:
+        f.write(build_status_html(base, len(vods), meta))
 
-    # 6) 独立海报仓库 + 今日精选（与 Lumflix APK 直接对齐：md5(片名) 命名）
+    # 7) 独立海报仓库 + 今日精选（与 Lumflix APK 直接对齐：md5(片名) 命名）
     repo = poster_repo.refresh(base, out_dir=out_dir)
+
+    # 7.5) Hero 主视觉评估（独立增强层，不破坏现有 poster / 订阅契约）
+    #      仅新增 item 的 hero* 字段 + 独立 hero.json，APK 拿最佳结果即可。
+    try:
+        from . import hero
+        hero.evaluate_all()
+        hero.build_hero_json(base, out_dir)
+    except Exception as e:
+        store.log("warn", "Hero 主视觉评估异常：" + str(e))
+
+    # 8) 同时发布 db.json（含完整片库与候选地址），供「换机 / 清库」后目录连续性恢复，
+    #    避免本地数据丢失导致增长清零。
+    try:
+        src_db = store.load_db()
+        _write_json(os.path.join(out_dir, "db.json"), src_db)
+    except Exception as e:
+        store.log("warn", "发布 db.json 失败：" + str(e))
 
     store.log("info", f"静态订阅包生成：{len(vods)} 部 → {out_dir}（base={base}；海报随包发布 {posters['copied']} 张，第三方远程 {posters['remote']} 张；仓库 {repo['repo']['img']} 竖版 / {repo['repo']['slide']} 横版；精选 {repo['featured']['count']} 部）")
     return {
@@ -390,6 +536,7 @@ def build_bundle(source="db", base=None, out_dir=OUT_DEFAULT, name=SOURCE_NAME, 
         "subscribe": base + "subscribe.json",
         "api_js": base + "api.js",
         "data_json": base + "data.json",
+        "health": base + "health.json",
         "posters": posters,
         "repo": repo["repo"],
         "featured": repo["featured"],

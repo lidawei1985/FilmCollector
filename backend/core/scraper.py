@@ -14,7 +14,7 @@ import urllib.parse
 import urllib.request
 import requests
 from bs4 import BeautifulSoup
-from . import store
+from . import store, net
 
 FIELD_KEYS = ["title", "aliases", "year", "region", "type", "director",
               "actors", "description", "duration", "rating", "subtitle", "poster", "cover"]
@@ -262,36 +262,72 @@ def crawl_list(template, start_url, max_pages=5):
     return items
 
 
-def crawl_collection(collection_id, detail_template=None, max_items=20):
-    """archive.org 集合：用 advancedsearch API 列出集合内影片 identifier，逐条采集详情页。
+def _fetch_item_metadata(identifier):
+    """走 archive.org 官方 metadata API 取单部影片（不扒 HTML，抗改版/抗限流）。"""
+    data = net.get_json(f"https://archive.org/metadata/{identifier}", timeout=25, min_interval=0.8)
+    if not data:
+        return None
+    meta = data.get("metadata") or {}
+    files = data.get("files") or []
+    if not files:
+        return None
+    cands = []
+    for f in files:
+        name = (f.get("name") or "")
+        if not name.lower().endswith(".mp4"):
+            continue
+        if re.search(r"(sample|trailer|thumbnail|preview)", name, re.I):
+            continue
+        url = f"https://archive.org/download/{identifier}/{name}"
+        cands.append({"name": name, "url": url})
+    if not cands:
+        return None
+    episodes = [{"name": _quality_label(c["url"]), "url": c["url"], "line": "默认线路"} for c in cands]
+    episodes = _collapse_quality_variants(episodes)
+    if not episodes:
+        return None
+    title = (meta.get("title") or identifier).strip()
+    title = re.sub(r"\s*:\s*Free Download,?\s*Borrow,?\s*and Streaming\s*:\s*Internet Archive\s*$", "", title, flags=re.I)
+    title = re.sub(r"\s*:\s*Internet Archive\s*$", "", title, flags=re.I) or identifier
+    return {
+        "title": title,
+        "description": (meta.get("description") or "").strip(),
+        "year": str(meta.get("year") or "").strip(),
+        "type": "电影",
+        "region": (meta.get("language") or "").strip(),
+        "poster": f"https://archive.org/services/img/{identifier}",
+        "episodes": episodes,
+        "source_id": identifier,
+        "source_url": f"https://archive.org/details/{identifier}",
+        "status": "ok",
+    }
 
-    对 JS 渲染的集合页（服务端 HTML 抓不到条目）尤其有效，一个预设即可扩出一批真实片源。
-    """
+
+def crawl_collection(collection_id, detail_template=None, max_items=20):
+    """archive.org 集合：advancedsearch 列出 identifier，再走 metadata API 取详情（不扒 HTML）。"""
     cfg = store.load_config()
     ids = []
     q = f"collection:{collection_id}"
     api = ("https://archive.org/advancedsearch.php?q=" + urllib.parse.quote(q) +
            "&fl[]=identifier&rows=" + str(int(max_items)) + "&output=json")
     try:
-        # 用 requests（自带 certifi）而非 urllib，避免冻结 EXE 内 HTTPS 证书异常
-        r = requests.get(api, headers={"User-Agent": store.UA_POOL[0]}, timeout=20)
-        r.raise_for_status()
-        data = r.json()
-        for doc in data.get("response", {}).get("docs", []):
-            ident = doc.get("identifier")
-            if ident:
-                ids.append(ident)
+        r = net.get_json(api, timeout=20, min_interval=0.8)
+        if r:
+            for doc in r.get("response", {}).get("docs", []):
+                ident = doc.get("identifier")
+                if ident:
+                    ids.append(ident)
     except Exception as e:
         store.log("warn", f"集合列举失败 {collection_id}：{e}")
     items = []
     for ident in ids:
-        url = f"https://archive.org/details/{ident}"
         try:
-            html = _fetch_html(url)
-            items.append(parse_detail(detail_template, html, url))
+            it = _fetch_item_metadata(ident)
+            if it:
+                items.append(it)
         except Exception as e:
-            store.log("warn", f"采集详情失败 {url}：{e}")
+            store.log("warn", f"采集详情失败 {ident}：{e}")
         if cfg.get("request_interval"):
-            time.sleep(cfg["request_interval"])
+            time.sleep(cfg.get("request_interval"))
     store.log("info", f"集合采集「{collection_id}」共 {len(items)} 条")
     return items

@@ -11,16 +11,44 @@ __pycache__/
 venv/
 envs/
 
-# 采集产生的图片缓存（db.json 需保留，供云端累积去重）
+# 采集产生的图片缓存（image_cache 不进仓库）
 backend/data/image_cache/
+# 本地运行态片库（每次采集重写，不进仓库；2026-08-19）
+backend/data/db.json
+# 本地运行配置（含机器相关运行态字段，不进仓库；2026-08-19）
+backend/data/config.json
 
-# 导出/构建临时产物（output/images 是我们的自建海报仓库，必须进仓库并随云端累积）
+# 导出/构建临时产物（output/images 是自建海报仓库，必须进仓库；export_test 为测试产物，不进仓库）
 output/json/
 output/backup/
 output/posters/
+output/export_test/
 node_modules/
 *.zip
 
 # 日志
 *.log
 .tmp_apk_extract/
+
+# 本地部署凭据（已确认泄露，禁止入库；2026-08-18 安全修复）
+backend/data/.fc_deploy_key
+
+# Python 缓存 / 测试缓存
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+*.egg-info/
+
+# 编辑器 / 操作系统临时文件
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+*.bak
+*.tmp
+.idea/
+.vscode/
+
+# 运行时状态 / 本地备份（不进仓库）
+backend/data/run_status.json
+backend/data/config.json.bak
