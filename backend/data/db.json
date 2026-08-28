@@ -1680,9 +1680,263 @@
       "id": "f73d0491-461b-43a5-a007-35c8bff34467",
       "created_at": "2026-08-17 21:45:45",
       "updated_at": "2026-08-17 21:45:45"
+    },
+    {
+      "title": "La Guerra De Los Sostenes ( 1976)",
+      "aliases": "",
+      "year": "",
+      "region": "",
+      "type": "",
+      "director": "",
+      "actors": "",
+      "description": "Película",
+      "duration": "",
+      "rating": "",
+      "subtitle": "",
+      "poster": "images/poster_La_guerra_de_los_sostenes__1976__000060.jpg",
+      "cover": "images/cover_la-guerra-de-los-sostenes-1976.jpg",
+      "episodes": [
+        {
+          "name": "线路片段1",
+          "url": "https://archive.org/download/la-guerra-de-los-sostenes-1976/La%20guerra%20de%20los%20sostenes%20%281976%29.mp4",
+          "line": "默认线路"
+        }
+      ],
+      "source_url": "https://archive.org/details/la-guerra-de-los-sostenes-1976",
+      "source_id": "la-guerra-de-los-sostenes-1976",
+      "license": "Public Domain / CC",
+      "status": "ok",
+      "id": "7434eecc-8ff3-4ccb-bf43-75fd414ddda6",
+      "created_at": "2026-08-28 05:29:42",
+      "updated_at": "2026-08-28 05:29:42"
+    },
+    {
+      "title": "No Apto Para Menores (Inedita)(1979)",
+      "aliases": "",
+      "year": "",
+      "region": "",
+      "type": "",
+      "director": "",
+      "actors": "",
+      "description": "Película",
+      "duration": "",
+      "rating": "",
+      "subtitle": "",
+      "poster": "images/poster_No_apto_para_menores__Inedita__1979__000060.jpg",
+      "cover": "images/cover_no-apto-para-menores-inedita-1979.jpg",
+      "episodes": [
+        {
+          "name": "线路片段1",
+          "url": "https://archive.org/download/no-apto-para-menores-inedita-1979/No%20apto%20para%20menores%20%28Inedita%29%281979%29.mp4",
+          "line": "默认线路"
+        }
+      ],
+      "source_url": "https://archive.org/details/no-apto-para-menores-inedita-1979",
+      "source_id": "no-apto-para-menores-inedita-1979",
+      "license": "Public Domain / CC",
+      "status": "ok",
+      "id": "a9d9aff6-a005-4b81-9af5-d2acfc9140f3",
+      "created_at": "2026-08-28 05:29:43",
+      "updated_at": "2026-08-28 05:29:43"
+    },
+    {
+      "title": "El Lugar Del Humo (1979)",
+      "aliases": "",
+      "year": "",
+      "region": "",
+      "type": "",
+      "director": "",
+      "actors": "",
+      "description": "Película",
+      "duration": "",
+      "rating": "",
+      "subtitle": "",
+      "poster": "images/poster_El_lugar_del_humo__1979__000060.jpg",
+      "cover": "images/cover_el-lugar-del-humo-1979.jpg",
+      "episodes": [
+        {
+          "name": "线路片段1",
+          "url": "https://archive.org/download/el-lugar-del-humo-1979/El%20lugar%20del%20humo%20%281979%29.mp4",
+          "line": "默认线路"
+        }
+      ],
+      "source_url": "https://archive.org/details/el-lugar-del-humo-1979",
+      "source_id": "el-lugar-del-humo-1979",
+      "license": "Public Domain / CC",
+      "status": "ok",
+      "id": "a8420589-e0f5-460f-860c-f9e610526e55",
+      "created_at": "2026-08-28 05:29:44",
+      "updated_at": "2026-08-28 05:29:44"
+    },
+    {
+      "title": "Sin Querer, Queriendo (1985)",
+      "aliases": "",
+      "year": "",
+      "region": "",
+      "type": "",
+      "director": "",
+      "actors": "",
+      "description": "Película",
+      "duration": "",
+      "rating": "",
+      "subtitle": "",
+      "poster": "images/poster_Sin_querer__queriendo__1985__000060.jpg",
+      "cover": "images/cover_sin-querer-queriendo-1985.jpg",
+      "episodes": [
+        {
+          "name": "线路片段1",
+          "url": "https://archive.org/download/sin-querer-queriendo-1985/Sin%20querer%2C%20queriendo%20%281985%29.mp4",
+          "line": "默认线路"
+        }
+      ],
+      "source_url": "https://archive.org/details/sin-querer-queriendo-1985",
+      "source_id": "sin-querer-queriendo-1985",
+      "license": "Public Domain / CC",
+      "status": "ok",
+      "id": "4d914a11-980f-4f38-9cf3-6680d5653c16",
+      "created_at": "2026-08-28 05:29:45",
+      "updated_at": "2026-08-28 05:29:45"
+    },
+    {
+      "title": "La Virgen Gaucha (1987)",
+      "aliases": "",
+      "year": "",
+      "region": "",
+      "type": "",
+      "director": "",
+      "actors": "",
+      "description": "Película",
+      "duration": "",
+      "rating": "",
+      "subtitle": "",
+      "poster": "images/poster_La_virgen_gaucha__1987__000060.jpg",
+      "cover": "images/cover_la-virgen-gaucha-1987.jpg",
+      "episodes": [
+        {
+          "name": "线路片段1",
+          "url": "https://archive.org/download/la-virgen-gaucha-1987/La%20virgen%20gaucha%20%281987%29.mp4",
+          "line": "默认线路"
+        }
+      ],
+      "source_url": "https://archive.org/details/la-virgen-gaucha-1987",
+      "source_id": "la-virgen-gaucha-1987",
+      "license": "Public Domain / CC",
+      "status": "ok",
+      "id": "7cf33270-0b75-4e34-9188-dc5d3ff1d05c",
+      "created_at": "2026-08-28 05:29:46",
+      "updated_at": "2026-08-28 05:29:46"
+    },
+    {
+      "title": "Guerreros Y Cautivas (1989)",
+      "aliases": "",
+      "year": "",
+      "region": "",
+      "type": "",
+      "director": "",
+      "actors": "",
+      "description": "Película",
+      "duration": "",
+      "rating": "",
+      "subtitle": "",
+      "poster": "images/poster_Guerreros_y_cautivas__1989__000060.jpg",
+      "cover": "images/cover_guerreros-y-cautivas-1989.jpg",
+      "episodes": [
+        {
+          "name": "线路片段1",
+          "url": "https://archive.org/download/guerreros-y-cautivas-1989/Guerreros%20y%20cautivas%20%281989%29.mp4",
+          "line": "默认线路"
+        }
+      ],
+      "source_url": "https://archive.org/details/guerreros-y-cautivas-1989",
+      "source_id": "guerreros-y-cautivas-1989",
+      "license": "Public Domain / CC",
+      "status": "ok",
+      "id": "dab70b35-6183-4b07-96f7-ccd7c7558a2f",
+      "created_at": "2026-08-28 05:29:47",
+      "updated_at": "2026-08-28 05:29:47"
+    },
+    {
+      "title": "Ya No Hay Hombres (1991)",
+      "aliases": "",
+      "year": "",
+      "region": "",
+      "type": "",
+      "director": "",
+      "actors": "",
+      "description": "Película",
+      "duration": "",
+      "rating": "",
+      "subtitle": "",
+      "poster": "images/poster_Ya_no_hay_hombres__1991__000060.jpg",
+      "cover": "images/cover_ya-no-hay-hombres-1991.jpg",
+      "episodes": [
+        {
+          "name": "线路片段1",
+          "url": "https://archive.org/download/ya-no-hay-hombres-1991/Ya%20no%20hay%20hombres%20%281991%29.mp4",
+          "line": "默认线路"
+        }
+      ],
+      "source_url": "https://archive.org/details/ya-no-hay-hombres-1991",
+      "source_id": "ya-no-hay-hombres-1991",
+      "license": "Public Domain / CC",
+      "status": "ok",
+      "id": "eb284ea1-d5cf-4460-8f31-eb9af784c84a",
+      "created_at": "2026-08-28 05:29:48",
+      "updated_at": "2026-08-28 05:29:48"
     }
   ],
   "logs": [
+    {
+      "time": "2026-08-28 05:29:55",
+      "level": "info",
+      "msg": "自动更新完成：耗时 16.2s，新增 7 部，上传=True"
+    },
+    {
+      "time": "2026-08-28 05:29:53",
+      "level": "info",
+      "msg": "静态订阅包生成：41 部 → /home/runner/work/FilmCollector/FilmCollector/tvbox-dist（base=https://lidawei1985.github.io/filmcollector-pages/；海报随包发布 82 张，第三方远程 0 张；仓库 41 竖版 / 0 横版；精选 5 部）"
+    },
+    {
+      "time": "2026-08-28 05:29:53",
+      "level": "info",
+      "msg": "今日精选生成：第 6897 批 / 共 5 部（每 3 天轮换）"
+    },
+    {
+      "time": "2026-08-28 05:29:53",
+      "level": "info",
+      "msg": "海报仓库导出：41 部影片 → repo/img 41 张, repo/slide 0 张"
+    },
+    {
+      "time": "2026-08-28 05:29:53",
+      "level": "info",
+      "msg": "海报仓库刷新完成：库 41 部 | 补齐 15 | repo/img 41 张, slide 0 张 | 精选 5 部"
+    },
+    {
+      "time": "2026-08-28 05:29:53",
+      "level": "info",
+      "msg": "今日精选生成：第 6897 批 / 共 5 部（每 3 天轮换）"
+    },
+    {
+      "time": "2026-08-28 05:29:53",
+      "level": "info",
+      "msg": "海报仓库导出：41 部影片 → repo/img 41 张, repo/slide 0 张"
+    },
+    {
+      "time": "2026-08-28 05:29:53",
+      "level": "info",
+      "msg": "海报补齐：新增 15 / 无图源 0 / 失败 0"
+    },
+    {
+      "time": "2026-08-28 05:29:48",
+      "level": "info",
+      "msg": "自动更新：新增 7 部",
+      "count": 7
+    },
+    {
+      "time": "2026-08-28 05:29:41",
+      "level": "info",
+      "msg": "auto_feed 发现候选 7 部（来自 5 个合集）"
+    },
     {
       "time": "2026-08-27 00:53:28",
       "level": "info",
