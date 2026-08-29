@@ -1887,6 +1887,57 @@
   ],
   "logs": [
     {
+      "time": "2026-08-29 23:26:38",
+      "level": "info",
+      "msg": "自动更新完成：耗时 9.8s，新增 0 部，上传=True"
+    },
+    {
+      "time": "2026-08-29 23:26:36",
+      "level": "info",
+      "msg": "静态订阅包生成：41 部 → /home/runner/work/FilmCollector/FilmCollector/tvbox-dist（base=https://lidawei1985.github.io/filmcollector-pages/；海报随包发布 82 张，第三方远程 0 张；仓库 41 竖版 / 0 横版；精选 5 部）"
+    },
+    {
+      "time": "2026-08-29 23:26:36",
+      "level": "info",
+      "msg": "今日精选生成：第 6898 批 / 共 5 部（每 3 天轮换）"
+    },
+    {
+      "time": "2026-08-29 23:26:36",
+      "level": "info",
+      "msg": "海报仓库导出：41 部影片 → repo/img 41 张, repo/slide 0 张"
+    },
+    {
+      "time": "2026-08-29 23:26:36",
+      "level": "info",
+      "msg": "海报仓库刷新完成：库 41 部 | 补齐 22 | repo/img 41 张, slide 0 张 | 精选 5 部"
+    },
+    {
+      "time": "2026-08-29 23:26:36",
+      "level": "info",
+      "msg": "今日精选生成：第 6898 批 / 共 5 部（每 3 天轮换）"
+    },
+    {
+      "time": "2026-08-29 23:26:36",
+      "level": "info",
+      "msg": "海报仓库导出：41 部影片 → repo/img 41 张, repo/slide 0 张"
+    },
+    {
+      "time": "2026-08-29 23:26:36",
+      "level": "info",
+      "msg": "海报补齐：新增 22 / 无图源 0 / 失败 0"
+    },
+    {
+      "time": "2026-08-29 23:26:30",
+      "level": "info",
+      "msg": "自动更新：新增 0 部",
+      "count": 0
+    },
+    {
+      "time": "2026-08-29 23:26:30",
+      "level": "info",
+      "msg": "auto_feed 发现候选 0 部（来自 5 个合集）"
+    },
+    {
       "time": "2026-08-29 03:12:47",
       "level": "info",
       "msg": "自动更新完成：耗时 11.3s，新增 0 部，上传=True"
