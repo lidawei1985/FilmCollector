@@ -1693,7 +1693,7 @@
       "duration": "",
       "rating": "",
       "subtitle": "",
-      "poster": "images/poster_La_guerra_de_los_sostenes__1976__000060.jpg",
+      "poster": "images/poster_la-guerra-de-los-sostenes-1976.jpg",
       "cover": "images/cover_la-guerra-de-los-sostenes-1976.jpg",
       "episodes": [
         {
@@ -1722,7 +1722,7 @@
       "duration": "",
       "rating": "",
       "subtitle": "",
-      "poster": "images/poster_No_apto_para_menores__Inedita__1979__000060.jpg",
+      "poster": "images/poster_no-apto-para-menores-inedita-1979.jpg",
       "cover": "images/cover_no-apto-para-menores-inedita-1979.jpg",
       "episodes": [
         {
@@ -1751,7 +1751,7 @@
       "duration": "",
       "rating": "",
       "subtitle": "",
-      "poster": "images/poster_El_lugar_del_humo__1979__000060.jpg",
+      "poster": "images/poster_el-lugar-del-humo-1979.jpg",
       "cover": "images/cover_el-lugar-del-humo-1979.jpg",
       "episodes": [
         {
@@ -1780,7 +1780,7 @@
       "duration": "",
       "rating": "",
       "subtitle": "",
-      "poster": "images/poster_Sin_querer__queriendo__1985__000060.jpg",
+      "poster": "images/poster_sin-querer-queriendo-1985.jpg",
       "cover": "images/cover_sin-querer-queriendo-1985.jpg",
       "episodes": [
         {
@@ -1809,7 +1809,7 @@
       "duration": "",
       "rating": "",
       "subtitle": "",
-      "poster": "images/poster_La_virgen_gaucha__1987__000060.jpg",
+      "poster": "images/poster_la-virgen-gaucha-1987.jpg",
       "cover": "images/cover_la-virgen-gaucha-1987.jpg",
       "episodes": [
         {
@@ -1838,7 +1838,7 @@
       "duration": "",
       "rating": "",
       "subtitle": "",
-      "poster": "images/poster_Guerreros_y_cautivas__1989__000060.jpg",
+      "poster": "images/poster_guerreros-y-cautivas-1989.jpg",
       "cover": "images/cover_guerreros-y-cautivas-1989.jpg",
       "episodes": [
         {
@@ -1867,7 +1867,7 @@
       "duration": "",
       "rating": "",
       "subtitle": "",
-      "poster": "images/poster_Ya_no_hay_hombres__1991__000060.jpg",
+      "poster": "images/poster_ya-no-hay-hombres-1991.jpg",
       "cover": "images/cover_ya-no-hay-hombres-1991.jpg",
       "episodes": [
         {
@@ -1886,6 +1886,57 @@
     }
   ],
   "logs": [
+    {
+      "time": "2026-08-29 03:12:47",
+      "level": "info",
+      "msg": "自动更新完成：耗时 11.3s，新增 0 部，上传=True"
+    },
+    {
+      "time": "2026-08-29 03:12:44",
+      "level": "info",
+      "msg": "静态订阅包生成：41 部 → /home/runner/work/FilmCollector/FilmCollector/tvbox-dist（base=https://lidawei1985.github.io/filmcollector-pages/；海报随包发布 82 张，第三方远程 0 张；仓库 41 竖版 / 0 横版；精选 5 部）"
+    },
+    {
+      "time": "2026-08-29 03:12:44",
+      "level": "info",
+      "msg": "今日精选生成：第 6898 批 / 共 5 部（每 3 天轮换）"
+    },
+    {
+      "time": "2026-08-29 03:12:44",
+      "level": "info",
+      "msg": "海报仓库导出：41 部影片 → repo/img 41 张, repo/slide 0 张"
+    },
+    {
+      "time": "2026-08-29 03:12:44",
+      "level": "info",
+      "msg": "海报仓库刷新完成：库 41 部 | 补齐 22 | repo/img 41 张, slide 0 张 | 精选 5 部"
+    },
+    {
+      "time": "2026-08-29 03:12:44",
+      "level": "info",
+      "msg": "今日精选生成：第 6898 批 / 共 5 部（每 3 天轮换）"
+    },
+    {
+      "time": "2026-08-29 03:12:44",
+      "level": "info",
+      "msg": "海报仓库导出：41 部影片 → repo/img 41 张, repo/slide 0 张"
+    },
+    {
+      "time": "2026-08-29 03:12:44",
+      "level": "info",
+      "msg": "海报补齐：新增 22 / 无图源 0 / 失败 0"
+    },
+    {
+      "time": "2026-08-29 03:12:37",
+      "level": "info",
+      "msg": "自动更新：新增 0 部",
+      "count": 0
+    },
+    {
+      "time": "2026-08-29 03:12:37",
+      "level": "info",
+      "msg": "auto_feed 发现候选 0 部（来自 5 个合集）"
+    },
     {
       "time": "2026-08-28 05:29:55",
       "level": "info",
