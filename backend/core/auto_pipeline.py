@@ -288,6 +288,18 @@ def _run_core(cfg, max_new, upload, categories, source, cred, restored):
                               "last_run_added": len(added),
                               "blocked": source_blocked})
         _write_apk_feed(base)
+        # P2-1(C2)：生成三 APK 契约 feed（feed.<mode>.json + version.json）进发布包，
+        # 随 deployer 一起发布到 Pages。分仓逻辑由 FILMCOLLECTOR_USE_CHANNEL_ROUTER 控制：
+        # CI workflow 设 1 → ContentClassifier 新分类链路；未设置 → 旧逻辑（本地行为不变）。
+        # 失败只记错，不阻断订阅包发布。
+        try:
+            from . import apk_feed as _apk_feed_mod
+            _contract_files = _apk_feed_mod.write_apk_feeds(out_dir=publisher.OUT_DEFAULT)
+            report["apk_contract_feeds"] = {
+                m: os.path.basename(p) for m, p in _contract_files.items()
+            }
+        except Exception as e2:
+            report["errors"].append("apk_contract_feed:" + str(e2))
         report["bundle_built"] = True
     except Exception as e:
         report["errors"].append("bundle:" + str(e))

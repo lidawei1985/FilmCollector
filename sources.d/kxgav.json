@@ -1,0 +1,30 @@
+{
+  "id": "kxgav",
+  "name": "kxgav(成人)",
+  "protocol": "xml",
+  "is_adult": true,
+  "note": "自动发现并真实探活通过的成人影视源(MacCMS xml RSS)。真实 source_id=kxgav，保留原始分类 tid。由 adult_source_discovery 发现。",
+  "fetch": {
+    "type": "http_xml",
+    "timeout": 15,
+    "urls": [
+      "https://www.kxgav.com/api/xml.php?ac=videolist&pg=1&pagesize=20",
+      "https://www.kxgav.com/api/xml.php?ac=videolist&pg=2&pagesize=20",
+      "https://www.kxgav.com/api/xml.php?ac=videolist&pg=3&pagesize=20",
+      "https://www.kxgav.com/api/xml.php?ac=videolist&pg=4&pagesize=20",
+      "https://www.kxgav.com/api/xml.php?ac=videolist&pg=5&pagesize=20"
+    ]
+  },
+  "category_rules": {
+    "mode": "genres",
+    "fallback_type": true,
+    "note": "RSS 仅给 tid 数字分类；保留原始 tid，不臆造分类名；聚合层按 tid 隔离不合并。"
+  },
+  "play_line_rules": {
+    "field": "episodes",
+    "note": "MacCMS RSS <dl><dd flag>url</dd></dl> → 多线路；保留真实 m3u8 播放地址。"
+  },
+  "source_capability": "full_play",
+  "_discovered_by": "adult_source_discovery",
+  "_api_type": "xml"
+}

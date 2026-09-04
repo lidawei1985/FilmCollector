@@ -23,3 +23,6 @@ jobs:
           FC_PLATFORM: github
           FC_USERNAME: ${{ secrets.FC_USERNAME }}
           FC_REPO: filmcollector-pages
+          # P2-1(C2)：云端自动任务统一走 ContentClassifier 新分类链路
+          # （apk_feed 桥接按此变量切换分仓判定；回滚 = 删除本行 revert 提交）
+          FILMCOLLECTOR_USE_CHANNEL_ROUTER: '1'

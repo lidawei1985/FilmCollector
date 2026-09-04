@@ -55,3 +55,20 @@ backend/data/config.json.bak
 # 跨进程运行锁目录与每日运营报告（运行态，不进仓库；2026-08-19）
 output/.locks/
 output/report_daily.json
+
+# ===== P2-1(C1) 灰度准备阶段补充：备份/运行态数据/临时产物 不进仓库 =====
+backup/
+token/
+*.bak
+*.bak_*
+# 聚合库与隔离库（大型运行态数据，不进仓库；云端由 CI 重新采集生成）
+backend/data/aggregated.json
+backend/data/aggregated.r18bak.json
+backend/data/quarantine.json
+# 历史阶段遗留的本地备份目录
+.migration_backup/
+.phaseC_backup_dir/
+.phaseD_backup_dir/
+# 灰度验证临时产物（可由脚本重新生成）
+_flow_test/switch_staging/
+_flow_test/new_sources_sim/

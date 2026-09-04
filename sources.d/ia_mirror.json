@@ -1,0 +1,19 @@
+{
+  "id": "ia_mirror",
+  "name": "Internet Archive · 备用镜像通道",
+  "protocol": "json",
+  "is_adult": false,
+  "note": "演示用第二真实源：指向同一真实本地库（backend/data/db.json），用于端到端验证「跨源去重 + 多线路聚合」能力（dedup_id 相同则前台合并为 1 张卡片，后台保留双 origin）。部署时把这个文件替换为真实独立的第二源（如另一个真实 IA 集合/真实 json 接口）即可，系统扫描 sources.d/ 会自动发现，无需改任何代码。",
+  "fetch": {
+    "type": "local_json",
+    "path": "backend/data/db.json"
+  },
+  "category_rules": {
+    "mode": "genres",
+    "fallback_type": true
+  },
+  "play_line_rules": {
+    "field": "episodes"
+  },
+  "source_capability": "full_play"
+}

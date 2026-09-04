@@ -1,0 +1,25 @@
+{
+  "id": "ia_prelinger",
+  "name": "Internet Archive · Prelinger Archives(真实公开源)",
+  "protocol": "json",
+  "is_adult": false,
+  "note": "真实公开源: Internet Archive Prelinger Archives(历史/广告/工业影像/业余电影)。source_capability=content_poster_only: 内容以广告/科教/纪录杂项为主, MOVIE_ONLY 下预期隔离(QUARANTINED)。",
+  "fetch": {
+    "type": "http_json",
+    "url": "https://archive.org/advancedsearch.php?q=collection%3Aprelinger+AND+mediatype%3Amovies&fl[]=identifier&fl[]=title&fl[]=year&fl[]=description&fl[]=subject&fl[]=creator&fl[]=director&output=json&rows=30",
+    "timeout": 15,
+    "retry": 1
+  },
+  "category_rules": {
+    "mode": "genres",
+    "field": "subject",
+    "fallback_type": true,
+    "note": "mode=genres: 源提供什么分类(subject 字段)就提取什么; 无 subject 时回退到 type。无 subject 时不创造分类。"
+  },
+  "play_line_rules": {
+    "field": "identifier",
+    "url_template": "https://archive.org/details/{identifier}",
+    "note": "播放入口指向 IA 详情页; 真实播放由 IA 提供, 多线路保留。"
+  },
+  "source_capability": "content_poster_only"
+}

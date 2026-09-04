@@ -1,0 +1,32 @@
+{
+  "id": "dytt",
+  "name": "电影天堂(心屋儿童源)",
+  "protocol": "json",
+  "is_adult": false,
+  "note": "心屋儿童专属源。v2(2026-09-04 P1任务3)：收窄为只抓 t=37「动画片」(total≈1972，电影向动画，电影门放行→合格率≈100% 不触发源隔离)；放弃 t=29-33 剧集向动漫（NON_MOVIE 设计不入电影池，且日韩动漫实测混入成人向内容，保护儿童仓）；t=4/t=33 实测为空分类。分类器 child_strong「动画片」+ child_known_source 白名单双保险进 child。伦理片 t=34 永不进 child channel。",
+  "channel_hint": "child",
+  "is_child_known_source": true,
+  "fetch": {
+    "type": "http_json",
+    "timeout": 20,
+    "urls": [
+      "https://caiji.dyttzyapi.com/api.php/provide/vod?ac=videolist&t=37&pg=1&pagesize=200",
+      "https://caiji.dyttzyapi.com/api.php/provide/vod?ac=videolist&t=37&pg=2&pagesize=200",
+      "https://caiji.dyttzyapi.com/api.php/provide/vod?ac=videolist&t=37&pg=3&pagesize=200",
+      "https://caiji.dyttzyapi.com/api.php/provide/vod?ac=videolist&t=37&pg=4&pagesize=200",
+      "https://caiji.dyttzyapi.com/api.php/provide/vod?ac=videolist&t=37&pg=5&pagesize=200"
+    ]
+  },
+  "category_rules": {
+    "mode": "genres",
+    "fallback_type": true,
+    "child_class_ids": ["37"],
+    "exclude_class_ids": ["34"],
+    "note": "mode=genres: 提取真实分类。child_class_ids 记录该源的儿童分类 type_id（v2 实测：仅 t=37 动画片为可入库儿童内容）。exclude_class_ids 防止成人分类污染。"
+  },
+  "play_line_rules": {
+    "field": "episodes",
+    "note": "AppleCMS vod_play_url 完整保留多线路"
+  },
+  "source_capability": "full_play"
+}

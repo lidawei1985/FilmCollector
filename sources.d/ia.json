@@ -1,0 +1,21 @@
+{
+  "id": "ia",
+  "name": "Internet Archive 公共片库",
+  "protocol": "json",
+  "is_adult": false,
+  "note": "真实源：读取本地已采集的 34 部 Internet Archive 公共领域/CC 影片（backend/data/db.json）。源驱动分类——以影片自带的 genres 作为源提供的真实分类，不预设任何假分类树。",
+  "fetch": {
+    "type": "local_json",
+    "path": "backend/data/db.json"
+  },
+  "category_rules": {
+    "mode": "genres",
+    "fallback_type": true,
+    "note": "mode=genres：源提供什么分类(genres)就提取什么；无 genres 时回退到 type(电影/连续剧)。不拆分、不创造。"
+  },
+  "play_line_rules": {
+    "field": "episodes",
+    "note": "播放线路来自 episodes[].line / url；多线路保留各自原始数据。"
+  },
+  "source_capability": "full_play"
+}

@@ -1,0 +1,26 @@
+{
+  "id": "hongniu",
+  "name": "红牛资源(电影采集)",
+  "protocol": "json",
+  "is_adult": false,
+  "note": "真实源: 红牛资源 AppleCMS provide/vod API。MOVIE_ONLY: 只按真实电影类型分类采集(动作片/喜剧片/剧情片, t=5/6/10)。",
+  "fetch": {
+    "type": "http_json",
+    "timeout": 20,
+    "urls": [
+      "https://www.hongniuzy2.com/api.php/provide/vod?ac=videolist&t=5&pg=1&pagesize=100",
+      "https://www.hongniuzy2.com/api.php/provide/vod?ac=videolist&t=6&pg=1&pagesize=100",
+      "https://www.hongniuzy2.com/api.php/provide/vod?ac=videolist&t=10&pg=1&pagesize=100"
+    ]
+  },
+  "category_rules": {
+    "mode": "genres",
+    "fallback_type": true,
+    "note": "mode=genres: 源提供什么分类(vod_class/type_name)就提取什么; 不拆分、不翻译、不创造。"
+  },
+  "play_line_rules": {
+    "field": "episodes",
+    "note": "AppleCMS vod_play_url: 线路名$url1#url2$$$线路2$... 多线路全保留(真实视频流)。"
+  },
+  "source_capability": "full_play"
+}

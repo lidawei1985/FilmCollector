@@ -1,0 +1,26 @@
+{
+  "id": "bfzy",
+  "name": "暴风资源(电影采集)",
+  "protocol": "json",
+  "is_adult": false,
+  "source_capability": "full_play",
+  "note": "真实源: 暴风资源 AppleCMS provide/vod API (实测 HTTP 200)。MOVIE_ONLY: 只按真实电影类型分类采集(动作片/喜剧片/剧情片, t=21/22/26), 不再按'最新N条'混抓剧集综艺。vod_play_url 为真实视频流。",
+  "fetch": {
+    "type": "http_json",
+    "urls": [
+      "https://bfzyapi.com/api.php/provide/vod?ac=videolist&t=21&pg=1&pagesize=100",
+      "https://bfzyapi.com/api.php/provide/vod?ac=videolist&t=22&pg=1&pagesize=100",
+      "https://bfzyapi.com/api.php/provide/vod?ac=videolist&t=26&pg=1&pagesize=100"
+    ],
+    "timeout": 20
+  },
+  "category_rules": {
+    "mode": "genres",
+    "fallback_type": true,
+    "note": "mode=genres: 源提供什么分类(vod_class/type_name)就提取什么; 不拆分、不翻译、不创造。"
+  },
+  "play_line_rules": {
+    "field": "episodes",
+    "note": "AppleCMS vod_play_url: 线路名$url1#url2$$$线路2$... 多线路全保留(真实视频流)。"
+  }
+}

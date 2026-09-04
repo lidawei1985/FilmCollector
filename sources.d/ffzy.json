@@ -1,0 +1,34 @@
+{
+  "id": "ffzy",
+  "name": "非凡资源(电影采集+儿童扩展)",
+  "protocol": "json",
+  "is_adult": false,
+  "channel_hint": "mixed",
+  "is_child_known_source": true,
+  "note": "v1.0: 仅 t=6/7/11 电影子类。P1-2 扩展: 加 t=29-33 动漫分类（含国产/日韩/欧美/港台/海外动漫共 5 类，纯净）。全分页 1-5。FFZY ?ac=class 共 31 类，无伦理片，可作 child_known_source。",
+  "fetch": {
+    "type": "http_json",
+    "timeout": 20,
+    "urls": [
+      "https://api.ffzyapi.com/api.php/provide/vod?ac=videolist&t=6&pg=1&pagesize=100",
+      "https://api.ffzyapi.com/api.php/provide/vod?ac=videolist&t=7&pg=1&pagesize=100",
+      "https://api.ffzyapi.com/api.php/provide/vod?ac=videolist&t=11&pg=1&pagesize=100",
+      "https://api.ffzyapi.com/api.php/provide/vod?ac=videolist&t=29&pg=1&pagesize=100",
+      "https://api.ffzyapi.com/api.php/provide/vod?ac=videolist&t=30&pg=1&pagesize=100",
+      "https://api.ffzyapi.com/api.php/provide/vod?ac=videolist&t=31&pg=1&pagesize=100",
+      "https://api.ffzyapi.com/api.php/provide/vod?ac=videolist&t=32&pg=1&pagesize=100",
+      "https://api.ffzyapi.com/api.php/provide/vod?ac=videolist&t=33&pg=1&pagesize=100"
+    ]
+  },
+  "category_rules": {
+    "mode": "genres",
+    "fallback_type": true,
+    "child_class_ids": ["29", "30", "31", "32", "33"],
+    "note": "mode=genres: 源提供什么分类就提取什么。child_class_ids 记录儿童分类 type_id，配合 is_child_known_source 让 ContentClassifier 自动识别 -> child。"
+  },
+  "play_line_rules": {
+    "field": "episodes",
+    "note": "AppleCMS vod_play_url 完整保留多线路（真实 m3u8/MP4 视频流）。"
+  },
+  "source_capability": "full_play"
+}

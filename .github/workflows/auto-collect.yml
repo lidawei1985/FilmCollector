@@ -35,6 +35,8 @@ jobs:
           FC_REPO: ${{ secrets.DEPLOY_REPO }}       # 选填：Pages 仓库名；留空默认 filmcollector-pages
           FC_PLATFORM: github
           FC_MAX_NEW: '20'                          # 每次最多新增几部，可改
+          # P2-1(C2)：云端自动任务统一走 ContentClassifier 新分类链路（回滚 = 删除本行）
+          FILMCOLLECTOR_USE_CHANNEL_ROUTER: '1'
         run: python -m backend.core.cloud_auto
 
       - name: 把更新后的海报源提交回仓库（云端累积海报仓库）
